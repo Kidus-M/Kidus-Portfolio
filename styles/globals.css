@@ -53,57 +53,57 @@ body {
 }
 
 /* === Base Layer === */
-@layer base {
-  * {
-    @apply border outline-none;
-  }
+/*@layer base {*/
+/*  * {*/
+/*    @apply border outline-none;*/
+/*  }*/
 
-  body {
-    @apply bg-[var(--color-background)] text-[var(--color-text-primary)];
-  }
+/*  body {*/
+/*    @apply bg-[var(--color-background)] text-[var(--color-text-primary)];*/
+/*  }*/
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    color: var(--color-text-primary);
-    font-weight: 600;
-  }
+/*  h1, h2, h3, h4, h5, h6 {*/
+/*    font-family: var(--font-heading);*/
+/*    color: var(--color-text-primary);*/
+/*    font-weight: 600;*/
+/*  }*/
 
-  p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
+/*  p {*/
+/*    color: var(--color-text-secondary);*/
+/*    line-height: 1.7;*/
+/*  }*/
 
-  button {
-    font-family: var(--font-heading);
-    background: var(--color-accent-gradient);
-    color: white;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition);
-  }
+/*  button {*/
+/*    font-family: var(--font-heading);*/
+/*    background: var(--color-accent-gradient);*/
+/*    color: white;*/
+/*    border-radius: var(--radius-md);*/
+/*    box-shadow: var(--shadow-soft);*/
+/*    transition: var(--transition);*/
+/*  }*/
 
-  button:hover {
-    background: var(--color-primary-hover);
-    transform: scale(1.05);
-  }
+/*  button:hover {*/
+/*    background: var(--color-primary-hover);*/
+/*    transform: scale(1.05);*/
+/*  }*/
 
-  .card {
-    background: var(--color-surface);
-    box-shadow: var(--shadow-soft);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    transition: var(--transition);
-  }
+/*  .card {*/
+/*    background: var(--color-surface);*/
+/*    box-shadow: var(--shadow-soft);*/
+/*    border-radius: var(--radius-lg);*/
+/*    padding: 1.5rem;*/
+/*    transition: var(--transition);*/
+/*  }*/
 
-  .card:hover {
-    transform: translateY(-4px);
-  }
-}
+/*  .card:hover {*/
+/*    transform: translateY(-4px);*/
+/*  }*/
+/*}*/
 
-/* === Light-Only Mode === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #F8FAFC;
-    --color-text-primary: #0F172A;
-  }
-}
+/*!* === Light-Only Mode === *!*/
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --color-background: #F8FAFC;*/
+/*    --color-text-primary: #0F172A;*/
+/*  }*/
+/*}*/
