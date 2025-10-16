@@ -52,9 +52,7 @@ export default function Navbar() {
                 height={34}
                 className="object-contain"
             />
-            <span className="hidden sm:inline font-spacegrotesk font-semibold text-[var(--color-text-primary)] text-lg tracking-tight">
-            Kidus Mesfin
-          </span>
+
           </Link>
 
           {/* Desktop Links */}
