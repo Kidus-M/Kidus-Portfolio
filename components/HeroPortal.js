@@ -1,162 +1,165 @@
-// components/HeroPortal.tsx
-'use client';
+"use client";
+import React, { useRef, useEffect } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import {
+    Sphere,
+    MeshDistortMaterial,
+    Environment,
+    PerspectiveCamera,
+} from "@react-three/drei";
+import { motion, useScroll, useTransform } from "framer-motion";
+import * as THREE from "three";
 
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Text3D, OrbitControls, Float, Sparkles, useTexture } from '@react-three/drei';
-import { motion } from 'framer-motion';
-import { useScroll, useTransform } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+/* ===== Portal Scene (3D Background) ===== */
+function PortalScene({ mouse, scrollY }) {
+    const sphere = useRef();
+    const { camera } = useThree();
 
-function PortalScene() {
-    const meshRef = useRef();
-    const textRef = useRef();
-    const sparklesRef = useRef();
+    useFrame(({ clock }) => {
+        const t = clock.getElapsedTime();
 
-    useFrame((state) => {
-        if (meshRef.current) {
-            meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime) * 0.1;
-            meshRef.current.rotation.y += 0.005;
-        }
-        if (textRef.current) {
-            textRef.current.rotation.y = Math.sin(state.clock.elapsedTime) * 0.1;
-        }
+        // Animate distortion + subtle color pulse
+        sphere.current.material.distort = 0.35 + Math.sin(t * 1.5) * 0.05;
+        sphere.current.material.speed = 2;
+        sphere.current.material.emissiveIntensity =
+            0.3 + Math.sin(t * 2) * 0.1;
+
+        // Mouse parallax
+        const x = (mouse.current.x - 0.5) * 0.7;
+        const y = (mouse.current.y - 0.5) * 0.7;
+        camera.position.x += (x - camera.position.x) * 0.05;
+        camera.position.y += (-y - camera.position.y) * 0.05;
+
+        // Scroll-based zoom
+        const zoom = 5 - scrollY.current * 3;
+        camera.position.z += (zoom - camera.position.z) * 0.05;
+        camera.lookAt(0, 0, 0);
     });
 
     return (
         <>
-            <ambientLight intensity={0.4} />
-            <pointLight position={[10, 10, 10]} intensity={1.5} color="#00FFFF" />
-            <pointLight position={[-10, -10, -10]} intensity={0.8} color="#B08D57" />
-
-            {/* Portal Ring */}
-            <mesh ref={meshRef} rotation={[0, 0, 0]}>
-                <torusGeometry args={[3, 0.2, 16, 100]} />
-                <meshStandardMaterial color="#00FFFF" emissive="#00FFFF" emissiveIntensity={0.5} />
-            </mesh>
-
-            {/* Floating Particles */}
-            <Sparkles ref={sparklesRef} count={100} scale={8} size={2} speed={0.3} color="#00FFFF" />
-            <Sparkles count={50} scale={6} size={3} speed={0.2} color="#B08D57" />
-
-            {/* 3D Text */}
-            <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-                <Text3D
-                    ref={textRef}
-                    font="/fonts/Space Grotesk_Bold.json"
-                    scale={0.8}
-                    position={[0, 0, 0]}
-                    curveSegments={32}
-                    bevelEnabled
-                    bevelSize={0.02}
-                    bevelThickness={0.1}
-                    height={0.2}
-                    lineHeight={0.8}
-                    letterSpacing={0.05}
-                >
-                    KIDUS MESFIN
-                    <meshStandardMaterial
-                        color="#FFFFFF"
-                        emissive="#00FFFF"
-                        emissiveIntensity={0.3}
-                        metalness={0.8}
-                        roughness={0.2}
-                    />
-                </Text3D>
-            </Float>
-
-            <OrbitControls
-                enableZoom={false}
-                enablePan={false}
-                maxPolarAngle={Math.PI / 2}
-                minPolarAngle={Math.PI / 2}
-                autoRotate
-                autoRotateSpeed={0.5}
-            />
+            <ambientLight intensity={0.7} />
+            <pointLight position={[2, 3, 4]} intensity={2} color="#60A5FA" />
+            <Sphere args={[1.5, 128, 128]} ref={sphere}>
+                <MeshDistortMaterial
+                    color="#2563EB"
+                    emissive="#60A5FA"
+                    emissiveIntensity={0.4}
+                    roughness={0.3}
+                    metalness={0.5}
+                    speed={2.5}
+                />
+            </Sphere>
+            <Environment preset="city" />
         </>
     );
 }
 
-export default function HeroPortal() {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start start', 'end start']
-    });
+/* ===== Hero Section ===== */
+export default function HeroSection() {
+    const mouse = useRef(new THREE.Vector2(0.5, 0.5));
+    const scrollY = useRef(0);
 
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-    const y = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
+    const { scrollYProgress } = useScroll();
+    const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.25], [1, 1.25]);
+    const aboutOpacity = useTransform(scrollYProgress, [0.15, 0.45], [0, 1]);
 
-    const scrollToAbout = () => {
-        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-    };
+    useEffect(() => {
+        const onMouseMove = (e) => {
+            mouse.current.x = e.clientX / window.innerWidth;
+            mouse.current.y = e.clientY / window.innerHeight;
+        };
+        const onScroll = () => (scrollY.current = window.scrollY / window.innerHeight);
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("scroll", onScroll);
+        return () => {
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
 
     return (
-        <section ref={containerRef} className="relative h-screen bg-[#0D0D10] overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0D0D10] via-[#1A1A2E] to-[#16213E]" />
-
-            {/* 3D Canvas */}
-            <div className="absolute inset-0">
-                <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-                    <PortalScene />
-                </Canvas>
-            </div>
-
-            {/* Overlay Content */}
-            <div className="relative z-10 h-full flex flex-col items-center justify-center text-white">
-                <motion.div
-                    className="text-center px-4"
-                    style={{ opacity, scale, y }}
-                >
-                    <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 1 }}
-                        className="text-xl md:text-2xl font-light text-cyan-400 mb-4 tracking-widest"
-                    >
-                        WEB DEVELOPER
-                    </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 1 }}
-                        className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed"
-                    >
-                        Crafting digital experiences that feel alive
-                    </motion.p>
-
-                    <motion.button
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.1, duration: 1 }}
-                        onClick={scrollToAbout}
-                        className="px-8 py-4 border border-cyan-400/50 text-cyan-400 rounded-full font-semibold hover:bg-cyan-400/10 backdrop-blur-sm transition-all duration-300 flex items-center gap-2 group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Explore my work
-                        <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-                    </motion.button>
-                </motion.div>
-            </div>
-
-            {/* Scroll Indicator */}
+        <section className="relative min-h-[200vh] flex flex-col justify-center items-center overflow-hidden bg-[var(--color-background)]">
+            {/* ===== 3D Scene ===== */}
             <motion.div
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                style={{ scale, opacity }}
+                className="fixed inset-0 pointer-events-none z-0"
             >
-                <div className="w-6 h-10 border-2 border-cyan-400/50 rounded-full flex justify-center">
-                    <motion.div
-                        className="w-1 h-3 bg-cyan-400 rounded-full mt-2"
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                </div>
+                <Canvas>
+                    <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+                    <PortalScene mouse={mouse} scrollY={scrollY} />
+                </Canvas>
             </motion.div>
+
+            {/* ===== Glass Overlay ===== */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-[var(--color-background)] backdrop-blur-sm z-1" />
+
+            {/* ===== Hero Text ===== */}
+            <motion.div
+                style={{ opacity }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="relative z-10 text-center px-6 mt-[30vh]"
+            >
+                <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight mb-3">
+                    KIDUS MESFIN
+                </h1>
+                <h2 className="text-2xl md:text-3xl text-cyan-400 font-heading mb-4">
+                    Full-Stack Developer
+                </h2>
+                <p className="text-[var(--color-text-secondary)] text-lg font-body max-w-lg mx-auto mb-8">
+                    Building digital experiences that{" "}
+                    <span className="text-[var(--color-primary)] font-semibold">
+            feel alive
+          </span>.
+                </p>
+
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-[var(--color-primary)] text-white font-semibold px-8 py-3 rounded-[var(--radius-md)] shadow-lg"
+                    onClick={() =>
+                        window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+                    }
+                >
+                    Let’s Build Something →
+                </motion.button>
+            </motion.div>
+
+            {/* ===== Scroll Cue ===== */}
+            <motion.div
+                animate={{ y: [0, 10, 0], opacity: [0.6, 1, 0.6] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="absolute bottom-10 text-[var(--color-text-secondary)] text-sm font-body z-10"
+            >
+                Scroll to explore ↓
+            </motion.div>
+
+            {/* ===== Next Section (About) ===== */}
+            <motion.section
+                style={{ opacity: aboutOpacity }}
+                className="absolute top-[100vh] w-full min-h-screen flex flex-col items-center justify-center bg-[var(--color-surface)] z-10 px-6"
+            >
+                <h2 className="text-4xl md:text-5xl font-heading font-semibold mb-6 text-[var(--color-text-primary)]">
+                    About Me
+                </h2>
+                <p className="max-w-2xl text-center text-[var(--color-text-secondary)] text-lg font-body leading-relaxed">
+                    I’m a passionate Full-Stack Developer focused on creating performant,
+                    aesthetic, and human-centered digital products. I merge clean design,
+                    strong engineering, and intuitive UX to craft solutions that inspire
+                    interaction and deliver impact.
+                </p>
+            </motion.section>
+
+            {/* ===== Ambient Glow ===== */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.25 }}
+                transition={{ duration: 1.5 }}
+                className="absolute w-[600px] h-[600px] rounded-full bg-[var(--color-accent-gradient)] blur-[150px] opacity-40"
+            />
         </section>
     );
 }
