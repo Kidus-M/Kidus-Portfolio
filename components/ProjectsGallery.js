@@ -89,8 +89,8 @@ export default function ProjectsGallery() {
     );
 }
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
-    const cardRef = useRef<HTMLDivElement>(null);
+function ProjectCard({ project, index }) {
+    const cardRef = useRef(null);
 
     return (
         <motion.div
@@ -163,7 +163,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                     initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                     transition={{ delay: index * 0.2 + 0.5, duration: 0.8 }}
                 >
-                    {project.tech.map((tech: string) => (
+                    {project.tech.map((tech) => (
                         <span
                             key={tech}
                             className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 hover:bg-cyan-400 hover:text-black transition-all duration-300 cursor-default"
