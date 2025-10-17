@@ -43,7 +43,7 @@ function PortalScene() {
             <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
                 <Text3D
                     ref={textRef}
-                    font="/fonts/space_grotesk_regular.json"
+                    font="/fonts/Space Grotesk_Bold.json"
                     scale={0.8}
                     position={[0, 0, 0]}
                     curveSegments={32}
@@ -78,7 +78,7 @@ function PortalScene() {
 }
 
 export default function HeroPortal() {
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ['start start', 'end start']
