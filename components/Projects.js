@@ -201,48 +201,61 @@ const safeDesignProjects = designProjects.map(p => ({
 
 const ProjectModal = ({ project, isOpen, onClose, type }) => {
     const lenis = useLenis();
+
     useEffect(() => {
         if (isOpen) {
+            // 1. Lock the body
             document.body.style.overflow = "hidden";
-            lenis?.stop();   // <---- STOP LENIS
+            // 2. Stop the main smooth scroll
+            lenis?.stop();
         } else {
+            // Restore
             document.body.style.overflow = "";
-            lenis?.start();  // <---- RESTART LENIS
+            lenis?.start();
         }
 
+        // Cleanup function to ensure scroll returns if component unmounts
         return () => {
             document.body.style.overflow = "";
-            lenis?.start(); // <---- ALWAYS RESTORE
+            lenis?.start();
         };
-    }, [isOpen]);
+    }, [isOpen, lenis]);
 
     if (!project) return null;
-
 
     return (
         <AnimatePresence>
             {isOpen && (
                 <>
+                    {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/90 z-[60] backdrop-blur-sm scroll-smooth pointer-events-none"
+                        // FIXED: Removed 'pointer-events-none' so clicking here actually closes the modal
+                        className="fixed inset-0 bg-black/90 z-[60] backdrop-blur-sm cursor-pointer"
                     />
+
+                    {/* Modal Container */}
                     <motion.div
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed right-0 top-0 h-full w-full md:w-[600px] bg-[#0f0f0f] border-l border-white/10 z-[70] overflow-y-scroll touch-pan-y p-8 shadow-2xl"
+                        // CRITICAL FIX: This attribute tells Lenis to ignore this div, enabling native scroll
+                        data-lenis-prevent
+                        className="fixed right-0 top-0 h-full w-full md:w-[600px] bg-[#0f0f0f] border-l border-white/10 z-[70] overflow-y-auto p-8 shadow-2xl"
                     >
-                        <button onClick={onClose} className="absolute top-6 right-6 text-white/50 hover:text-white p-2">
+                        <button
+                            onClick={onClose}
+                            className="absolute top-6 right-6 text-white/50 hover:text-white p-2 z-50 bg-black/20 rounded-full"
+                        >
                             <FaTimes size={24} />
                         </button>
 
-                        <div className="mt-12">
-              <span className="font-mono text-accent text-xs tracking-widest uppercase mb-2 block">
+                        <div className="mt-12 pb-20"> {/* Added pb-20 for bottom spacing */}
+                            <span className="font-mono text-accent text-xs tracking-widest uppercase mb-2 block">
                 // {type === 'eng' ? 'CASE STUDY' : 'VISUAL GALLERY'}
               </span>
                             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -253,13 +266,12 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
                             {type === 'eng' && (
                                 <div className="space-y-8">
                                     <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-white/10">
-                                        {/* Use project.image here */}
                                         <Image src={project.image} alt={project.title} fill className="object-cover" />
                                     </div>
 
                                     <div className="flex gap-4">
                                         {project.liveDemo && (
-                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex-1 bg-white text-black py-3 rounded-md font-mono text-center font-bold hover:bg-[#22c55e] hover:text-white transition-colors flex items-center justify-center gap-2">
+                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex-1 bg-white text-black py-3 rounded-md font-mono text-center font-bold hover:bg-accent hover:text-white transition-colors flex items-center justify-center gap-2">
                                                 <FaExternalLinkAlt /> Live Demo
                                             </a>
                                         )}
@@ -272,7 +284,7 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
 
                                     <div>
                                         <h4 className="font-mono text-secondary text-sm mb-3 border-b border-white/10 pb-2">PROJECT DETAILS</h4>
-                                        <p className="text-gray-300 leading-relaxed">
+                                        <p className="text-gray-300 leading-relaxed text-lg">
                                             {project.details}
                                         </p>
                                     </div>
@@ -281,9 +293,9 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
                                         <h4 className="font-mono text-secondary text-sm mb-3 border-b border-white/10 pb-2">TECH STACK</h4>
                                         <div className="flex flex-wrap gap-2">
                                             {project.technologies.map(tech => (
-                                                <span key={tech} className="px-3 py-1 bg-white/5 rounded text-xs text-accent font-mono">
-                           {tech}
-                         </span>
+                                                <span key={tech} className="px-3 py-1 bg-white/5 rounded text-xs text-accent font-mono border border-white/5">
+                          {tech}
+                        </span>
                                             ))}
                                         </div>
                                     </div>
@@ -293,10 +305,10 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
                             {/* Design Content */}
                             {type === 'design' && (
                                 <div className="space-y-8">
-                                    <p className="text-gray-300">{project.description}</p>
-                                    <div className="grid gap-4">
+                                    <p className="text-gray-300 text-lg leading-relaxed">{project.description}</p>
+                                    <div className="grid gap-8">
                                         {project.images && project.images.map((img, idx) => (
-                                            <div key={idx} className="relative w-full h-auto rounded-sm overflow-hidden border border-white/5">
+                                            <div key={idx} className="relative w-full h-auto rounded-sm overflow-hidden border border-white/5 shadow-lg">
                                                 <Image
                                                     src={img}
                                                     alt={`${project.title} shot ${idx}`}
@@ -376,7 +388,7 @@ const Projects = () => {
 
                                 <div className="md:col-span-3 flex justify-end items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <span className="font-mono text-xs text-white">VIEW CASE STUDY</span>
-                                    <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center">
+                                    <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center pb-2">
                                         →
                                     </div>
                                 </div>
