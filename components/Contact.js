@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaTimes, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaTimes, FaPaperPlane, FaCheckCircle, FaExclamationCircle, FaGithub, FaInstagram, FaLinkedin, FaTelegram } from 'react-icons/fa';
 
 const Contact = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,22 +59,53 @@ const Contact = () => {
                     <h2 className="font-heading text-5xl md:text-8xl font-bold mt-8 mb-12 leading-tight">
                         Let's engineer <br/> something robust.
                     </h2>
-                    <div className="flex flex-col md:flex-row gap-8 md:items-center">
+
+                    {/* Actions Row */}
+                    <div className="flex flex-col md:flex-row gap-8 md:items-center mb-16">
                         <button
                             onClick={() => setIsModalOpen(true)}
-                            className="bg-white text-black px-8 py-4 rounded-full font-bold font-mono hover:bg-accent hover:text-white transition-all"
+                            className="bg-white text-black px-8 py-4 rounded-full font-bold font-mono hover:bg-[#22c55e] hover:text-white transition-all"
                         >
                             INITIATE CONTACT
                         </button>
 
-                        {/* Resume Download: Needs file at public/resume.pdf */}
+                        {/* IMPORTANT:
+                   For this link to work, you MUST move 'resume.pdf'
+                   from 'src/assets/' to the 'public/' folder.
+                   The path '/resume.pdf' refers to public/resume.pdf
+                */}
                         <a
                             href="/resume.pdf"
                             download="Kidus_Mesfin_Resume.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="font-mono text-sm text-secondary hover:text-white underline flex items-center gap-2"
                         >
                             DOWNLOAD RESUME.JSON
                         </a>
+                    </div>
+
+                    {/* Social Links Section (Main View) */}
+                    <div className="border-t border-white/10 pt-10">
+                        <span className="font-mono text-secondary text-xs block mb-6 uppercase tracking-widest">// Establish Connection</span>
+                        <div className="flex gap-8">
+                            <a href="https://github.com/Kidus-M" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
+                                <FaGithub size={32} className="group-hover:scale-110 transition-transform" />
+                                <span className="sr-only">GitHub</span>
+                            </a>
+                            <a href="https://www.instagram.com/kidus._.m" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
+                                <FaInstagram size={32} className="group-hover:scale-110 transition-transform" />
+                                <span className="sr-only">Instagram</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/kidus0237" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
+                                <FaLinkedin size={32} className="group-hover:scale-110 transition-transform" />
+                                <span className="sr-only">LinkedIn</span>
+                            </a>
+                            <a href="https://t.me/kidus_mesfin" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
+                                <FaTelegram size={32} className="group-hover:scale-110 transition-transform" />
+                                <span className="sr-only">Telegram</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -94,7 +125,7 @@ const Contact = () => {
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="fixed inset-0 m-auto w-full max-w-lg h-fit bg-[#111] border border-white/10 rounded-xl p-8 z-[70] shadow-2xl"
+                            className="fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] overflow-y-auto bg-[#111] border border-white/10 rounded-xl p-8 z-[70] shadow-2xl"
                         >
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="font-heading text-2xl">Initialize Connection</h3>
@@ -160,6 +191,23 @@ const Contact = () => {
                                     {isSubmitting ? 'SENDING DATA...' : <><FaPaperPlane /> EXECUTE SEND</>}
                                 </button>
                             </form>
+
+                            {/* Social Links inside Modal */}
+                            <div className="mt-8 pt-6 border-t border-white/10">
+                                <p className="font-mono text-xs text-secondary mb-4 text-center">OR CONNECT VIA</p>
+                                <div className="flex justify-center gap-6">
+                                    <a href="https://github.com/Kidus-M" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors">
+                                        <FaGithub size={24} />
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/kidus0237" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors">
+                                        <FaLinkedin size={24} />
+                                    </a>
+                                    <a href="https://t.me/kidus_mesfin" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors">
+                                        <FaTelegram size={24} />
+                                    </a>
+                                </div>
+                            </div>
+
                         </motion.div>
                     </>
                 )}

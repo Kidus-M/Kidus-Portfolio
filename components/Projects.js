@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaTimes, FaCode, FaPaintBrush } from 'react-icons/fa';
+import { useLenis } from 'lenis/react'
 
 // --- ASSET IMPORTS (As requested) ---
 // Note: Ensure these files exist in your project or the build will fail.
@@ -199,17 +200,24 @@ const safeDesignProjects = designProjects.map(p => ({
 // --- COMPONENTS ---
 
 const ProjectModal = ({ project, isOpen, onClose, type }) => {
-    if (!project) return null;
+    const lenis = useLenis();
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
+            lenis?.stop();   // <---- STOP LENIS
         } else {
             document.body.style.overflow = "";
+            lenis?.start();  // <---- RESTART LENIS
         }
+
         return () => {
             document.body.style.overflow = "";
+            lenis?.start(); // <---- ALWAYS RESTORE
         };
     }, [isOpen]);
+
+    if (!project) return null;
+
 
     return (
         <AnimatePresence>
@@ -220,14 +228,14 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/90 z-[60] backdrop-blur-sm scroll-smooth"
+                        className="fixed inset-0 bg-black/90 z-[60] backdrop-blur-sm scroll-smooth pointer-events-none"
                     />
                     <motion.div
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed right-0 top-0 h-full w-full md:w-[600px] bg-[#0f0f0f] border-l border-white/10 z-[70] overflow-y-auto p-8 shadow-2xl"
+                        className="fixed right-0 top-0 h-full w-full md:w-[600px] bg-[#0f0f0f] border-l border-white/10 z-[70] overflow-y-scroll touch-pan-y p-8 shadow-2xl"
                     >
                         <button onClick={onClose} className="absolute top-6 right-6 text-white/50 hover:text-white p-2">
                             <FaTimes size={24} />
@@ -251,7 +259,7 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
 
                                     <div className="flex gap-4">
                                         {project.liveDemo && (
-                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex-1 bg-white text-black py-3 rounded-md font-mono text-center font-bold hover:bg-accent hover:text-white transition-colors flex items-center justify-center gap-2">
+                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex-1 bg-white text-black py-3 rounded-md font-mono text-center font-bold hover:bg-[#22c55e] hover:text-white transition-colors flex items-center justify-center gap-2">
                                                 <FaExternalLinkAlt /> Live Demo
                                             </a>
                                         )}
