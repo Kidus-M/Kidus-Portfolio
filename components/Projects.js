@@ -7,13 +7,14 @@ import { FaGithub, FaExternalLinkAlt, FaTimes, FaCode, FaPaintBrush } from 'reac
 // Note: Ensure these files exist in your project or the build will fail.
 // If you don't have them yet, comment these out and use the placeholder logic below.
 
-// import StreamSynx from "@/assets/StreamSynx.png"; // Example path
-// import AndroWebsite from "@/assets/AndroWebsite.png";
-// import SpawnPoint from "@/assets/SpawnPoint.png";
-// import AboutHero from "@/assets/AboutHero.png";
-// import FPL from "@/assets/FPL.png";
-// import CL from "@/assets/CL.png";
-
+import StreamSynx from "@/assets/StreamSynx.png"; // Example path
+import AndroWebsite from "@/assets/AndroWebsite.png";
+import SpawnPoint from "@/assets/SpawnPoint.png";
+import Homely from "@/assets/Homely.jpg";
+import FPL from "@/assets/fpl.jpg";
+import CL from "@/assets/CL.jpg";
+import hmk from "@/assets/HMK.jpg"
+import PharmaLink from "@/assets/PHARMALINK.png";
 // Design Assets
 import AndroPrimary from "@/assets/Andro/primary.png"
 import Androicons from "@/assets/Andro/icons.png"
@@ -51,7 +52,7 @@ const engineeringProjects = [
         title: "StreamSynx",
         category: "Real-Time Streaming",
         description: "A synchronized streaming platform for couples and groups to enjoy movies or sports together remotely.",
-        image: placeholderImg, // Replace with StreamSynx variable
+        image: StreamSynx, // Replace with StreamSynx variable
         liveDemo: "https://streamsynx.vercel.app",
         github: "https://github.com/example/streamsynx",
         technologies: ["Next.js", "Firebase", "Tailwind", "TMDB API"],
@@ -63,7 +64,7 @@ const engineeringProjects = [
         title: "Andro Solutions",
         category: "Corporate Web",
         description: "Modern company website showcasing Andro Solutions services, portfolio, and contact information.",
-        image: placeholderImg, // Replace with AndroWebsite
+        image: AndroWebsite, // Replace with AndroWebsite
         liveDemo: "https://andro-solutions.vercel.app",
         github: "",
         technologies: ["Next.js", "Tailwind", "Framer Motion"],
@@ -75,7 +76,7 @@ const engineeringProjects = [
         title: "Spawn Point",
         category: "Game Dev / Simulation",
         description: "Simulation and management project centered around hospital systems and patient care design.",
-        image: placeholderImg, // Replace with SpawnPoint
+        image: SpawnPoint, // Replace with SpawnPoint
         liveDemo: "",
         github: "",
         technologies: ["C#", "Guna UI", "SQL"],
@@ -87,7 +88,7 @@ const engineeringProjects = [
         title: "Homely",
         category: "Marketplace Platform",
         description: "A platform connecting clients with trusted household service providers.",
-        image: placeholderImg, // Replace with AboutHero
+        image: Homely, // Replace with AboutHero
         liveDemo: "",
         github: "https://github.com/example/homely",
         technologies: ["Next.js", "Firebase", "Node.js"],
@@ -99,7 +100,7 @@ const engineeringProjects = [
         title: "FPL Bot",
         category: "AI Automation",
         description: "Intelligent Fantasy Premier League assistant running on Telegram.",
-        image: placeholderImg, // Replace with FPL
+        image: FPL, // Replace with FPL
         liveDemo: "https://t.me/FPL_personal_AI_bot",
         github: "https://github.com/Kidus-M/FPLbot",
         technologies: ["Python", "PTB", "Telegram API"],
@@ -111,7 +112,7 @@ const engineeringProjects = [
         title: "Wolfden Cigar Lounge",
         category: "Luxury Lifestyle",
         description: "Gateway to the ultimate cigar experience with booking and e-commerce features.",
-        image: placeholderImg, // Replace with CL
+        image: CL, // Replace with CL
         liveDemo: "wolfdenaddis.com",
         github: "",
         technologies: ["Next.js", "Firebase", "Node.js"],
@@ -135,7 +136,7 @@ const engineeringProjects = [
         title: "HMK Pharmacy",
         category: "Desktop Software",
         description: "A pharmacy management system to streamline inventory and prescriptions.",
-        image: placeholderImg,
+        image: hmk,
         liveDemo: "",
         github: "",
         technologies: ["Java", "AWT", "Swing", "SQL Server"],
@@ -147,7 +148,7 @@ const engineeringProjects = [
         title: "Pharma-Link",
         category: "Enterprise System",
         description: "Inventory management, prescription tracking, and billing features.",
-        image: placeholderImg,
+        image: PharmaLink,
         liveDemo: "",
         github: "",
         technologies: ["C#", ".NET", "WinForms", "SQL Server"],
