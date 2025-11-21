@@ -1,4 +1,5 @@
 // src/components/Layout.js
+"use client"
 import { ReactLenis } from '@studio-freight/react-lenis'
 
 const Layout = ({ children }) => {
