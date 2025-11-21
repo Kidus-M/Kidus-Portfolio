@@ -1,77 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
-
 :root {
-  /* Brand Colors */
-  --color-primary: #2563EB; /* Tailwind blue-600 */
-  --color-primary-hover: #1E40AF; /* Tailwind blue-800 */
-  --color-text-primary: #0F172A; /* Slate-900 */
-  --color-text-secondary: #475569; /* Slate-600 */
-  --color-background: #F8FAFC; /* Slate-50 */
-  --color-surface: #FFFFFF; /* Cards and sections */
-  --color-accent-gradient: linear-gradient(135deg, #2563EB 0%, #60A5FA 100%);
-  --color-mint: #10B981; /* Optional secondary accent */
-  --color-orange: #FB923C; /* Optional warmth accent */
+  /* Colors from tailwind.config.js */
+  --background: #0a0a0a;
+  --surface: #121212;
+  --primary: #ffffff;
+  --secondary: #888888;
+  --accent: #3b82f6;
+  --code: #22c55e;
 
   /* Typography */
-  --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
-  /* Border radius & Shadows */
+  /* Design tokens */
   --radius: 1rem;
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
-
-  /* Transitions */
-  --transition: all 0.3s ease-out;
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --transition: all 0.25s ease-out;
 }
 
-@theme inline {
-  --color-primary: var(--color-primary);
-  --color-primary-hover: var(--color-primary-hover);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-background: var(--color-background);
-  --color-surface: var(--color-surface);
-  --color-accent-gradient: var(--color-accent-gradient);
-  --color-mint: var(--color-mint);
-  --color-orange: var(--color-orange);
+/* ======================================================================= */
+/*                                 BASE STYLES                              */
+/* ======================================================================= */
 
-  --font-sans: var(--font-body);
-  --font-heading: var(--font-heading);
-
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
+html,
 body {
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
+  background: var(--background);
+  color: var(--primary);
   font-family: var(--font-body);
-  transition: var(--transition);
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-/* smooth-scroll polyfill for Lenis */
-html.lenis {
-  height: 100%;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+/* Headings - dev clean, modern & bold */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
+/* Paragraphs readable */
+p {
+  color: var(--secondary);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+/* Code + dev emphasis */
+code,
+pre {
+  font-family: var(--font-mono);
+  color: var(--code);
+}
+
+/* Dev aesthetic selection */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* ======================================================================= */
+/*                        CUSTOM SCROLLBAR (DEV STYLE)                      */
+/* ======================================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* Utility to hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ======================================================================= */
+/*                         ANIMATIONS (SPIN SLOW)                           */
+/* ======================================================================= */
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin-slow-reverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 .animate-spin-slow {
@@ -82,80 +126,16 @@ html.lenis {
   animation: spin-slow-reverse 12s linear infinite;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* ======================================================================= */
+/*                         LENIS SMOOTH SCROLL FIX                          */
+/* ======================================================================= */
+
+html.lenis {
+  height: 100%;
 }
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
 }
-
-::-webkit-scrollbar-track {
-  background: #0D0D10;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
-
-::-webkit-scrollbar-thumb {
-  background: #00FFFF;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #B08D57;
-}
-/* === Base Layer === */
-/*@layer base {*/
-/*  * {*/
-/*    @apply border outline-none;*/
-/*  }*/
-
-/*  body {*/
-/*    @apply bg-[var(--color-background)] text-[var(--color-text-primary)];*/
-/*  }*/
-
-/*  h1, h2, h3, h4, h5, h6 {*/
-/*    font-family: var(--font-heading);*/
-/*    color: var(--color-text-primary);*/
-/*    font-weight: 600;*/
-/*  }*/
-
-/*  p {*/
-/*    color: var(--color-text-secondary);*/
-/*    line-height: 1.7;*/
-/*  }*/
-
-/*  button {*/
-/*    font-family: var(--font-heading);*/
-/*    background: var(--color-accent-gradient);*/
-/*    color: white;*/
-/*    border-radius: var(--radius-md);*/
-/*    box-shadow: var(--shadow-soft);*/
-/*    transition: var(--transition);*/
-/*  }*/
-
-/*  button:hover {*/
-/*    background: var(--color-primary-hover);*/
-/*    transform: scale(1.05);*/
-/*  }*/
-
-/*  .card {*/
-/*    background: var(--color-surface);*/
-/*    box-shadow: var(--shadow-soft);*/
-/*    border-radius: var(--radius-lg);*/
-/*    padding: 1.5rem;*/
-/*    transition: var(--transition);*/
-/*  }*/
-
-/*  .card:hover {*/
-/*    transform: translateY(-4px);*/
-/*  }*/
-/*}*/
-
-/*!* === Light-Only Mode === *!*/
-/*@media (prefers-color-scheme: dark) {*/
-/*  :root {*/
-/*    --color-background: #F8FAFC;*/
-/*    --color-text-primary: #0F172A;*/
-/*  }*/
-/*}*/
