@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
     return (
-        <section className="relative h-screen flex flex-col justify-center px-6 md:px-20 border-b border-white/10 bg-[url('/grid.svg')]">
+        <section className="relative h-screen md:mt-0 mt-30 flex flex-col justify-center px-6 md:px-20 border-b border-white/10 bg-[url('/grid.svg')]">
             {/* Background Grid Logic */}
             <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] pointer-events-none"></div>
 
@@ -39,7 +39,7 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
-                    className="hidden lg:block"
+                    className="lg:block"
                 >
                     <div className="bg-[#111] border border-white/10 rounded-lg p-6 font-mono text-xs md:text-sm shadow-2xl">
                         <div className="flex gap-2 mb-4 border-b border-white/5 pb-4">
