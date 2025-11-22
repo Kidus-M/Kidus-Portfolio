@@ -449,7 +449,7 @@ const Projects = () => {
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
 
                             <div className="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                <span className="font-mono text-xs text-gray-500 mb-2 block">{project.category}</span>
+                                <span className="font-mono text-xs text-gray-300 mb-2 block">{project.category}</span>
                                 <h3 className="font-heading text-2xl text-white">{project.title}</h3>
                             </div>
                         </motion.div>
