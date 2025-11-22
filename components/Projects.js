@@ -19,6 +19,7 @@ import PharmaLink from "@/assets/PHARMALINK.png";
 import Altium from "@/assets/Altium Logo.svg"
 import OpalLuxe from "@/assets/OPAL LUXE .png"
 // Design Assets
+import AndroLogo from "@/assets/Andro/Logo-1.png"
 import AndroPrimary from "@/assets/Andro/primary.png"
 import Androicons from "@/assets/Andro/icons.png"
 import Androfont1 from "@/assets/Andro/font1.png"
@@ -191,7 +192,7 @@ const designProjects = [
         title: "Andro Logo",
         category: "Branding",
         description: "Complete brand identity for Andro Solutions.",
-        images: [AndroPrimary, Androbc1, Androbc2, Androfont1, Androfont2, Androcolors, Androicons],
+        images: [AndroLogo,AndroPrimary, Androbc1, Androbc2, Androfont1, Androfont2, Androcolors, Androicons],
     },
     {
         id: "g-02",
