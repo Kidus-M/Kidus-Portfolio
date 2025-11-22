@@ -16,6 +16,7 @@ import FPL from "@/assets/fpl.jpg";
 import CL from "@/assets/CL.jpg";
 import hmk from "@/assets/HMK.jpg"
 import PharmaLink from "@/assets/PHARMALINK.png";
+import Altium from "@/assets/Altium Logo.svg"
 // Design Assets
 import AndroPrimary from "@/assets/Andro/primary.png"
 import Androicons from "@/assets/Andro/icons.png"
@@ -55,7 +56,7 @@ const engineeringProjects = [
         description: "A synchronized streaming platform for couples and groups to enjoy movies or sports together remotely.",
         image: StreamSynx, // Replace with StreamSynx variable
         liveDemo: "https://streamsynx.vercel.app",
-        github: "https://github.com/example/streamsynx",
+        github: "https://github.com/kidus-m/streamsync",
         technologies: ["Next.js", "Firebase", "Tailwind", "TMDB API"],
         details: "StreamSynx allows real-time video synchronization between users in different locations. It includes room management, playback controls, and low-latency communication to simulate a shared watching experience.",
         year: "2024"
@@ -75,7 +76,7 @@ const engineeringProjects = [
     {
         id: "03",
         title: "Spawn Point",
-        category: "Game Dev / Simulation",
+        category: "Health Care / Simulation",
         description: "Simulation and management project centered around hospital systems and patient care design.",
         image: SpawnPoint, // Replace with SpawnPoint
         liveDemo: "",
@@ -125,7 +126,7 @@ const engineeringProjects = [
         title: "Altium",
         category: "Social Network",
         description: "A social media app designed to connect people through seamless sharing.",
-        image: placeholderImg,
+        image: Altium,
         liveDemo: "",
         github: "",
         technologies: ["React", "Node.js", "MongoDB", "Express"],
@@ -155,7 +156,19 @@ const engineeringProjects = [
         technologies: ["C#", ".NET", "WinForms", "SQL Server"],
         details: "A robust .NET solution for pharmaceutical inventory tracking and billing cycles.",
         year: "2022"
-    }
+    },
+    {
+        id: "10",
+        title: "StreamSynx",
+        category: "Real-Time Streaming Mobile App",
+        description: "A synchronized streaming platform for couples and groups to enjoy movies or sports together remotely.",
+        image: StreamSynx, // Replace with StreamSynx variable
+        liveDemo: "https://streamsynx.vercel.app/download",
+        github: "https://github.com/kidus-m/streamsync",
+        technologies: ["Flutter", "Firebase", "TMDB API"],
+        details: "StreamSynx allows real-time video synchronization between users in different locations. It includes room management, playback controls, and low-latency communication to simulate a shared watching experience.",
+        year: "2024"
+    },
 ];
 
 const designProjects = [
