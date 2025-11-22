@@ -17,6 +17,7 @@ import CL from "@/assets/CL.jpg";
 import hmk from "@/assets/HMK.jpg"
 import PharmaLink from "@/assets/PHARMALINK.png";
 import Altium from "@/assets/Altium Logo.svg"
+import OpalLuxe from "@/assets/OPAL LUXE .png"
 // Design Assets
 import AndroPrimary from "@/assets/Andro/primary.png"
 import Androicons from "@/assets/Andro/icons.png"
@@ -164,11 +165,24 @@ const engineeringProjects = [
         description: "A synchronized streaming platform for couples and groups to enjoy movies or sports together remotely.",
         image: StreamSynx, // Replace with StreamSynx variable
         liveDemo: "https://streamsynx.vercel.app/download",
-        github: "https://github.com/kidus-m/streamsync",
+        github: "https://github.com/kidus-m/streamsynx-app",
         technologies: ["Flutter", "Firebase", "TMDB API"],
         details: "StreamSynx allows real-time video synchronization between users in different locations. It includes room management, playback controls, and low-latency communication to simulate a shared watching experience.",
         year: "2024"
     },
+    {
+        id: "11",
+        title: "OpalLuxe",
+        category: "E-Commerce Web App",
+        description: "A stylish online storefront built for luxury goods, combining a modern backend and frontend for a seamless shopping experience.",
+        image: OpalLuxe, // placeholder for your image variable
+        liveDemo: "https://opalluxe.vercel.app/",
+        github: "https://github.com/marXus-3D/opalluxe",
+        technologies: ["Laravel", "React", "Tailwind CSS"],
+        details: "OpalLuxe is a full-stack ecommerce application. The backend is powered by Laravel, providing REST APIs, product management, user authentication, and order processing. The frontend is built with React and styled using Tailwind CSS to deliver a fast and responsive UI. It includes shopping cart functionality, product listings, secure checkout, and an admin dashboard for managing inventory and orders.",
+        year: "2024"
+    }
+
 ];
 
 const designProjects = [
