@@ -373,13 +373,13 @@ const Projects = () => {
                 <div className="flex gap-2 bg-surface p-1 rounded-lg border border-white/10">
                     <button
                         onClick={() => setActiveTab('engineering')}
-                        className={`px-6 py-2 rounded-md font-mono text-xs transition-all ${activeTab === 'engineering' ? 'bg-accent text-white shadow-lg' : 'text-secondary hover:text-white'}`}
+                        className={`px-6 py-2 rounded-md font-mono text-xs transition-all ${activeTab === 'engineering' ? 'bg-[#22c55e] text-white shadow-lg' : 'text-secondary hover:text-white'}`}
                     >
                         <span className="flex items-center gap-2"><FaCode /> ENGINEERING</span>
                     </button>
                     <button
                         onClick={() => setActiveTab('design')}
-                        className={`px-6 py-2 rounded-md font-mono text-xs transition-all ${activeTab === 'design' ? 'bg-purple-600 text-white shadow-lg' : 'text-secondary hover:text-white'}`}
+                        className={`px-6 py-2 rounded-md font-mono text-xs transition-all ${activeTab === 'design' ? 'bg-[#22c55e] text-white shadow-lg' : 'text-secondary hover:text-white'}`}
                     >
                         <span className="flex items-center gap-2"><FaPaintBrush /> DESIGN LAB</span>
                     </button>
