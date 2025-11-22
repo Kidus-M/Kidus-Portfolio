@@ -271,7 +271,7 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
 
                                     <div className="flex gap-4">
                                         {project.liveDemo && (
-                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex-1 bg-white text-black py-3 rounded-md font-mono text-center font-bold hover:bg-accent hover:text-white transition-colors flex items-center justify-center gap-2">
+                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="flex-1 bg-white text-black py-3 rounded-md font-mono text-center font-bold hover:bg-[#22c55e] hover:text-white transition-colors flex items-center justify-center gap-2">
                                                 <FaExternalLinkAlt /> Live Demo
                                             </a>
                                         )}
