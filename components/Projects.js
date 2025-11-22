@@ -367,7 +367,7 @@ const Projects = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
                 <div>
                     <h2 className="font-heading text-4xl md:text-6xl mb-4">Selected<br/>Work</h2>
-                    <p className="font-mono text-secondary text-sm">// ARCHIVE 2022 - 2024</p>
+                    <p className="font-mono text-secondary text-sm">// ARCHIVE 2022 - 2025</p>
                 </div>
 
                 <div className="flex gap-2 bg-surface p-1 rounded-lg border border-white/10">
