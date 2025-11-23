@@ -61,6 +61,14 @@ import Khaab2 from "@/assets/Khaab/kp-02.jpg"
 import Khaab3 from "@/assets/Khaab/kp-03.jpg"
 import Khaab4 from "@/assets/Khaab/kp-04.jpg"
 import Khaab5 from "@/assets/Khaab/kp-05.jpg"
+
+import Safari from "@/assets/Safari Rifle/Safari.png"
+import Safari1 from "@/assets/Safari Rifle/sf-01.jpg"
+import Safari2 from "@/assets/Safari Rifle/sf-02.jpg"
+import Safari3 from "@/assets/Safari Rifle/sf-03.jpg"
+import Safari4 from "@/assets/Safari Rifle/sf-04.jpg"
+import Safari5 from "@/assets/Safari Rifle/sf-05.jpg"
+
 // --- DATA CONFIGURATION ---
 
 // Placeholder image function in case imports fail or are missing
@@ -232,18 +240,25 @@ const designProjects = [
         images: [RomanPrimary, RomanSecondary],
     },
     {
-        id: "g-04",
+        id: "g-05",
         title: "Nitsuh's Pastry",
         category: "Visual Identity",
         description: "Modern, vibrant branding for a lifestyle brand.",
         images: [Nitsuh1, Nitsuh2, Nitsuh3, Nitsuh4, Nitsuh5, Nitsuh6, Nitsuh7, Nitsuh8, Nitsuh9],
     },
     {
-        id: "g-05",
+        id: "g-06",
         title: "Khaab",
         category: "Visual Identity",
         description: "Modern, vibrant branding for a feminine  brand.",
         images: [Khaab1, Khaab2, Khaab3, Khaab4, Khaab5],
+    },
+    {
+        id: "g-07",
+        title: "Safari Rifle",
+        category: "Visual Identity",
+        description: "Modern, vibrant branding for a feminine  brand.",
+        images: [Safari, Safari1, Safari2, Safari3, Safari4, Safari5],
     },
 ];
 
