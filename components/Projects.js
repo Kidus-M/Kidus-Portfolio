@@ -46,6 +46,15 @@ import CigarLounge5 from "@/assets/cigar-lounge/WD ad10.jpg";
 import RomanPrimary from "@/assets/Romans/primary.png"
 import RomanSecondary from "@/assets/Romans/secondary.png"
 
+import Nitsuh1 from "@/assets/Nitsuh/Nitsuh-01.jpg"
+import Nitsuh2 from "@/assets/Nitsuh/Nitsuh-02.jpg"
+import Nitsuh3 from "@/assets/Nitsuh/Nitsuh-03.jpg"
+import Nitsuh4 from "@/assets/Nitsuh/Nitsuh-04.jpg"
+import Nitsuh5 from "@/assets/Nitsuh/Nitsuh-05.jpg"
+import Nitsuh6 from "@/assets/Nitsuh/Nitsuh-06.jpg"
+import Nitsuh7 from "@/assets/Nitsuh/Nitsuh-07.jpg"
+import Nitsuh8 from "@/assets/Nitsuh/Nitsuh-08.jpg"
+import Nitsuh9 from "@/assets/Nitsuh/Nitsuh-09.jpg"
 
 // --- DATA CONFIGURATION ---
 
@@ -216,6 +225,13 @@ const designProjects = [
         category: "Logo Design",
         description: "Strong, classical logo design concepts.",
         images: [RomanPrimary, RomanSecondary],
+    },
+    {
+        id: "g-04",
+        title: "Nitsuh's Pastry",
+        category: "Visual Identity",
+        description: "Modern, vibrant branding for a lifestyle brand.",
+        images: [Nitsuh1, Nitsuh2, Nitsuh3, Nitsuh4, Nitsuh5, Nitsuh6, Nitsuh7, Nitsuh8, Nitsuh9],
     },
 ];
 
