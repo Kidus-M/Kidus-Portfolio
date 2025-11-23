@@ -118,9 +118,9 @@ export default function Home() {
                     </div>
 
                     {/* PROJECTS */}
-                    <div ref={projectsRef} className="will-change-transform">
+                    {/*<div ref={projectsRef} className="will-change-transform">*/}
                         <Projects />
-                    </div>
+                    {/*</div>*/}
 
                     {/* CONTACT */}
                     <div ref={contactRef} className="will-change-transform ">

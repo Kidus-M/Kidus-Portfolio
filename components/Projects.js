@@ -264,7 +264,7 @@ const ProjectModal = ({ project, isOpen, onClose, type }) => {
                         exit={{ opacity: 0 }}
                         onClick={onClose}
                         // FIXED: Removed 'pointer-events-none' so clicking here actually closes the modal
-                        className="fixed inset-0 bg-black/90 z-[60] backdrop-blur-sm cursor-pointer"
+                        className="fixed inset-0 bg-black/90 z-[50] backdrop-blur-sm cursor-pointer"
                     />
 
                     {/* Modal Container */}
