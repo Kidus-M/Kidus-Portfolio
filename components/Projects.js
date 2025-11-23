@@ -28,6 +28,7 @@ import Androcolors from "@/assets/Andro/colors.png"
 import Androbc1 from "@/assets/Andro/bc1.png"
 import Androbc2 from "@/assets/Andro/bc2.png"
 
+import MissLogo from "@/assets/MissSummers/logos-01.png"
 import Missprimary from "@/assets/MissSummers/primary.png"
 import Missicons from "@/assets/MissSummers/icons.png"
 import Missfont1 from "@/assets/MissSummers/font1.png"
@@ -207,7 +208,7 @@ const designProjects = [
         title: "Miss Summers",
         category: "Visual Identity",
         description: "Soft, vibrant branding for a lifestyle brand.",
-        images: [MissSummers, Missprimary, Misscolors, Missicons, Missfont1, Missfont2],
+        images: [MissLogo,MissSummers, Missprimary, Misscolors, Missicons, Missfont1, Missfont2],
     },
     {
         id: "g-04",
