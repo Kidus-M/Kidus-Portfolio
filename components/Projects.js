@@ -56,6 +56,11 @@ import Nitsuh7 from "@/assets/Nitsuh/Nitsuh-07.jpg"
 import Nitsuh8 from "@/assets/Nitsuh/Nitsuh-08.jpg"
 import Nitsuh9 from "@/assets/Nitsuh/Nitsuh-09.jpg"
 
+import Khaab1 from "@/assets/Khaab/Khaab.png"
+import Khaab2 from "@/assets/Khaab/kp-02.jpg"
+import Khaab3 from "@/assets/Khaab/kp-03.jpg"
+import Khaab4 from "@/assets/Khaab/kp-04.jpg"
+import Khaab5 from "@/assets/Khaab/kp-05.jpg"
 // --- DATA CONFIGURATION ---
 
 // Placeholder image function in case imports fail or are missing
@@ -232,6 +237,13 @@ const designProjects = [
         category: "Visual Identity",
         description: "Modern, vibrant branding for a lifestyle brand.",
         images: [Nitsuh1, Nitsuh2, Nitsuh3, Nitsuh4, Nitsuh5, Nitsuh6, Nitsuh7, Nitsuh8, Nitsuh9],
+    },
+    {
+        id: "g-05",
+        title: "Khaab",
+        category: "Visual Identity",
+        description: "Modern, vibrant branding for a feminine  brand.",
+        images: [Khaab1, Khaab2, Khaab3, Khaab4, Khaab5],
     },
 ];
 
