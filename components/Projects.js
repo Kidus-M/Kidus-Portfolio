@@ -35,6 +35,7 @@ import Missfont2 from "@/assets/MissSummers/font2.png"
 import Misscolors from "@/assets/MissSummers/colors.png"
 import MissSummers from "@/assets/MissSummers/summers.png"
 
+import CigarLogo from "@/assets/cigar-lounge/Logo.png";
 import CigarLounge1 from "@/assets/cigar-lounge/Jazz Night.jpg";
 import CigarLounge2 from "@/assets/cigar-lounge/New Years Cigar Lounge.jpg";
 import CigarLounge3 from "@/assets/cigar-lounge/WD ad1.jpg";
@@ -196,10 +197,10 @@ const designProjects = [
     },
     {
         id: "g-02",
-        title: "Cigar Lounge",
+        title: "Wolf Den Cigar Lounge",
         category: "Social Media",
         description: "High-end social media banners and post designs.",
-        images: [CigarLounge1, CigarLounge2, CigarLounge3, CigarLounge4, CigarLounge5],
+        images: [CigarLogo,CigarLounge1, CigarLounge2, CigarLounge3, CigarLounge4, CigarLounge5],
     },
     {
         id: "g-03",
