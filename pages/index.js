@@ -114,12 +114,12 @@ export default function Home() {
 
                     {/* TECH STACK */}
                     <div ref={techRef} className="will-change-transform">
-                        <TechStack />
+                        <Projects />
                     </div>
 
                     {/* PROJECTS */}
                     {/*<div ref={projectsRef} className="will-change-transform">*/}
-                        <Projects />
+                        <TechStack />
                     {/*</div>*/}
 
                     {/* CONTACT */}
