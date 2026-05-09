@@ -68,10 +68,10 @@ const Contact = () => {
                     <div ref={headingRef} style={{ opacity:0 }}>
                         <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'1.5rem' }}>
                             <div className="status-dot" />
-                            <span style={{ fontFamily:'var(--font-mono)', fontSize:'0.6rem', letterSpacing:'0.2em', textTransform:'uppercase', color:'var(--text-muted)' }}>Ready to build?</span>
+                            <span style={{ fontFamily:'var(--font-mono)', fontSize:'0.6rem', letterSpacing:'0.2em', textTransform:'uppercase', color:'var(--text-muted)' }}>Have an idea?</span>
                         </div>
                         <h2 style={{ fontFamily:'var(--font-heading)', fontWeight:700, letterSpacing:'-0.04em', lineHeight:0.95, marginBottom:'2.5rem' }}>
-                            Let's engineer<br/><span style={{ color:'var(--accent)' }}>something robust.</span>
+                            Let's turn your<br/><span style={{ color:'var(--accent)' }}>next idea into reality.</span>
                         </h2>
                     </div>
 

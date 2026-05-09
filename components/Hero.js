@@ -174,7 +174,7 @@ const Hero = () => {
                         textTransform: 'uppercase',
                         color: 'var(--text-secondary)',
                     }}>
-                        Available for new projects
+                        Open for Q3 2026 — Let's talk
                     </span>
                 </div>
 
@@ -193,7 +193,7 @@ const Hero = () => {
                                 willChange: 'transform',
                             }}
                         >
-                            Building
+                            I Design
                         </h1>
                     </div>
 
@@ -213,7 +213,7 @@ const Hero = () => {
                                 willChange: 'transform',
                             }}
                         >
-                            <span style={{ color: 'var(--accent)' }}>Scalable</span>
+                            <span style={{ color: 'var(--accent)' }}>The Systems</span>
                         </h1>
                     </div>
 
@@ -234,7 +234,7 @@ const Hero = () => {
                                 willChange: 'transform',
                             }}
                         >
-                            Logic<span style={{ color: 'var(--accent)' }}>.</span>
+                            Behind It<span style={{ color: 'var(--accent)' }}>.</span>
                         </h1>
                     </div>
                 </div>
@@ -258,9 +258,9 @@ const Hero = () => {
                             opacity: 0,
                         }}
                     >
-                        I engineer high-performance web applications with a focus on 
-                        architecture, scalability, and clean code. From concept to deployment, 
-                        every line of code serves a purpose.
+                        Full-stack engineer obsessed with clean architecture,
+                        ruthless performance, and interfaces that feel inevitable.
+                        I don't build websites — I ship products.
                     </p>
 
                     <div ref={ctaRef} style={{ display: 'flex', gap: '1rem', alignItems: 'center', opacity: 0 }}>
