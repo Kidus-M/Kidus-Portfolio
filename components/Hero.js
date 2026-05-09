@@ -1,66 +1,381 @@
-// src/components/Hero.js
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const Hero = () => {
+    const heroRef = useRef(null);
+    const headingLine1 = useRef(null);
+    const headingLine2 = useRef(null);
+    const headingLine3 = useRef(null);
+    const subtitleRef = useRef(null);
+    const taglineRef = useRef(null);
+    const ctaRef = useRef(null);
+    const scrollIndicatorRef = useRef(null);
+    const gridRef = useRef(null);
+    const statusRef = useRef(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ delay: 0.5 });
+
+            // Animated grid lines entrance
+            tl.fromTo(
+                gridRef.current,
+                { opacity: 0 },
+                { opacity: 1, duration: 2, ease: "power2.out" },
+                0
+            );
+
+            // Heading lines — cinematic staggered reveal
+            const lines = [headingLine1.current, headingLine2.current, headingLine3.current];
+            lines.forEach((line, i) => {
+                tl.fromTo(
+                    line,
+                    { yPercent: 110, rotateX: -20 },
+                    {
+                        yPercent: 0,
+                        rotateX: 0,
+                        duration: 1.4,
+                        ease: "power4.out",
+                    },
+                    0.15 + i * 0.12
+                );
+            });
+
+            // Tagline
+            tl.fromTo(
+                taglineRef.current,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
+                1.0
+            );
+
+            // Subtitle
+            tl.fromTo(
+                subtitleRef.current,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
+                1.2
+            );
+
+            // CTA
+            tl.fromTo(
+                ctaRef.current,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+                1.4
+            );
+
+            // Status bar
+            tl.fromTo(
+                statusRef.current,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+                1.5
+            );
+
+            // Scroll indicator
+            tl.fromTo(
+                scrollIndicatorRef.current,
+                { opacity: 0 },
+                { opacity: 1, duration: 1, ease: "power2.out" },
+                1.8
+            );
+
+            // Infinite scroll indicator bounce
+            gsap.to(scrollIndicatorRef.current?.querySelector('.scroll-arrow'), {
+                y: 8,
+                duration: 1.2,
+                ease: "power1.inOut",
+                repeat: -1,
+                yoyo: true,
+            });
+
+        }, heroRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="relative h-screen md:mt-0 mt-30 flex flex-col justify-center px-6 md:px-20 border-b border-white/10 bg-[url('/grid.svg')]">
-            {/* Background Grid Logic */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] pointer-events-none"></div>
+        <section
+            ref={heroRef}
+            id="hero"
+            style={{
+                position: 'relative',
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                overflow: 'hidden',
+                background: 'var(--bg-primary)',
+            }}
+        >
+            {/* Animated Grid Background */}
+            <div
+                ref={gridRef}
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    opacity: 0,
+                    backgroundImage: `
+                        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '80px 80px',
+                    maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%)',
+                    WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%)',
+                }}
+            />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+            {/* Ambient glow */}
+            <div style={{
+                position: 'absolute',
+                top: '10%',
+                right: '-10%',
+                width: '600px',
+                height: '600px',
+                background: 'radial-gradient(circle, rgba(200, 255, 0, 0.04) 0%, transparent 70%)',
+                filter: 'blur(80px)',
+                pointerEvents: 'none',
+            }} />
+            <div style={{
+                position: 'absolute',
+                bottom: '10%',
+                left: '-5%',
+                width: '400px',
+                height: '400px',
+                background: 'radial-gradient(circle, rgba(200, 255, 0, 0.03) 0%, transparent 70%)',
+                filter: 'blur(60px)',
+                pointerEvents: 'none',
+            }} />
 
-                {/* Left: The Pitch */}
-                <div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
-            <span className="font-mono text-accent text-sm tracking-wider mb-4 block">
-              // FULL STACK ENGINEER
-            </span>
-                        <h1 className="font-heading text-5xl md:text-8xl font-bold leading-[0.9] mb-8">
-                            Building <br />
-                            Scalable <br />
-                            Logic.
-                        </h1>
-                        <p className="text-secondary max-w-md text-lg leading-relaxed mb-8">
-                            I don't just design websites; I engineer high-performance web applications.
-                            Focusing on architecture, scalability, and clean code.
-                        </p>
-                        <button className="px-8 py-4 border border-white/20 rounded-full font-mono text-sm hover:bg-white hover:text-black transition-all duration-300">
-                            VIEW DOCUMENTATION (WORK)
-                        </button>
-                    </motion.div>
+            {/* Main Content */}
+            <div className="section-padding-x" style={{
+                position: 'relative',
+                zIndex: 2,
+                maxWidth: '1400px',
+                width: '100%',
+                margin: '0 auto',
+                paddingTop: 'clamp(6rem, 15vh, 10rem)',
+                paddingBottom: 'clamp(4rem, 10vh, 8rem)',
+            }}>
+                {/* Top tagline */}
+                <div ref={taglineRef} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    marginBottom: '2rem',
+                    opacity: 0,
+                }}>
+                    <div className="status-dot" />
+                    <span style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.7rem',
+                        letterSpacing: '0.2em',
+                        textTransform: 'uppercase',
+                        color: 'var(--text-secondary)',
+                    }}>
+                        Available for new projects
+                    </span>
                 </div>
 
-                {/* Right: The Code Evidence */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="lg:block"
-                >
-                    <div className="bg-[#111] border border-white/10 rounded-lg p-6 font-mono text-xs md:text-sm shadow-2xl">
-                        <div className="flex gap-2 mb-4 border-b border-white/5 pb-4">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div className="text-gray-400 space-y-2">
-                            <p><span className="text-purple-400">const</span> developer <span className="text-white">=</span> <span className="text-yellow-300">{"{"}</span></p>
-                            <p className="pl-4">name: <span className="text-green-400">'Kidus Mesfin'</span>,</p>
-                            <p className="pl-4">role: <span className="text-green-400">'Software Engineer'</span>,</p>
-                            <p className="pl-4">focus: <span className="text-green-400">['Performance', 'Scalability', 'UX']</span>,</p>
-                            <p className="pl-4">stack: <span className="text-yellow-300">{"{"}</span></p>
-                            <p className="pl-8">frontend: <span className="text-green-400">'Next.js'</span>,</p>
-                            <p className="pl-8">backend: <span className="text-green-400">'Node.js'</span></p>
-                            <p className="pl-4"><span className="text-yellow-300">{"}"}</span></p>
-                            <p><span className="text-yellow-300">{"}"}</span>;</p>
-                            <p className="mt-4 animate-pulse text-accent">_</p>
-                        </div>
+                {/* Giant Heading — Asymmetric Layout */}
+                <div style={{ marginBottom: '3rem' }}>
+                    {/* Line 1 */}
+                    <div style={{ overflow: 'hidden', perspective: '400px' }}>
+                        <h1
+                            ref={headingLine1}
+                            style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontWeight: 700,
+                                lineHeight: 0.92,
+                                letterSpacing: '-0.04em',
+                                color: 'var(--text-primary)',
+                                willChange: 'transform',
+                            }}
+                        >
+                            Building
+                        </h1>
                     </div>
-                </motion.div>
+
+                    {/* Line 2 — shifted right with accent */}
+                    <div style={{
+                        overflow: 'hidden',
+                        perspective: '400px',
+                        paddingLeft: 'clamp(1rem, 5vw, 6rem)',
+                    }}>
+                        <h1
+                            ref={headingLine2}
+                            style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontWeight: 700,
+                                lineHeight: 0.92,
+                                letterSpacing: '-0.04em',
+                                willChange: 'transform',
+                            }}
+                        >
+                            <span style={{ color: 'var(--accent)' }}>Scalable</span>
+                        </h1>
+                    </div>
+
+                    {/* Line 3 */}
+                    <div style={{
+                        overflow: 'hidden',
+                        perspective: '400px',
+                        paddingLeft: 'clamp(0.5rem, 2vw, 3rem)',
+                    }}>
+                        <h1
+                            ref={headingLine3}
+                            style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontWeight: 700,
+                                lineHeight: 0.92,
+                                letterSpacing: '-0.04em',
+                                color: 'var(--text-primary)',
+                                willChange: 'transform',
+                            }}
+                        >
+                            Logic<span style={{ color: 'var(--accent)' }}>.</span>
+                        </h1>
+                    </div>
+                </div>
+
+                {/* Subtitle + CTA — Asymmetric right-aligned */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    gap: '2rem',
+                    maxWidth: '500px',
+                    marginLeft: 'auto',
+                }}>
+                    <p
+                        ref={subtitleRef}
+                        style={{
+                            fontFamily: 'var(--font-body)',
+                            fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)',
+                            lineHeight: 1.8,
+                            color: 'var(--text-secondary)',
+                            opacity: 0,
+                        }}
+                    >
+                        I engineer high-performance web applications with a focus on 
+                        architecture, scalability, and clean code. From concept to deployment, 
+                        every line of code serves a purpose.
+                    </p>
+
+                    <div ref={ctaRef} style={{ display: 'flex', gap: '1rem', alignItems: 'center', opacity: 0 }}>
+                        <a
+                            href="#work"
+                            data-cursor="expand"
+                            className="magnetic-btn"
+                            style={{
+                                padding: '1rem 2.5rem',
+                                border: '1px solid var(--accent)',
+                                borderRadius: 'var(--radius-full)',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.7rem',
+                                letterSpacing: '0.15em',
+                                textTransform: 'uppercase',
+                                color: 'var(--accent)',
+                                textDecoration: 'none',
+                                background: 'transparent',
+                            }}
+                        >
+                            View Work
+                        </a>
+                        <a
+                            href="/resume.pdf"
+                            download
+                            data-cursor="expand"
+                            style={{
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.7rem',
+                                letterSpacing: '0.1em',
+                                textTransform: 'uppercase',
+                                color: 'var(--text-muted)',
+                                textDecoration: 'none',
+                                borderBottom: '1px solid var(--border-default)',
+                                paddingBottom: '2px',
+                                transition: 'color 0.3s ease, border-color 0.3s ease',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.color = 'var(--text-secondary)';
+                                e.target.style.borderColor = 'var(--text-secondary)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.color = 'var(--text-muted)';
+                                e.target.style.borderColor = 'var(--border-default)';
+                            }}
+                        >
+                            Resume ↓
+                        </a>
+                    </div>
+                </div>
+
+                {/* Bottom status bar */}
+                <div ref={statusRef} style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginTop: 'clamp(3rem, 8vh, 6rem)',
+                    paddingTop: '1.5rem',
+                    borderTop: '1px solid var(--border-subtle)',
+                    opacity: 0,
+                }}>
+                    <span style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.6rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        color: 'var(--text-muted)',
+                    }}>
+                        Software Engineer
+                    </span>
+                    <span style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.6rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        color: 'var(--text-muted)',
+                    }}>
+                        Based in Addis Ababa
+                    </span>
+                    <span style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.6rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        color: 'var(--text-muted)',
+                    }}>
+                        Scroll to explore
+                    </span>
+                </div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div ref={scrollIndicatorRef} style={{
+                position: 'absolute',
+                bottom: '2rem',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '0.5rem',
+                opacity: 0,
+            }}>
+                <div style={{
+                    width: '1px',
+                    height: '40px',
+                    background: 'linear-gradient(to bottom, var(--accent), transparent)',
+                }} />
+                <div className="scroll-arrow" style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRight: '1px solid var(--accent)',
+                    borderBottom: '1px solid var(--accent)',
+                    transform: 'rotate(45deg)',
+                }} />
             </div>
         </section>
     );
