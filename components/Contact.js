@@ -1,219 +1,223 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaTimes, FaPaperPlane, FaCheckCircle, FaExclamationCircle, FaGithub, FaInstagram, FaLinkedin, FaTelegram } from 'react-icons/fa';
+import { useEffect, useRef, useState } from "react";
+import {
+  AlertCircle,
+  Check,
+  CheckCircle2,
+  FileText,
+  Github,
+  Instagram,
+  Linkedin,
+  MessageCircle,
+  Send,
+  X,
+} from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-const Contact = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null);
+gsap.registerPlugin(ScrollTrigger);
 
-    const handleChange = (e) => {
-        setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-    };
+export default function Contact() {
+  const [copied, setCopied] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const sectionRef = useRef(null);
+  const headlineRef = useRef(null);
+  const contentRef = useRef(null);
+  const email = "kidusmesfinteferi@gmail.com";
+  const socials = [
+    { href: "https://github.com/Kidus-M", label: "GitHub", icon: Github },
+    { href: "https://www.instagram.com/kidus._.m", label: "Instagram", icon: Instagram },
+    { href: "https://www.linkedin.com/in/kidus-m", label: "LinkedIn", icon: Linkedin },
+    { href: "https://t.me/kidus_mesfin", label: "Telegram", icon: MessageCircle },
+  ];
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = gsap.context(() => {
+      gsap.from(".contact-line span", {
+        yPercent: 110,
+        duration: 0.9,
+        ease: "power3.out",
+        stagger: 0.1,
+        scrollTrigger: { trigger: headlineRef.current, start: "top 78%" },
+      });
+      gsap.from(contentRef.current, {
+        y: 28,
+        opacity: 0,
+        duration: 0.75,
+        ease: "power2.out",
+        scrollTrigger: { trigger: contentRef.current, start: "top 85%" },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(email);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mldbdqbn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error("Failed to send message");
+
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      window.setTimeout(() => {
+        setIsModalOpen(false);
         setSubmitStatus(null);
+      }, 2000);
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-        try {
-            // Using Formspree endpoint
-            const response = await fetch("https://formspree.io/f/mldbdqbn", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                setSubmitStatus('success');
-                setFormData({ name: '', email: '', subject: '', message: '' });
-                // Close modal after 2 seconds on success
-                setTimeout(() => {
-                    setIsModalOpen(false);
-                    setSubmitStatus(null);
-                }, 2000);
-            } else {
-                throw new Error('Failed to send');
-            }
-        } catch (error) {
-            setSubmitStatus('error');
-        } finally {
-            setIsSubmitting(false);
-        }
+  useEffect(() => {
+    if (!isModalOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
     };
+  }, [isModalOpen]);
 
-    return (
-        <>
-            <section id="contact" className="py-32 px-6 md:px-20 border-t border-white/10 bg-[#050505]">
-                <div className="max-w-4xl">
-                    <span className="font-mono text-accent text-sm">// READY TO BUILD?</span>
-                    <h2 className="font-heading text-5xl md:text-8xl font-bold mt-8 mb-12 leading-tight">
-                        Let's engineer <br/> something robust.
-                    </h2>
+  return (
+    <>
+      <section id="contact" ref={sectionRef} className="contact-section">
+        <span className="section-kicker">05 - Contact</span>
 
-                    {/* Actions Row */}
-                    <div className="flex flex-col md:flex-row gap-8 md:items-center mb-16">
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="bg-white text-black px-8 py-4 rounded-full font-bold font-mono hover:bg-[#22c55e] hover:text-white transition-all"
-                        >
-                            INITIATE CONTACT
-                        </button>
+        <h2 ref={headlineRef} className="contact-headline">
+          <span className="contact-line">
+            <span>let's build</span>
+          </span>
+          <span className="contact-line">
+            <span>something</span>
+          </span>
+          <span className="contact-line accent-line">
+            <span>remarkable.</span>
+          </span>
+        </h2>
 
-                        {/* IMPORTANT:
-                   For this link to work, you MUST move 'resume.pdf'
-                   from 'src/assets/' to the 'public/' folder.
-                   The path '/resume.pdf' refers to public/resume.pdf
-                */}
-                        <a
-                            href="/resume.pdf"
-                            download="Kidus_Mesfin_Resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-mono text-sm text-secondary hover:text-white underline flex items-center gap-2"
-                        >
-                            DOWNLOAD RESUME.JSON
-                        </a>
-                    </div>
+        <div ref={contentRef} className="contact-content">
+          <p>
+            I'm available for product builds, technical partnerships, and thoughtful
+            web experiences that need both engineering discipline and visual taste.
+          </p>
 
-                    {/* Social Links Section (Main View) */}
-                    <div className="border-t border-white/10 pt-10">
-                        <span className="font-mono text-secondary text-xs block mb-6 uppercase tracking-widest">// Establish Connection</span>
-                        <div className="flex gap-8">
-                            <a href="https://github.com/Kidus-M" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
-                                <FaGithub size={32} className="group-hover:scale-110 transition-transform" />
-                                <span className="sr-only">GitHub</span>
-                            </a>
-                            <a href="https://www.instagram.com/kidus._.m" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
-                                <FaInstagram size={32} className="group-hover:scale-110 transition-transform" />
-                                <span className="sr-only">Instagram</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/kidus0237" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
-                                <FaLinkedin size={32} className="group-hover:scale-110 transition-transform" />
-                                <span className="sr-only">LinkedIn</span>
-                            </a>
-                            <a href="https://t.me/kidus_mesfin" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors group">
-                                <FaTelegram size={32} className="group-hover:scale-110 transition-transform" />
-                                <span className="sr-only">Telegram</span>
-                            </a>
-                        </div>
-                    </div>
+          <div className="contact-actions">
+            <button className="cta-button" onClick={() => setIsModalOpen(true)} type="button">
+              Send me a message <Send size={16} />
+            </button>
+            <button className="copy-email" onClick={copyEmail} type="button">
+              {copied ? (
+                <>
+                  Copied <Check size={16} />
+                </>
+              ) : (
+                email
+              )}
+            </button>
+          </div>
+
+          <div className="social-row">
+            {socials.map(({ href, label, icon: Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noreferrer">
+                <Icon size={16} /> {label}
+              </a>
+            ))}
+            <a href="/resume.pdf" download="Kidus_Mesfin_Resume.pdf">
+              <FileText size={16} /> Resume PDF
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {isModalOpen && (
+        <div className="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+          <button className="contact-modal-backdrop" type="button" aria-label="Close contact form" onClick={() => setIsModalOpen(false)} />
+          <div className="contact-modal-panel">
+            <div className="contact-modal-head">
+              <div>
+                <span className="section-kicker">Formspree - secure send</span>
+                <h3 id="contact-modal-title">Initialize connection</h3>
+              </div>
+              <button className="modal-close" onClick={() => setIsModalOpen(false)} type="button" aria-label="Close contact form">
+                <X size={18} />
+              </button>
+            </div>
+
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <label>
+                <span>Name</span>
+                <input name="name" type="text" placeholder="Your name" required value={formData.name} onChange={handleChange} />
+              </label>
+              <label>
+                <span>Email</span>
+                <input name="email" type="email" placeholder="email@example.com" required value={formData.email} onChange={handleChange} />
+              </label>
+              <label>
+                <span>Subject</span>
+                <input name="subject" type="text" placeholder="Project inquiry" required value={formData.subject} onChange={handleChange} />
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea
+                  name="message"
+                  rows="5"
+                  placeholder="Tell me about the product, timeline, and what success should feel like."
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                />
+              </label>
+
+              {submitStatus === "success" && (
+                <div className="form-status is-success">
+                  <CheckCircle2 size={16} /> Message sent. Closing...
                 </div>
-            </section>
+              )}
+              {submitStatus === "error" && (
+                <div className="form-status is-error">
+                  <AlertCircle size={16} /> Message failed. Please try again.
+                </div>
+              )}
 
-            {/* CONTACT MODAL */}
-            <AnimatePresence>
-                {isModalOpen && (
-                    <>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsModalOpen(false)}
-                            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60]"
-                        />
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] overflow-y-auto bg-[#111] border border-white/10 rounded-xl p-8 z-[70] shadow-2xl"
-                        >
-                            <div className="flex justify-between items-center mb-6">
-                                <h3 className="font-heading text-2xl">Initialize Connection</h3>
-                                <button onClick={() => setIsModalOpen(false)} className="text-secondary hover:text-white">
-                                    <FaTimes />
-                                </button>
-                            </div>
+              <button className="form-submit" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Execute send"}
+                <Send size={16} />
+              </button>
+            </form>
 
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label className="block font-mono text-xs text-secondary mb-1">VAR NAME = STRING</label>
-                                    <input
-                                        type="text" name="name" placeholder="Your Name" required
-                                        value={formData.name} onChange={handleChange}
-                                        className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:border-accent focus:outline-none transition-colors font-mono text-sm"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block font-mono text-xs text-secondary mb-1">VAR EMAIL = STRING</label>
-                                    <input
-                                        type="email" name="email" placeholder="email@example.com" required
-                                        value={formData.email} onChange={handleChange}
-                                        className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:border-accent focus:outline-none transition-colors font-mono text-sm"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block font-mono text-xs text-secondary mb-1">VAR SUBJECT = STRING</label>
-                                    <input
-                                        type="text" name="subject" placeholder="Project Inquiry" required
-                                        value={formData.subject} onChange={handleChange}
-                                        className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:border-accent focus:outline-none transition-colors font-mono text-sm"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block font-mono text-xs text-secondary mb-1">VAR MESSAGE = TEXT</label>
-                                    <textarea
-                                        name="message" rows="4" placeholder="Tell me about your project architecture..." required
-                                        value={formData.message} onChange={handleChange}
-                                        className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:border-accent focus:outline-none transition-colors font-mono text-sm"
-                                    />
-                                </div>
-
-                                {/* Status Feedback */}
-                                {submitStatus === 'success' && (
-                                    <div className="flex items-center gap-2 text-green-400 font-mono text-xs bg-green-400/10 p-3 rounded">
-                                        <FaCheckCircle /> Transmission Successful. Closing...
-                                    </div>
-                                )}
-                                {submitStatus === 'error' && (
-                                    <div className="flex items-center gap-2 text-red-400 font-mono text-xs bg-red-400/10 p-3 rounded">
-                                        <FaExclamationCircle /> Transmission Failed. Please try again.
-                                    </div>
-                                )}
-
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className={`w-full py-4 rounded font-bold font-mono flex items-center justify-center gap-2 transition-all ${isSubmitting ? 'bg-gray-600 cursor-not-allowed' : 'bg-accent hover:bg-blue-600 text-white'}`}
-                                >
-                                    {isSubmitting ? 'SENDING DATA...' : <><FaPaperPlane /> EXECUTE SEND</>}
-                                </button>
-                            </form>
-
-                            {/* Social Links inside Modal */}
-                            <div className="mt-8 pt-6 border-t border-white/10">
-                                <p className="font-mono text-xs text-secondary mb-4 text-center">OR CONNECT VIA</p>
-                                <div className="flex justify-center gap-6">
-                                    <a href="https://github.com/Kidus-M" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors">
-                                        <FaGithub size={24} />
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/kidus0237" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors">
-                                        <FaLinkedin size={24} />
-                                    </a>
-                                    <a href="https://t.me/kidus_mesfin" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors">
-                                        <FaTelegram size={24} />
-                                    </a>
-                                </div>
-                            </div>
-
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
-        </>
-    )
+            <div className="modal-socials">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}>
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
-
-export default Contact
