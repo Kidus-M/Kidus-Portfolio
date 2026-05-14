@@ -6,30 +6,30 @@
 /* ======================================================================= */
 
 :root {
-  /* Core Palette — Deep Dark with Neon Accent */
-  --bg-primary: #050505;
-  --bg-secondary: #0a0a0a;
-  --bg-surface: #0f0f0f;
-  --bg-elevated: #141414;
-  --bg-card: #111111;
+  /* Core Palette — Swiss editorial light */
+  --bg-primary: #f7f7f4;
+  --bg-secondary: #eeeeea;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f2f2ee;
+  --bg-card: #f7f7f4;
 
   /* Text */
-  --text-primary: #f0f0f0;
-  --text-secondary: #6b6b6b;
-  --text-muted: #3a3a3a;
-  --text-accent: #c8ff00;
+  --text-primary: #050505;
+  --text-secondary: #555555;
+  --text-muted: #777777;
+  --text-accent: #050505;
 
-  /* Accent — Electric Lime / Neon */
-  --accent: #c8ff00;
-  --accent-dim: rgba(200, 255, 0, 0.15);
-  --accent-glow: rgba(200, 255, 0, 0.4);
-  --accent-hover: #d4ff33;
+  /* Accent — restrained monochrome */
+  --accent: #050505;
+  --accent-dim: rgba(0, 0, 0, 0.08);
+  --accent-glow: rgba(0, 0, 0, 0.14);
+  --accent-hover: #202020;
 
   /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
-  --border-accent: rgba(200, 255, 0, 0.25);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-default: rgba(0, 0, 0, 0.12);
+  --border-hover: rgba(0, 0, 0, 0.24);
+  --border-accent: rgba(0, 0, 0, 0.22);
 
   /* Typography */
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -80,7 +80,7 @@
 *::before,
 *::after {
   margin: 0;
-  padding: 0;
+  padding:0;
   box-sizing: border-box;
 }
 
@@ -111,7 +111,7 @@ body {
   left: 0;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  background: var(--accent);
+  background: #ffffff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
@@ -125,9 +125,9 @@ body {
 .cursor-dot.expanded {
   width: 60px;
   height: 60px;
-  background: rgba(200, 255, 0, 0.15);
+  background: rgba(0, 0, 0, 0.08);
   mix-blend-mode: normal;
-  border: 1px solid var(--accent);
+  border: 1px solid rgba(0, 0, 0, 0.35);
 }
 
 .cursor-follow {
@@ -136,7 +136,7 @@ body {
   left: 0;
   width: var(--cursor-follow-size);
   height: var(--cursor-follow-size);
-  border: 1px solid rgba(200, 255, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.28);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
@@ -149,7 +149,7 @@ body {
 .cursor-follow.expanded {
   width: 80px;
   height: 80px;
-  border-color: rgba(200, 255, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 /* Hide custom cursor on touch devices */
@@ -183,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   line-height: 0.95;
 }
 

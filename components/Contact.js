@@ -1,160 +1,243 @@
-import { useState, useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { FaTimes, FaPaperPlane, FaCheckCircle, FaExclamationCircle, FaGithub, FaInstagram, FaLinkedin, FaTelegram } from 'react-icons/fa';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+    ArrowUpRight,
+    Github,
+    Linkedin,
+    Mail,
+    MapPin,
+    Phone,
+    Globe,
+    X,
+    Send,
+    CheckCircle2
+} from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const Contact = () => {
+export default function Contact() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formData, setFormData] = useState({ name:'', email:'', subject:'', message:'' });
+    const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
-    const sectionRef = useRef(null);
-    const headingRef = useRef(null);
-    const contentRef = useRef(null);
-    const modalRef = useRef(null);
 
-    const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const handleChange = (event) => {
+        setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
+    };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         setIsSubmitting(true);
         setSubmitStatus(null);
         try {
-            const response = await fetch("https://formspree.io/f/mldbdqbn", { method:"POST", headers:{'Content-Type':'application/json'}, body:JSON.stringify(formData) });
-            if (response.ok) { setSubmitStatus('success'); setFormData({name:'',email:'',subject:'',message:''}); setTimeout(()=>{setIsModalOpen(false);setSubmitStatus(null);},2000); }
-            else throw new Error('Failed');
-        } catch { setSubmitStatus('error'); }
-        finally { setIsSubmitting(false); }
-    };
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo(headingRef.current, { y:80, opacity:0 }, { y:0, opacity:1, duration:1.4, ease:"power3.out",
-                scrollTrigger:{ trigger:sectionRef.current, start:"top 75%", toggleActions:"play none none reverse" }
+            const response = await fetch("https://formspree.io/f/mldbdqbn", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
             });
-            gsap.fromTo(contentRef.current, { y:40, opacity:0 }, { y:0, opacity:1, duration:1, ease:"power3.out",
-                scrollTrigger:{ trigger:sectionRef.current, start:"top 65%", toggleActions:"play none none reverse" }
-            });
-        }, sectionRef);
-        return () => ctx.revert();
-    }, []);
-
-    useEffect(() => {
-        if (!modalRef.current) return;
-        if (isModalOpen) {
-            document.body.style.overflow = 'hidden';
-            gsap.fromTo(modalRef.current, { opacity:0, scale:0.95, y:30 }, { opacity:1, scale:1, y:0, duration:0.5, ease:"power4.out" });
-        } else {
-            document.body.style.overflow = '';
+            if (!response.ok) throw new Error("Failed");
+            setSubmitStatus("success");
+            setFormData({ name: "", email: "", subject: "", message: "" });
+        } catch {
+            setSubmitStatus("error");
+        } finally {
+            setIsSubmitting(false);
         }
-    }, [isModalOpen]);
-
-    const socials = [
-        { icon:<FaGithub size={20}/>, href:"https://github.com/Kidus-M", label:"GitHub" },
-        { icon:<FaInstagram size={20}/>, href:"https://www.instagram.com/kidus._.m", label:"Instagram" },
-        { icon:<FaLinkedin size={20}/>, href:"https://www.linkedin.com/in/kidus0237", label:"LinkedIn" },
-        { icon:<FaTelegram size={20}/>, href:"https://t.me/kidus_mesfin", label:"Telegram" },
-    ];
+    };
 
     return (
         <>
-            <section ref={sectionRef} id="contact" className="section-padding" style={{ background:'var(--bg-primary)', position:'relative', overflow:'hidden', borderTop:'1px solid var(--border-subtle)' }}>
-                {/* Ambient glow */}
-                <div style={{ position:'absolute', bottom:'-20%', right:'-10%', width:'600px', height:'600px', background:'radial-gradient(circle, rgba(200,255,0,0.04) 0%, transparent 70%)', filter:'blur(100px)', pointerEvents:'none' }} />
-
-                <div style={{ maxWidth:'900px', position:'relative', zIndex:2 }}>
-                    <div ref={headingRef} style={{ opacity:0 }}>
-                        <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'1.5rem' }}>
-                            <div className="status-dot" />
-                            <span style={{ fontFamily:'var(--font-mono)', fontSize:'0.6rem', letterSpacing:'0.2em', textTransform:'uppercase', color:'var(--text-muted)' }}>Have an idea?</span>
-                        </div>
-                        <h2 style={{ fontFamily:'var(--font-heading)', fontWeight:700, letterSpacing:'-0.04em', lineHeight:0.95, marginBottom:'2.5rem' }}>
-                            Let's turn your<br/><span style={{ color:'var(--accent)' }}>next idea into reality.</span>
-                        </h2>
-                    </div>
-
-                    <div ref={contentRef} style={{ opacity:0, display:'flex', flexDirection:'column', gap:'3rem' }}>
-                        {/* CTAs */}
-                        <div style={{ display:'flex', flexWrap:'wrap', gap:'1rem', alignItems:'center' }}>
-                            <button onClick={() => setIsModalOpen(true)} data-cursor="expand" className="magnetic-btn"
-                                style={{ padding:'1rem 2.5rem', background:'var(--accent)', color:'var(--bg-primary)', border:'none', borderRadius:'var(--radius-full)', fontFamily:'var(--font-mono)', fontSize:'0.7rem', fontWeight:600, letterSpacing:'0.15em', textTransform:'uppercase', cursor:'none' }}>
-                                Initiate Contact
-                            </button>
-                            <a href="/resume.pdf" download="Kidus_Mesfin_Resume.pdf" data-cursor="expand"
-                                style={{ fontFamily:'var(--font-mono)', fontSize:'0.65rem', letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--text-muted)', textDecoration:'none', borderBottom:'1px solid var(--border-default)', paddingBottom:'2px', transition:'color 0.3s ease' }}
-                                onMouseEnter={e=>e.target.style.color='var(--text-secondary)'}
-                                onMouseLeave={e=>e.target.style.color='var(--text-muted)'}>
-                                Download Resume ↓
-                            </a>
+            <section id="contact" className="relative border-b border-[#eaeaea] bg-white text-[#0a0a0a] min-h-[100vh] flex items-center py-24 lg:py-0">
+                <div className="mx-auto w-full max-w-[1600px] px-10 sm:px-16 lg:px-32">
+                    <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                        
+                        {/* Title Column */}
+                        <div className="lg:w-1/3">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                <p className="mb-6 font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-zinc-500 font-semibold">
+                                    Contact
+                                </p>
+                                <h2 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1] tracking-tight text-[#0a0a0a]">
+                                    Let&apos;s work
+                                    <br />
+                                    together
+                                </h2>
+                            </motion.div>
                         </div>
 
-                        {/* Socials */}
-                        <div style={{ paddingTop:'2rem', borderTop:'1px solid var(--border-subtle)' }}>
-                            <span style={{ fontFamily:'var(--font-mono)', fontSize:'0.55rem', letterSpacing:'0.2em', textTransform:'uppercase', color:'var(--text-muted)', display:'block', marginBottom:'1.25rem' }}>Connect</span>
-                            <div style={{ display:'flex', gap:'1.5rem' }}>
-                                {socials.map(s => (
-                                    <a key={s.label} href={s.href} target="_blank" rel="noreferrer" data-cursor="expand" aria-label={s.label}
-                                        style={{ color:'var(--text-muted)', transition:'color 0.3s ease, transform 0.3s ease', display:'inline-flex' }}
-                                        onMouseEnter={e => { e.currentTarget.style.color='var(--accent)'; e.currentTarget.style.transform='translateY(-3px)'; }}
-                                        onMouseLeave={e => { e.currentTarget.style.color='var(--text-muted)'; e.currentTarget.style.transform='translateY(0)'; }}>
-                                        {s.icon}
-                                    </a>
-                                ))}
-                            </div>
+                        {/* Description & Button */}
+                        <div className="lg:w-1/3 flex flex-col pt-2 md:pt-8">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                            >
+                                <p className="text-[15px] leading-[1.6] text-zinc-600 font-medium tracking-tight mb-8 max-w-sm">
+                                    I&apos;m currently available for freelance projects and full-time opportunities. Let&apos;s build something great together.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    data-cursor="expand"
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="inline-flex items-center gap-3 bg-[#0a0a0a] px-8 py-4 font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-white hover:bg-[#222] transition-colors duration-300 w-fit"
+                                >
+                                    Get in touch
+                                    <ArrowUpRight className="h-4 w-4" />
+                                </button>
+                            </motion.div>
                         </div>
 
-                        {/* Footer */}
-                        <div style={{ paddingTop:'2rem', borderTop:'1px solid var(--border-subtle)', display:'flex', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem' }}>
-                            <span style={{ fontFamily:'var(--font-mono)', fontSize:'0.55rem', color:'var(--text-muted)', letterSpacing:'0.1em' }}>© {new Date().getFullYear()} Kidus Mesfin</span>
-                            <span style={{ fontFamily:'var(--font-mono)', fontSize:'0.55rem', color:'var(--text-muted)', letterSpacing:'0.1em' }}>Built with Next.js & GSAP</span>
+                        {/* Contact Info list */}
+                        <div className="lg:w-1/3 flex flex-col lg:items-end pt-2 md:pt-8">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                                className="flex flex-col gap-4 text-[13px] md:text-[14px] text-zinc-600 font-medium tracking-tight"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <Mail className="h-4 w-4 text-zinc-400" />
+                                    <a href="mailto:hello@kidusmesfin.dev" className="hover:text-[#0a0a0a] transition-colors">hello@kidusmesfin.dev</a>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <MapPin className="h-4 w-4 text-zinc-400" />
+                                    <span>Addis Ababa, Ethiopia</span>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <Phone className="h-4 w-4 text-zinc-400" />
+                                    <a href="tel:+251912345678" className="hover:text-[#0a0a0a] transition-colors">+251 91 234 5678</a>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <Globe className="h-4 w-4 text-zinc-400" />
+                                    <a href="https://kidusmesfin.dev" className="hover:text-[#0a0a0a] transition-colors">kidusmesfin.dev</a>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <Linkedin className="h-4 w-4 text-zinc-400" />
+                                    <a href="https://linkedin.com/in/kidusmesfin" className="hover:text-[#0a0a0a] transition-colors">linkedin.com/in/kidusmesfin</a>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <Github className="h-4 w-4 text-zinc-400" />
+                                    <a href="https://github.com/kidus-m" className="hover:text-[#0a0a0a] transition-colors">github.com/kidus-m</a>
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                                className="mt-16 lg:mt-auto text-right"
+                            >
+                                <h3 className="font-heading text-5xl font-bold tracking-tight text-[#0a0a0a] mb-4">
+                                    KM.
+                                </h3>
+                                <a href="#hero" className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500 hover:text-[#0a0a0a] flex items-center justify-end gap-2 transition-colors">
+                                    LET&apos;S CONNECT <ArrowUpRight className="h-3 w-3" />
+                                </a>
+                            </motion.div>
                         </div>
+
                     </div>
                 </div>
             </section>
 
-            {/* Contact Modal */}
             {isModalOpen && (
-                <>
-                    <div onClick={() => setIsModalOpen(false)} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.85)', backdropFilter:'blur(12px)', zIndex:60 }} />
-                    <div ref={modalRef} style={{
-                        position:'fixed', inset:0, margin:'auto', width:'calc(100% - 2rem)', maxWidth:'480px', height:'fit-content', maxHeight:'90vh', overflowY:'auto',
-                        background:'var(--bg-surface)', border:'1px solid var(--border-default)', borderRadius:'var(--radius-lg)', padding:'2rem', zIndex:70,
-                    }}>
-                        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'2rem' }}>
-                            <h3 style={{ fontFamily:'var(--font-heading)', fontSize:'1.25rem', fontWeight:700 }}>Initialize Connection</h3>
-                            <button onClick={() => setIsModalOpen(false)} data-cursor="expand" style={{ background:'none', border:'1px solid var(--border-default)', borderRadius:'50%', width:'32px', height:'32px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--text-secondary)', cursor:'none' }}><FaTimes size={12} /></button>
+                <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[#0a0a0a]/40 p-4 backdrop-blur-sm">
+                    <button
+                        type="button"
+                        aria-label="Close contact form"
+                        className="absolute inset-0 cursor-default"
+                        onClick={() => setIsModalOpen(false)}
+                    />
+
+                    <div className="relative w-full max-w-xl bg-white p-8 md:p-12 text-[#0a0a0a] shadow-2xl">
+                        <div className="mb-8 flex items-center justify-between border-b border-[#eaeaea] pb-6">
+                            <div>
+                                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-2">New inquiry</p>
+                                <h3 className="font-heading text-3xl font-bold tracking-tight">
+                                    Project brief
+                                </h3>
+                            </div>
+                            <button
+                                type="button"
+                                data-cursor="expand"
+                                onClick={() => setIsModalOpen(false)}
+                                className="flex h-10 w-10 items-center justify-center border border-[#eaeaea] transition-colors hover:bg-[#0a0a0a] hover:text-white"
+                                aria-label="Close"
+                            >
+                                <X className="h-4 w-4" />
+                            </button>
                         </div>
 
-                        <form onSubmit={handleSubmit} style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
-                            {[{name:'name',type:'text',label:'Name',ph:'Your Name'},{name:'email',type:'email',label:'Email',ph:'email@example.com'},{name:'subject',type:'text',label:'Subject',ph:'Project Inquiry'}].map(f=>(
-                                <div key={f.name}>
-                                    <label style={{ fontFamily:'var(--font-mono)', fontSize:'0.55rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--text-muted)', display:'block', marginBottom:'0.375rem' }}>{f.label}</label>
-                                    <input type={f.type} name={f.name} placeholder={f.ph} required value={formData[f.name]} onChange={handleChange} className="form-field" />
-                                </div>
+                        <form onSubmit={handleSubmit} className="grid gap-6">
+                            {[
+                                { name: "name", type: "text", label: "Name", placeholder: "Your name" },
+                                { name: "email", type: "email", label: "Email", placeholder: "email@example.com" },
+                                { name: "subject", type: "text", label: "Subject", placeholder: "Project inquiry" },
+                            ].map((field) => (
+                                <label key={field.name} className="block">
+                                    <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-bold">
+                                        {field.label}
+                                    </span>
+                                    <input
+                                        type={field.type}
+                                        name={field.name}
+                                        value={formData[field.name]}
+                                        onChange={handleChange}
+                                        placeholder={field.placeholder}
+                                        required
+                                        className="w-full border border-[#eaeaea] bg-transparent px-4 py-3 text-[14px] text-[#0a0a0a] outline-none transition-colors placeholder:text-zinc-400 focus:border-[#0a0a0a]"
+                                    />
+                                </label>
+
                             ))}
-                            <div>
-                                <label style={{ fontFamily:'var(--font-mono)', fontSize:'0.55rem', letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--text-muted)', display:'block', marginBottom:'0.375rem' }}>Message</label>
-                                <textarea name="message" rows="4" placeholder="Tell me about your project..." required value={formData.message} onChange={handleChange} className="form-field" style={{ resize:'vertical' }} />
-                            </div>
 
-                            {submitStatus === 'success' && <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', color:'var(--accent)', fontFamily:'var(--font-mono)', fontSize:'0.7rem', background:'var(--accent-dim)', padding:'0.75rem', borderRadius:'var(--radius-md)' }}><FaCheckCircle /> Sent successfully</div>}
-                            {submitStatus === 'error' && <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', color:'#ff4444', fontFamily:'var(--font-mono)', fontSize:'0.7rem', background:'rgba(255,68,68,0.1)', padding:'0.75rem', borderRadius:'var(--radius-md)' }}><FaExclamationCircle /> Failed. Try again.</div>}
+                            <label className="block">
+                                <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.1em] text-zinc-500 font-bold">
+                                    Message
+                                </span>
+                                <textarea
+                                    name="message"
+                                    rows="5"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    placeholder="Tell me about the project..."
+                                    required
+                                    className="w-full resize-y border border-[#eaeaea] bg-transparent px-4 py-3 text-[14px] text-[#0a0a0a] outline-none transition-colors placeholder:text-zinc-400 focus:border-[#0a0a0a]"
+                                />
+                            </label>
 
-                            <button type="submit" disabled={isSubmitting} data-cursor="expand"
-                                style={{
-                                    width:'100%', padding:'1rem', borderRadius:'var(--radius-md)', border:'none', fontFamily:'var(--font-mono)', fontSize:'0.7rem', fontWeight:600, letterSpacing:'0.15em', textTransform:'uppercase', cursor:'none', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.5rem', transition:'all 0.3s ease',
-                                    background: isSubmitting ? 'var(--bg-elevated)' : 'var(--accent)', color: isSubmitting ? 'var(--text-muted)' : 'var(--bg-primary)',
-                                }}>
-                                {isSubmitting ? 'Sending...' : <><FaPaperPlane size={10}/> Send Message</>}
+                            {submitStatus === "success" && (
+                                <div className="flex items-center gap-2 border border-[#eaeaea] bg-white px-4 py-3 font-mono text-xs uppercase tracking-[0.1em] text-[#0a0a0a] font-bold">
+                                    <CheckCircle2 className="h-4 w-4" />
+                                    Sent successfully
+                                </div>
+                            )}
+                            {submitStatus === "error" && (
+                                <div className="border border-[#0a0a0a] bg-[#0a0a0a] px-4 py-3 font-mono text-xs uppercase tracking-[0.1em] text-white font-bold">
+                                    Failed. Try again.
+                                </div>
+                            )}
+
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                data-cursor="expand"
+                                className="mt-2 inline-flex items-center justify-center gap-3 bg-[#0a0a0a] px-5 py-4 font-mono text-[10px] uppercase tracking-[0.1em] font-bold text-white transition-opacity disabled:opacity-50 hover:bg-[#222]"
+                            >
+                                {isSubmitting ? "Sending..." : "Send message"}
+                                {isSubmitting ? null : <Send className="h-4 w-4" />}
                             </button>
                         </form>
                     </div>
-                </>
+                </div>
             )}
         </>
     );
-};
-
-export default Contact;
+}

@@ -1,384 +1,102 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+"use client";
 
-const Hero = () => {
-    const heroRef = useRef(null);
-    const headingLine1 = useRef(null);
-    const headingLine2 = useRef(null);
-    const headingLine3 = useRef(null);
-    const subtitleRef = useRef(null);
-    const taglineRef = useRef(null);
-    const ctaRef = useRef(null);
-    const scrollIndicatorRef = useRef(null);
-    const gridRef = useRef(null);
-    const statusRef = useRef(null);
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({ delay: 0.5 });
-
-            // Animated grid lines entrance
-            tl.fromTo(
-                gridRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 2, ease: "power2.out" },
-                0
-            );
-
-            // Heading lines — cinematic staggered reveal
-            const lines = [headingLine1.current, headingLine2.current, headingLine3.current];
-            lines.forEach((line, i) => {
-                tl.fromTo(
-                    line,
-                    { yPercent: 110, rotateX: -20 },
-                    {
-                        yPercent: 0,
-                        rotateX: 0,
-                        duration: 1.4,
-                        ease: "power4.out",
-                    },
-                    0.15 + i * 0.12
-                );
-            });
-
-            // Tagline
-            tl.fromTo(
-                taglineRef.current,
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
-                1.0
-            );
-
-            // Subtitle
-            tl.fromTo(
-                subtitleRef.current,
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
-                1.2
-            );
-
-            // CTA
-            tl.fromTo(
-                ctaRef.current,
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-                1.4
-            );
-
-            // Status bar
-            tl.fromTo(
-                statusRef.current,
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-                1.5
-            );
-
-            // Scroll indicator
-            tl.fromTo(
-                scrollIndicatorRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1, ease: "power2.out" },
-                1.8
-            );
-
-            // Infinite scroll indicator bounce
-            gsap.to(scrollIndicatorRef.current?.querySelector('.scroll-arrow'), {
-                y: 8,
-                duration: 1.2,
-                ease: "power1.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
-
-        }, heroRef);
-
-        return () => ctx.revert();
-    }, []);
-
+export default function Hero() {
     return (
         <section
-            ref={heroRef}
             id="hero"
-            style={{
-                position: 'relative',
-                minHeight: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                background: 'var(--bg-primary)',
-            }}
+            className="relative min-h-screen overflow-hidden bg-white text-black"
         >
-            {/* Animated Grid Background */}
-            <div
-                ref={gridRef}
-                style={{
-                    position: 'absolute',
-                    inset: 0,
-                    opacity: 0,
-                    backgroundImage: `
-                        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '80px 80px',
-                    maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 80%)',
-                }}
-            />
-
-            {/* Ambient glow */}
-            <div style={{
-                position: 'absolute',
-                top: '10%',
-                right: '-10%',
-                width: '600px',
-                height: '600px',
-                background: 'radial-gradient(circle, rgba(200, 255, 0, 0.04) 0%, transparent 70%)',
-                filter: 'blur(80px)',
-                pointerEvents: 'none',
-            }} />
-            <div style={{
-                position: 'absolute',
-                bottom: '10%',
-                left: '-5%',
-                width: '400px',
-                height: '400px',
-                background: 'radial-gradient(circle, rgba(200, 255, 0, 0.03) 0%, transparent 70%)',
-                filter: 'blur(60px)',
-                pointerEvents: 'none',
-            }} />
-
-            {/* Main Content */}
-            <div className="section-padding-x" style={{
-                position: 'relative',
-                zIndex: 2,
-                maxWidth: '1400px',
-                width: '100%',
-                margin: '0 auto',
-                paddingTop: 'clamp(6rem, 15vh, 10rem)',
-                paddingBottom: 'clamp(4rem, 10vh, 8rem)',
-            }}>
-                {/* Top tagline */}
-                <div ref={taglineRef} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '2rem',
-                    opacity: 0,
-                }}>
-                    <div className="status-dot" />
-                    <span style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.7rem',
-                        letterSpacing: '0.2em',
-                        textTransform: 'uppercase',
-                        color: 'var(--text-secondary)',
-                    }}>
-                        Open for Q3 2026 — Let's talk
-                    </span>
-                </div>
-
-                {/* Giant Heading — Asymmetric Layout */}
-                <div style={{ marginBottom: '3rem' }}>
-                    {/* Line 1 */}
-                    <div style={{ overflow: 'hidden', perspective: '400px' }}>
-                        <h1
-                            ref={headingLine1}
-                            style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontWeight: 700,
-                                lineHeight: 0.92,
-                                letterSpacing: '-0.04em',
-                                color: 'var(--text-primary)',
-                                willChange: 'transform',
-                            }}
-                        >
-                            I Design
-                        </h1>
-                    </div>
-
-                    {/* Line 2 — shifted right with accent */}
-                    <div style={{
-                        overflow: 'hidden',
-                        perspective: '400px',
-                        paddingLeft: 'clamp(1rem, 5vw, 6rem)',
-                    }}>
-                        <h1
-                            ref={headingLine2}
-                            style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontWeight: 700,
-                                lineHeight: 0.92,
-                                letterSpacing: '-0.04em',
-                                willChange: 'transform',
-                            }}
-                        >
-                            <span style={{ color: 'var(--accent)' }}>The Systems</span>
-                        </h1>
-                    </div>
-
-                    {/* Line 3 */}
-                    <div style={{
-                        overflow: 'hidden',
-                        perspective: '400px',
-                        paddingLeft: 'clamp(0.5rem, 2vw, 3rem)',
-                    }}>
-                        <h1
-                            ref={headingLine3}
-                            style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontWeight: 700,
-                                lineHeight: 0.92,
-                                letterSpacing: '-0.04em',
-                                color: 'var(--text-primary)',
-                                willChange: 'transform',
-                            }}
-                        >
-                            Behind It<span style={{ color: 'var(--accent)' }}>.</span>
-                        </h1>
-                    </div>
-                </div>
-
-                {/* Subtitle + CTA — Asymmetric right-aligned */}
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    gap: '2rem',
-                    maxWidth: '500px',
-                    marginLeft: 'auto',
-                }}>
-                    <p
-                        ref={subtitleRef}
-                        style={{
-                            fontFamily: 'var(--font-body)',
-                            fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)',
-                            lineHeight: 1.8,
-                            color: 'var(--text-secondary)',
-                            opacity: 0,
-                        }}
+            <div className="flex flex-col-reverse lg:flex-row h-full min-h-screen">
+                
+                {/* Left Content */}
+                <div className="flex flex-1 flex-col justify-center px-8 sm:px-16 lg:pl-24 lg:pr-12 py-20 lg:py-0">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex flex-col"
                     >
-                        Full-stack engineer obsessed with clean architecture,
-                        ruthless performance, and interfaces that feel inevitable.
-                        I don't build websites — I ship products.
-                    </p>
+                        <p className="mb-6 font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] text-zinc-500 font-bold">
+                            HELLO, I&apos;M
+                        </p>
+                        
+                        {/* Increased font weight to make it punchier */}
+                        <h1 className="font-sans text-[clamp(4rem,9vw,9rem)] font-black leading-[0.85] tracking-tighter text-[#0a0a0a] mb-10">
+                            Kidus
+                            <br />
+                            Mesfin
+                        </h1>
 
-                    <div ref={ctaRef} style={{ display: 'flex', gap: '1rem', alignItems: 'center', opacity: 0 }}>
+                        <div className="flex flex-col gap-5 mb-12 w-full max-w-md">
+                            <div className="flex items-center gap-4">
+                                <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#0a0a0a] font-bold whitespace-nowrap">
+                                    FULL STACK DEVELOPER
+                                </span>
+                                <span className="h-[1px] w-24 bg-zinc-300" />
+                            </div>
+                            <p className="text-[15px] md:text-[17px] leading-relaxed text-zinc-600 font-medium max-w-[340px]">
+                                I build exceptional digital experiences that are fast, scalable, and beautifully designed.
+                            </p>
+                        </div>
+
+                        {/* FIXED: Added 'w-max' and explicitly defined padding to prevent collapsing */}
                         <a
                             href="#work"
-                            data-cursor="expand"
-                            className="magnetic-btn"
-                            style={{
-                                padding: '1rem 2.5rem',
-                                border: '1px solid var(--accent)',
-                                borderRadius: 'var(--radius-full)',
-                                fontFamily: 'var(--font-mono)',
-                                fontSize: '0.7rem',
-                                letterSpacing: '0.15em',
-                                textTransform: 'uppercase',
-                                color: 'var(--accent)',
-                                textDecoration: 'none',
-                                background: 'transparent',
-                            }}
+                            className="inline-flex w-max items-center justify-center gap-5 bg-[#0a0a0a] px-8 py-4 font-sans text-[11px] md:text-xs uppercase tracking-[0.15em] text-white hover:bg-zinc-800 transition-all duration-300 group"
                         >
-                            View Work
+                            VIEW MY WORK
+                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </a>
-                        <a
-                            href="/resume.pdf"
-                            download
-                            data-cursor="expand"
-                            style={{
-                                fontFamily: 'var(--font-mono)',
-                                fontSize: '0.7rem',
-                                letterSpacing: '0.1em',
-                                textTransform: 'uppercase',
-                                color: 'var(--text-muted)',
-                                textDecoration: 'none',
-                                borderBottom: '1px solid var(--border-default)',
-                                paddingBottom: '2px',
-                                transition: 'color 0.3s ease, border-color 0.3s ease',
-                            }}
-                            onMouseEnter={(e) => {
-                                e.target.style.color = 'var(--text-secondary)';
-                                e.target.style.borderColor = 'var(--text-secondary)';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.color = 'var(--text-muted)';
-                                e.target.style.borderColor = 'var(--border-default)';
-                            }}
-                        >
-                            Resume ↓
-                        </a>
+                    </motion.div>
+                </div>
+
+                {/* Right Content / Portrait */}
+                <div className="relative flex-1 bg-[#f4f4f4] min-h-[60vh] lg:min-h-screen w-full lg:w-1/2 overflow-hidden flex items-end justify-center">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        className="absolute inset-0 w-full h-full"
+                    >
+                        {/* Make sure the src exactly matches the file name in your /public folder */}
+                        <Image
+                            src="/portrait.png" 
+                            alt="Kidus Mesfin Portrait"
+                            fill
+                            className="object-cover object-bottom grayscale contrast-125"
+                            priority
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                    </motion.div>
+
+                    {/* Circular Badge */}
+                    <div className="absolute top-10 right-10 lg:top-14 lg:right-14 w-28 h-28 md:w-32 md:h-32 z-10">
+                        <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_12s_linear_infinite]">
+                            <defs>
+                                <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                            </defs>
+                            <text fontSize="8.5" fontWeight="700" fill="#0a0a0a" letterSpacing="2.5" className="uppercase font-sans">
+                                <textPath href="#circlePath">
+                                    AVAILABLE FOR FREELANCE • AVAILABLE FOR FREELANCE •
+                                </textPath>
+                            </text>
+                        </svg>
+                    </div>
+
+                    {/* Scroll Indicator */}
+                    <div className="absolute bottom-12 right-10 hidden lg:flex flex-col items-center gap-12 pointer-events-none z-10">
+                        <span className="rotate-90 font-sans text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a] font-bold origin-left translate-y-4">
+                            SCROLL
+                        </span>
+                        <div className="h-24 w-[1px] bg-[#0a0a0a]/20" />
                     </div>
                 </div>
 
-                {/* Bottom status bar */}
-                <div ref={statusRef} style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginTop: 'clamp(3rem, 8vh, 6rem)',
-                    paddingTop: '1.5rem',
-                    borderTop: '1px solid var(--border-subtle)',
-                    opacity: 0,
-                }}>
-                    <span style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.6rem',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        color: 'var(--text-muted)',
-                    }}>
-                        Software Engineer
-                    </span>
-                    <span style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.6rem',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        color: 'var(--text-muted)',
-                    }}>
-                        Based in Addis Ababa
-                    </span>
-                    <span style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.6rem',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        color: 'var(--text-muted)',
-                    }}>
-                        Scroll to explore
-                    </span>
-                </div>
-            </div>
-
-            {/* Scroll Indicator */}
-            <div ref={scrollIndicatorRef} style={{
-                position: 'absolute',
-                bottom: '2rem',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.5rem',
-                opacity: 0,
-            }}>
-                <div style={{
-                    width: '1px',
-                    height: '40px',
-                    background: 'linear-gradient(to bottom, var(--accent), transparent)',
-                }} />
-                <div className="scroll-arrow" style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRight: '1px solid var(--accent)',
-                    borderBottom: '1px solid var(--accent)',
-                    transform: 'rotate(45deg)',
-                }} />
             </div>
         </section>
     );
-};
-
-export default Hero;
+}
