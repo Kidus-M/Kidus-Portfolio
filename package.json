@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.4.0",
     "clsx": "^2.1.1",

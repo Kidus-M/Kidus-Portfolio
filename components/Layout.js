@@ -1,23 +1,26 @@
-import { ReactLenis } from 'lenis/react';
-import CustomCursor from './CustomCursor';
-import Navbar from './Navbar';
+import { ReactLenis } from "lenis/react";
+import CustomCursor from "./CustomCursor";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-const Layout = ({ children }) => {
-    return (
-        <ReactLenis root options={{ lerp: 0.08, duration: 1.8, smoothTouch: false }}>
-            {/* Noise texture overlay for depth */}
-            <div className="noise-overlay" aria-hidden="true" />
-            
-            {/* Custom animated cursor */}
-            <CustomCursor />
-            
-            {/* Navigation */}
-            <Navbar />
-
-            {/* Main content */}
-            <main>{children}</main>
-        </ReactLenis>
-    );
-};
-
-export default Layout;
+export default function Layout({ children }) {
+  return (
+    <ReactLenis
+      root
+      options={{
+        duration: 1.4,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        syncTouch: false,
+      }}
+    >
+      <CustomCursor />
+      <Navbar />
+      <a href="#hero" className="skip-link">
+        Skip to content
+      </a>
+      <main id="main-content">{children}</main>
+      <Footer />
+    </ReactLenis>
+  );
+}
