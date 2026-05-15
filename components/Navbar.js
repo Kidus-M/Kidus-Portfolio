@@ -56,7 +56,7 @@ export default function Navbar() {
     <>
       <header ref={navRef} className={`site-nav ${scrolled ? "is-scrolled" : ""}`}>
         <a href="#hero" className="brand" aria-label="Kidus Mesfin home">
-          <span>Kidus</span> <em>Mesfin</em>
+          <span>Kidus <em>Mesfin</em></span>
         </a>
 
         <nav className="nav-links" aria-label="Main navigation">
