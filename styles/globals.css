@@ -620,6 +620,229 @@ body.cursor--view .cursor-ring span {
   gap: clamp(1.5rem, 4vw, 4rem);
 }
 
+.stack-section {
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  padding: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 96%, rgba(200, 241, 53, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0)),
+    var(--bg-base);
+}
+
+.tech-radar-panel {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  align-items: stretch;
+  padding: clamp(5.5rem, 9vh, 7rem) var(--section-x) clamp(2rem, 5vh, 4rem);
+}
+
+.tech-radar-heading {
+  position: absolute;
+  top: clamp(1.5rem, 4vh, 3rem);
+  left: var(--section-x);
+  right: var(--section-x);
+  z-index: 60;
+  margin-bottom: 0;
+}
+
+.tech-radar-intro {
+  position: relative;
+  z-index: 45;
+  max-width: 720px;
+  margin: 0 auto clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.tech-radar-intro h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.92;
+}
+
+.tech-modal-panel p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.tech-radar-stage {
+  position: relative;
+  min-height: calc(100dvh - clamp(7.5rem, 14vh, 11rem));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2.5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 98%, rgba(200, 241, 53, 0.09), transparent 31%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 38%);
+  padding: clamp(2rem, 5vw, 5rem) 0 0;
+}
+
+.tech-radar-row {
+  position: relative;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 5vw, 5rem);
+}
+
+.tech-radar-row.is-wide {
+  justify-content: space-between;
+}
+
+.tech-radar-row.is-tight {
+  gap: clamp(2rem, 12vw, 9rem);
+}
+
+.tech-radar-row.is-medium {
+  gap: clamp(2rem, 9vw, 7rem);
+}
+
+.radar-tech-action {
+  position: relative;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  cursor: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.radar-tech-action::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(200, 241, 53, 0.38);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.35);
+  animation: radar-found-ping 0.95s ease-out forwards;
+  animation-delay: var(--ping-delay, 1s);
+}
+
+.radar-tech-action:hover {
+  color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.radar-tech-action > div > div:first-child {
+  border-color: var(--border-hover);
+  border-radius: 8px;
+  background: rgba(17, 17, 17, 0.88);
+  color: currentColor;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 16px 48px rgba(0, 0, 0, 0.34);
+}
+
+.radar-tech-action > div > div:last-child > div {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.radar-tech-action:hover > div > div:last-child > div {
+  color: var(--text-primary);
+}
+
+.tech-radar-sweep {
+  position: absolute;
+  left: 50%;
+  bottom: -2rem;
+  z-index: 1;
+  transform: translateX(-50%);
+  scale: 1.55;
+}
+
+.tech-radar-horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 42;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 241, 53, 0.35), transparent);
+}
+
+.tech-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.tech-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(14px);
+  cursor: none;
+}
+
+.tech-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.55);
+}
+
+.tech-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tech-modal-head h3 {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 8vw, 4rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.tech-modal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.tech-modal-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.035);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
 .stack-column h3 {
   margin: 0 0 1.5rem;
   color: var(--accent);
@@ -1284,6 +1507,12 @@ body.cursor--view .cursor-ring span {
   50% { opacity: 0.55; box-shadow: 0 0 0 8px rgba(200, 241, 53, 0); }
 }
 
+@keyframes radar-found-ping {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.35); }
+  24% { opacity: 0.95; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.1); }
+}
+
 @keyframes scroll-dot {
   from { transform: translateY(-8px); opacity: 0; }
   35% { opacity: 1; }
@@ -1447,6 +1676,48 @@ body.cursor--view .cursor-ring span {
   .stack-grid,
   .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tech-radar-stage {
+    min-height: calc(100dvh - 5rem);
+    padding: 4rem 0 0;
+  }
+
+  .tech-radar-panel {
+    padding: 4.75rem 1rem 1rem;
+  }
+
+  .tech-radar-heading {
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .tech-radar-intro {
+    margin-bottom: 1rem;
+  }
+
+  .tech-radar-intro h3 {
+    font-size: clamp(2rem, 13vw, 3.7rem);
+  }
+
+  .tech-radar-row,
+  .tech-radar-row.is-tight,
+  .tech-radar-row.is-medium {
+    gap: 0.75rem;
+  }
+
+  .tech-radar-row.is-wide {
+    justify-content: space-between;
+  }
+
+  .radar-tech-action > div > div:first-child {
+    width: 42px;
+    height: 42px;
+  }
+
+  .radar-tech-action svg {
+    width: 22px;
+    height: 22px;
   }
 
   .experience-top,
