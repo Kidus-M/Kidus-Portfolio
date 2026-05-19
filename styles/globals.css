@@ -529,6 +529,9 @@ body.cursor--view .cursor-ring span {
 }
 
 .experience-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border-bottom: 1px solid var(--border);
   border-left: 2px solid transparent;
@@ -540,6 +543,17 @@ body.cursor--view .cursor-ring span {
   border-left-color: var(--accent);
 }
 
+.experience-index {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 2.1;
+}
+
+.experience-body {
+  min-width: 0;
+}
+
 .experience-top {
   display: flex;
   justify-content: space-between;
@@ -549,6 +563,9 @@ body.cursor--view .cursor-ring span {
 
 .experience-top h3,
 .experience-top a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: var(--text-lg);
   font-weight: 600;
   background-image: linear-gradient(currentColor, currentColor);
@@ -570,6 +587,24 @@ body.cursor--view .cursor-ring span {
   font-size: var(--text-sm);
 }
 
+.experience-meta {
+  display: grid;
+  justify-items: end;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.experience-meta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-align: right;
+}
+
 .experience-row h4 {
   margin: 0 0 0.6rem;
   font-family: var(--font-display);
@@ -585,6 +620,35 @@ body.cursor--view .cursor-ring span {
   max-width: 65ch;
   color: var(--text-secondary);
   font-weight: 300;
+}
+
+.experience-highlights {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 78ch;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-highlights li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.experience-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .tag-row {
@@ -1724,6 +1788,24 @@ body.cursor--view .cursor-ring span {
   .footer-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .experience-index {
+    line-height: 1;
+  }
+
+  .experience-meta {
+    justify-items: start;
+  }
+
+  .experience-meta span {
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .footer-main {
