@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useLenis } from "lenis/react";
 
 const navLinks = [
   { href: "#hero", label: "About" },
@@ -11,26 +12,58 @@ const navLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
   const [active, setActive] = useState("#hero");
   const navRef = useRef(null);
   const overlayRef = useRef(null);
   const mobileLinks = useRef([]);
+  const lastScrollY = useRef(0);
+  const pointerNearTop = useRef(false);
+  const canHideNav = useRef(true);
+
+  useLenis(({ scroll }) => {
+    const currentScrollY = scroll;
+    const scrollingDown = currentScrollY > lastScrollY.current;
+
+    setScrolled(currentScrollY > 50);
+
+    if (!canHideNav.current) {
+      setNavVisible(true);
+    } else if (currentScrollY <= 50 || pointerNearTop.current || !scrollingDown) {
+      setNavVisible(true);
+    } else {
+      setNavVisible(false);
+    }
+
+    lastScrollY.current = currentScrollY;
+
+    const sections = navLinks.map((link) => document.querySelector(link.href)).filter(Boolean);
+    let current = sections[0];
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= 180) current = section;
+    });
+    if (current) setActive(`#${current.id}`);
+  });
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
-      const sections = navLinks.map((link) => document.querySelector(link.href)).filter(Boolean);
-      let current = sections[0];
-      sections.forEach((section) => {
-        if (section.getBoundingClientRect().top <= 180) current = section;
-      });
-      if (current) setActive(`#${current.id}`);
+    canHideNav.current = window.matchMedia("(pointer: fine)").matches;
+
+    const onPointerMove = (event) => {
+      const nearTop = event.clientY <= 72;
+      pointerNearTop.current = nearTop;
+
+      if (nearTop) {
+        setNavVisible(true);
+      } else if (canHideNav.current && lastScrollY.current > 50) {
+        setNavVisible(false);
+      }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    gsap.fromTo(navRef.current, { y: -24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: "power3.out" });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    setScrolled(window.scrollY > 50);
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+    };
   }, []);
 
   useEffect(() => {
@@ -54,7 +87,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header ref={navRef} className={`site-nav ${scrolled ? "is-scrolled" : ""}`}>
+      <header ref={navRef} className={`site-nav ${scrolled ? "is-scrolled" : ""} ${navVisible ? "is-visible" : "is-hidden"}`}>
         <a href="#hero" className="brand" aria-label="Kidus Mesfin home">
           <span>Kidus <em>Mesfin</em></span>
         </a>
