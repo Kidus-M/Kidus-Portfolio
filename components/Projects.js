@@ -31,7 +31,7 @@ export default function Projects() {
               </div>
 
               <article className={`project-flow-card ${index % 2 ? "is-reversed" : ""}`}>
-                <div className="project-flow-media" data-cursor="view">
+                <div className={`project-flow-media is-${project.preview || "website"}`} data-cursor="view">
                   <span className="project-watermark">{project.id}</span>
                   <Image
                     src={project.image}
