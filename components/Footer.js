@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { ArrowUp, FileText, Github, Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { SiCodeforces, SiLeetcode } from "react-icons/si";
 import { useLenis } from "lenis/react";
 
 const footerLinks = [
   { href: "#hero", label: "About" },
   { href: "#experience", label: "Experience" },
+  { href: "#competitive", label: "Problem Solving" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 
 const socials = [
   { href: "https://github.com/Kidus-M", label: "GitHub", icon: Github },
+  { href: "https://codeforces.com/profile/KidusMesfin", label: "Codeforces", icon: SiCodeforces },
+  { href: "https://leetcode.com/u/Kidus_Mesfin/", label: "LeetCode", icon: SiLeetcode },
   { href: "https://www.instagram.com/kidus._.m", label: "Instagram", icon: Instagram },
   { href: "https://www.linkedin.com/in/kidus-m", label: "LinkedIn", icon: Linkedin },
   { href: "https://t.me/kidus_mesfin", label: "Telegram", icon: MessageCircle },

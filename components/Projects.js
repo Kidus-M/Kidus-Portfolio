@@ -26,7 +26,7 @@ export default function Projects() {
               style={theme}
             >
               <div className="project-flow-heading">
-                <span className="section-number">{index === 0 ? "04" : project.id}</span>
+                <span className="section-number">{index === 0 ? "05" : project.id}</span>
                 <span className="section-kicker">{index === 0 ? "Projects" : project.type}</span>
               </div>
 

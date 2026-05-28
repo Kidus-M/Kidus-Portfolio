@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
 import TechStack from "@/components/TechStack";
+import CompetitiveProgramming from "@/components/CompetitiveProgramming";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 
@@ -25,6 +26,7 @@ export default function Home() {
       <Hero />
       <Experience />
       <TechStack />
+      <CompetitiveProgramming />
       <Projects />
       <Contact />
     </Layout>

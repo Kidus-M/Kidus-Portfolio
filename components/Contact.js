@@ -11,6 +11,7 @@ import {
   Send,
   X,
 } from "lucide-react";
+import { SiCodeforces, SiLeetcode } from "react-icons/si";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -28,6 +29,8 @@ export default function Contact() {
   const email = "kidusmesfinteferi@gmail.com";
   const socials = [
     { href: "https://github.com/Kidus-M", label: "GitHub", icon: Github },
+    { href: "https://codeforces.com/profile/KidusMesfin", label: "Codeforces", icon: SiCodeforces },
+    { href: "https://leetcode.com/u/Kidus_Mesfin/", label: "LeetCode", icon: SiLeetcode },
     { href: "https://www.instagram.com/kidus._.m", label: "Instagram", icon: Instagram },
     { href: "https://www.linkedin.com/in/kidus-m", label: "LinkedIn", icon: Linkedin },
     { href: "https://t.me/kidus_mesfin", label: "Telegram", icon: MessageCircle },
@@ -104,7 +107,7 @@ export default function Contact() {
   return (
     <>
       <section id="contact" ref={sectionRef} className="contact-section">
-        <span className="section-kicker">05 - Contact</span>
+        <span className="section-kicker">06 - Contact</span>
 
         <h2 ref={headlineRef} className="contact-headline">
           <span className="contact-line">
