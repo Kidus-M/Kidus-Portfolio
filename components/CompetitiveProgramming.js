@@ -5,8 +5,8 @@ const profiles = [
   {
     platform: "Codeforces",
     handle: "KidusMesfin",
-    stat: "Expert",
-    detail: "Rated competitive programmer with contest-tested speed and implementation discipline.",
+    stat: "Expert · 1690 peak",
+    detail: "234 problems solved with contest-tested speed, decomposition, and implementation discipline.",
     href: "https://codeforces.com/profile/KidusMesfin",
     icon: SiCodeforces,
   },

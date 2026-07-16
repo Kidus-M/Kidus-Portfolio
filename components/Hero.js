@@ -51,14 +51,14 @@ export default function Hero() {
           <div ref={marqueeRef} className="hero-marquee" aria-hidden="true">
             <div className="marquee-track">
               {[0, 1].map((copy) => (
-                <span key={copy}>Full-Stack Developer - Open to Work - React / Node / TypeScript - Addis Ababa -</span>
+                <span key={copy}>Software Engineer - Product Systems - Web / Mobile / AI - Addis Ababa -</span>
               ))}
             </div>
           </div>
 
           <p ref={roleRef} className="hero-role">
-            Full-stack software engineer building precise web products, useful systems,
-            and brand-aware interfaces for teams that care about the details.
+            Software engineer building end-to-end products across web, mobile, backend,
+            and applied AI for teams that care about the details.
           </p>
         </div>
 
