@@ -11,10 +11,10 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Kidus Mesfin | Full-Stack Developer</title>
+        <title>Kidus Mesfin | Software Engineer</title>
         <meta
           name="description"
-          content="Portfolio of Kidus Mesfin, a full-stack developer in Addis Ababa building polished web products, systems, and brand-aware interfaces."
+          content="Portfolio of Kidus Mesfin, a systems-minded software engineer in Addis Ababa building end-to-end web, mobile, backend, and applied AI products."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
