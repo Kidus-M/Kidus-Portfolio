@@ -5,6 +5,7 @@ import { projects } from "@/data/projects";
 import FlowArt, { FlowSection } from "@/components/ui/story-scroll";
 
 const projectThemes = [
+  { backgroundColor: "#08191d", color: "#eef6f4" },
   { backgroundColor: "#351014", color: "#f5eee8" },
   { backgroundColor: "#c8f135", color: "#080808" },
   { backgroundColor: "#0b0b0b", color: "#f0ede8" },
