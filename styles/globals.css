@@ -1898,6 +1898,13 @@ body.cursor--view .cursor-ring span {
   max-width: 72%;
 }
 
+.project-system-preview.theme-maru {
+  --preview-accent: #5ce3bb;
+  --preview-bg: #04151a;
+  --preview-surface: rgba(92, 227, 187, 0.11);
+  --preview-text: #eafaf5;
+}
+
 .project-system-preview.theme-orit {
   --preview-accent: #f0a184;
   --preview-bg: #270b10;

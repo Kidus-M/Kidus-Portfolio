@@ -10,6 +10,41 @@ import Oz from "@/assets/Oz.png";
 export const projects = [
   {
     id: "01",
+    title: "MaruCheck",
+    type: "AI QA & Verification",
+    year: "2026",
+    role: "Creator · Open-source platform engineering",
+    description:
+      "An open-source, local-first QA and verification platform for AI-generated software that scores risk, enforces human-approved Quality Contracts, and produces the evidence behind every ship-or-block decision.",
+    highlights: [
+      "Analyzes code changes for risk, semantic drift, and remembered regressions, then verifies them against human-approved Quality Contracts.",
+      "Ships a CLI, MCP integration for Codex, Claude Code, and Cursor, GitHub CI workflows, and a hosted evidence dashboard.",
+      "Backed by Neon Postgres, typed Drizzle schemas, Better Auth OAuth, and a Semgrep, Gitleaks, Vitest, Playwright, and axe verification stack.",
+    ],
+    tech: ["TypeScript", "Next.js 16", "React 19", "Neon Postgres", "Drizzle", "MCP"],
+    visual: {
+      theme: "maru",
+      label: "MARUCHECK / RELEASE VERIFICATION",
+      headline: "Evidence that says whether a release ships or stops.",
+      status: "OPEN-SOURCE PLATFORM",
+      steps: ["Analyze", "Verify", "Decide"],
+      modules: [
+        { label: "Contracts", value: "Human-approved" },
+        { label: "Memory", value: "Past defects" },
+        { label: "Verdict", value: "Ship or block" },
+      ],
+    },
+    links: [
+      { label: "Live website", href: "https://marucheck.dev", kind: "live" },
+      { label: "Documentation", href: "https://marucheck.dev/docs", kind: "live" },
+      { label: "CLI repository", href: "https://github.com/Kidus-M/MaruCheck", kind: "github" },
+      { label: "Web repository", href: "https://github.com/Kidus-M/MaruCheck-Web", kind: "github" },
+      { label: "npm package", href: "https://www.npmjs.com/package/marucheck", kind: "live" },
+    ],
+    featured: true,
+  },
+  {
+    id: "02",
     title: "Orit Tej",
     type: "Membership Commerce",
     year: "2026",
@@ -42,7 +77,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "02",
+    id: "03",
     title: "Oz Kitchen",
     type: "Operations Platform",
     year: "2026",
@@ -74,7 +109,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "03",
+    id: "04",
     title: "ProspectAI",
     type: "Applied AI Workspace",
     year: "2026",
@@ -105,7 +140,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "04",
+    id: "05",
     title: "StreamSynx",
     type: "Multi-Surface Media",
     year: "2025–2026",
@@ -137,7 +172,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "05",
+    id: "06",
     title: "Prepx",
     type: "Education Infrastructure",
     year: "2025",
@@ -168,7 +203,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "06",
+    id: "07",
     title: "Andro Solutions",
     type: "Corporate Platform",
     year: "2025",
@@ -199,7 +234,7 @@ export const projects = [
     featured: true,
   },
   {
-    id: "07",
+    id: "08",
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
@@ -215,7 +250,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "08",
+    id: "09",
     title: "Spawn Point",
     type: "Desktop Simulation",
     year: "2024",
@@ -228,7 +263,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "09",
+    id: "10",
     title: "Homely",
     type: "Service Marketplace",
     year: "2024",
@@ -241,7 +276,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "10",
+    id: "11",
     title: "FPL Bot",
     type: "AI / Automation",
     year: "2025",
@@ -257,7 +292,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "11",
+    id: "12",
     title: "Wolfden Cigar",
     type: "Luxury Commerce",
     year: "2025",
@@ -272,7 +307,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: "12",
+    id: "13",
     title: "Pharma-Link",
     type: "Enterprise System",
     year: "2024",
