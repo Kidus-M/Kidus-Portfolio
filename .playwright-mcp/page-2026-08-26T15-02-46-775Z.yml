@@ -1,0 +1,1017 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - text: Kidus
+          - emphasis [ref=e6]: Mesfin
+        - generic [ref=e7]:
+          - generic [ref=e8]: Software Engineer
+          - generic [ref=e9]: Addis Ababa, Ethiopia
+        - generic [ref=e10]: "027"
+      - status [ref=e13]: Loading portfolio, 27 percent
+    - banner [ref=e14]:
+      - link [ref=e15]:
+        - /url: "#index"
+        - generic [ref=e16]: KM
+        - generic [ref=e17]:
+          - text: Kidus
+          - emphasis [ref=e18]: Mesfin
+      - navigation "Sections" [ref=e19]:
+        - link "Index" [ref=e20]:
+          - /url: "#index"
+        - link "Work" [ref=e21]:
+          - /url: "#work"
+        - link "Path" [ref=e22]:
+          - /url: "#path"
+        - link "Stack" [ref=e23]:
+          - /url: "#stack"
+        - link "Proof" [ref=e24]:
+          - /url: "#proof"
+        - link "Contact" [ref=e25]:
+          - /url: "#contact"
+      - generic [ref=e26]:
+        - generic "Local time in Addis Ababa, Ethiopia" [ref=e27]: 18:02:45 UTC+03:00
+        - button "Menu" [ref=e29]
+    - link "Skip to content" [ref=e34]:
+      - /url: "#index"
+    - main [ref=e35]:
+      - region [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: (01) — Portfolio
+            - heading "Product systems, end to end." [level=1] [ref=e40]:
+              - generic [ref=e41]: Product systems,
+              - generic [ref=e44]:
+                - text: end to
+                - emphasis [ref=e45]: end.
+          - generic [ref=e46]:
+            - paragraph [ref=e47]: I design, build, and ship the whole thing — interface, services, data, and delivery.
+            - generic [ref=e48]:
+              - link "Selected work" [ref=e50]:
+                - /url: "#work"
+              - link "Start a conversation" [ref=e55]:
+                - /url: "#contact"
+        - generic [ref=e60]:
+          - generic [ref=e61]: K
+          - generic [ref=e63]: I
+          - generic [ref=e65]: D
+          - generic [ref=e67]: U
+          - generic [ref=e69]: S
+          - generic [ref=e73]: M
+          - generic [ref=e75]: E
+          - generic [ref=e77]: S
+          - generic [ref=e79]: F
+          - generic [ref=e81]: I
+          - generic [ref=e83]: "N"
+        - generic [ref=e85]:
+          - generic [ref=e86]: Available for ambitious work
+          - generic [ref=e88]: Web · Mobile · Backend · Applied AI
+          - link "Scroll" [ref=e89]:
+            - /url: "#index-manifesto"
+      - generic [ref=e92]:
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: End to end
+            - generic [ref=e98]: Interface
+            - generic [ref=e100]: Services
+            - generic [ref=e102]: Data
+            - generic [ref=e104]: Applied AI
+            - generic [ref=e106]: Delivery
+          - generic [ref=e108]:
+            - generic [ref=e109]: End to end
+            - generic [ref=e111]: Interface
+            - generic [ref=e113]: Services
+            - generic [ref=e115]: Data
+            - generic [ref=e117]: Applied AI
+            - generic [ref=e119]: Delivery
+          - generic [ref=e121]:
+            - generic [ref=e122]: End to end
+            - generic [ref=e124]: Interface
+            - generic [ref=e126]: Services
+            - generic [ref=e128]: Data
+            - generic [ref=e130]: Applied AI
+            - generic [ref=e132]: Delivery
+          - generic [ref=e134]:
+            - generic [ref=e135]: End to end
+            - generic [ref=e137]: Interface
+            - generic [ref=e139]: Services
+            - generic [ref=e141]: Data
+            - generic [ref=e143]: Applied AI
+            - generic [ref=e145]: Delivery
+        - generic [ref=e147]:
+          - generic [ref=e148]:
+            - generic [ref=e149]: (02) — Index
+            - heading "How I work." [level=2] [ref=e150]:
+              - generic [ref=e151]: How I
+              - emphasis [ref=e155]: work.
+          - generic [ref=e156]:
+            - paragraph [ref=e157]:
+              - generic [ref=e158]: Most
+              - generic [ref=e159]: products
+              - generic [ref=e160]: break
+              - generic [ref=e161]: at
+              - generic [ref=e162]: the
+              - generic [ref=e163]: seams
+              - generic [ref=e164]: —
+              - generic [ref=e165]: where
+              - generic [ref=e166]: the
+              - generic [ref=e167]: interface
+              - generic [ref=e168]: meets
+              - generic [ref=e169]: the
+              - generic [ref=e170]: service,
+              - generic [ref=e171]: where
+              - generic [ref=e172]: the
+              - generic [ref=e173]: service
+              - generic [ref=e174]: meets
+              - generic [ref=e175]: the
+              - generic [ref=e176]: data,
+              - generic [ref=e177]: where
+              - generic [ref=e178]: the
+              - generic [ref=e179]: whole
+              - generic [ref=e180]: thing
+              - generic [ref=e181]: meets
+              - generic [ref=e182]: production.
+              - generic [ref=e183]: I
+              - generic [ref=e184]: work
+              - generic [ref=e185]: across
+              - generic [ref=e186]: those
+              - generic [ref=e187]: seams.
+              - generic [ref=e188]: I
+              - generic [ref=e189]: build
+              - generic [ref=e190]: systems
+              - generic [ref=e191]: that
+              - generic [ref=e192]: hold
+              - generic [ref=e193]: together
+              - generic [ref=e194]: end
+              - generic [ref=e195]: to
+              - generic [ref=e196]: end,
+              - generic [ref=e197]: and
+              - generic [ref=e198]: I
+              - generic [ref=e199]: stay
+              - generic [ref=e200]: with
+              - generic [ref=e201]: them
+              - generic [ref=e202]: until
+              - generic [ref=e203]: they
+              - text: ship.
+            - complementary [ref=e204]:
+              - generic [ref=e206]:
+                - generic [ref=e207]:
+                  - term [ref=e208]: Based
+                  - definition [ref=e209]: Addis Ababa, Ethiopia
+                - generic [ref=e210]:
+                  - term [ref=e211]: Focus
+                  - definition [ref=e212]: End-to-end product systems
+                - generic [ref=e213]:
+                  - term [ref=e214]: Status
+                  - definition [ref=e215]: Open to new work
+          - generic [ref=e216]:
+            - generic [ref=e217]:
+              - button "01 Product Engineering" [expanded] [ref=e218]:
+                - generic [ref=e219]: "01"
+                - generic [ref=e220]: Product Engineering
+              - generic [ref=e226]:
+                - paragraph [ref=e227]: Interfaces that survive production — React, Next.js, Flutter, React Native.
+                - generic [ref=e228]:
+                  - generic [ref=e229]: React
+                  - generic [ref=e230]: Next.js
+                  - generic [ref=e231]: Flutter
+                  - generic [ref=e232]: TypeScript
+            - button "02 Systems Architecture" [ref=e234]:
+              - generic [ref=e235]: "02"
+              - generic [ref=e236]: Systems Architecture
+            - button "03 Applied AI" [ref=e240]:
+              - generic [ref=e241]: "03"
+              - generic [ref=e242]: Applied AI
+            - button "04 Delivery" [ref=e246]:
+              - generic [ref=e247]: "04"
+              - generic [ref=e248]: Delivery
+          - generic [ref=e251]:
+            - generic [ref=e252]:
+              - strong [ref=e253]:
+                - generic [ref=e254]: 0+
+              - generic [ref=e255]: Years building
+            - generic [ref=e256]:
+              - strong [ref=e257]: "0"
+              - generic [ref=e258]: Shipped systems
+            - generic [ref=e259]:
+              - strong [ref=e260]:
+                - generic [ref=e261]: 0+
+              - generic [ref=e262]: Problems solved
+            - generic [ref=e263]:
+              - strong [ref=e264]: "0"
+              - generic [ref=e265]: Codeforces peak
+            - paragraph [ref=e266]: Based in Addis Ababa, Ethiopia. Working with teams anywhere.
+      - generic [ref=e267]:
+        - generic [ref=e268]:
+          - generic [ref=e269]: (03) — Selected work
+          - heading "Systems I shipped." [level=2] [ref=e270]:
+            - generic [ref=e271]: Systems I
+            - emphasis [ref=e275]: shipped.
+          - paragraph [ref=e276]: Seven builds where I owned the architecture, the interface, and the release. Scroll to move sideways.
+        - generic [ref=e279]:
+          - article [ref=e280]:
+            - 'button "Open case study: MaruCheck" [ref=e281]':
+              - generic [ref=e283]:
+                - generic [ref=e284]:
+                  - generic [ref=e285]: MARUCHECK / RELEASE VERIFICATION
+                  - generic [ref=e286]: OPEN-SOURCE PLATFORM
+                - paragraph [ref=e288]: Evidence that says whether a release ships or stops.
+                - generic "MaruCheck flow" [ref=e289]:
+                  - generic [ref=e290]:
+                    - generic [ref=e291]: "01"
+                    - text: Analyze
+                  - generic [ref=e293]:
+                    - generic [ref=e294]: "02"
+                    - text: Verify
+                  - generic [ref=e296]:
+                    - generic [ref=e297]: "03"
+                    - text: Decide
+                - generic [ref=e298]:
+                  - generic [ref=e299]:
+                    - generic [ref=e300]: Contracts
+                    - strong [ref=e301]: Human-approved
+                  - generic [ref=e302]:
+                    - generic [ref=e303]: Memory
+                    - strong [ref=e304]: Past defects
+                  - generic [ref=e305]:
+                    - generic [ref=e306]: Verdict
+                    - strong [ref=e307]: Ship or block
+            - generic [ref=e308]:
+              - generic [ref=e309]:
+                - generic [ref=e310]:
+                  - text: "01"
+                  - generic [ref=e311]: / 07
+                - generic [ref=e312]: "2026"
+              - heading "MaruCheck" [level=3] [ref=e313]
+              - generic [ref=e314]: AI QA & Verification
+              - paragraph [ref=e315]: An open-source, local-first QA and verification platform for AI-generated software that scores risk, enforces human-approved Quality Contracts, and produces the evidence behind every ship-or-block decision.
+              - paragraph [ref=e316]: Creator · Open-source platform engineering
+              - generic [ref=e317]:
+                - generic [ref=e318]: TypeScript
+                - generic [ref=e319]: Next.js 16
+                - generic [ref=e320]: React 19
+                - generic [ref=e321]: Neon Postgres
+              - button "Read the case" [ref=e322]
+          - article [ref=e326]:
+            - 'button "Open case study: Orit Tej" [ref=e327]':
+              - generic [ref=e329]:
+                - generic [ref=e330]:
+                  - generic [ref=e331]: ORIT TEJ / MEMBER ECOSYSTEM
+                  - generic [ref=e332]: END-TO-END SYSTEM
+                - paragraph [ref=e334]: Membership that moves from screen to pickup.
+                - generic "Orit Tej flow" [ref=e335]:
+                  - generic [ref=e336]:
+                    - generic [ref=e337]: "01"
+                    - text: Join
+                  - generic [ref=e339]:
+                    - generic [ref=e340]: "02"
+                    - text: Pay
+                  - generic [ref=e342]:
+                    - generic [ref=e343]: "03"
+                    - text: Collect
+                - generic [ref=e344]:
+                  - generic [ref=e345]:
+                    - generic [ref=e346]: Identity
+                    - strong [ref=e347]: Secure PIN
+                  - generic [ref=e348]:
+                    - generic [ref=e349]: Payments
+                    - strong [ref=e350]: Recurring
+                  - generic [ref=e351]:
+                    - generic [ref=e352]: Handoff
+                    - strong [ref=e353]: One-time QR
+            - generic [ref=e354]:
+              - generic [ref=e355]:
+                - generic [ref=e356]:
+                  - text: "02"
+                  - generic [ref=e357]: / 07
+                - generic [ref=e358]: "2026"
+              - heading "Orit Tej" [level=3] [ref=e359]
+              - generic [ref=e360]: Membership Commerce
+              - paragraph [ref=e361]: A mobile membership and pickup ecosystem that connects member onboarding, recurring payments, inventory, benefits, and secure in-store fulfillment.
+              - paragraph [ref=e362]: Product engineering · Flutter + backend
+              - generic [ref=e363]:
+                - generic [ref=e364]: Flutter
+                - generic [ref=e365]: Next.js
+                - generic [ref=e366]: TypeScript
+                - generic [ref=e367]: PostgreSQL
+              - button "Read the case" [ref=e368]
+          - article [ref=e372]:
+            - 'button "Open case study: Oz Kitchen" [ref=e373]':
+              - generic [ref=e375]:
+                - generic [ref=e376]:
+                  - generic [ref=e377]: OZ KITCHEN / LIVE OPERATIONS
+                  - generic [ref=e378]: REAL-TIME PLATFORM
+                - paragraph [ref=e380]: One live order, four connected teams.
+                - generic "Oz Kitchen flow" [ref=e381]:
+                  - generic [ref=e382]:
+                    - generic [ref=e383]: "01"
+                    - text: Order
+                  - generic [ref=e385]:
+                    - generic [ref=e386]: "02"
+                    - text: Prepare
+                  - generic [ref=e388]:
+                    - generic [ref=e389]: "03"
+                    - text: Deliver
+                - generic [ref=e390]:
+                  - generic [ref=e391]:
+                    - generic [ref=e392]: Customer
+                    - strong [ref=e393]: Ordering
+                  - generic [ref=e394]:
+                    - generic [ref=e395]: Kitchen
+                    - strong [ref=e396]: Live queue
+                  - generic [ref=e397]:
+                    - generic [ref=e398]: Dispatch
+                    - strong [ref=e399]: Tracking
+            - generic [ref=e400]:
+              - generic [ref=e401]:
+                - generic [ref=e402]:
+                  - text: "03"
+                  - generic [ref=e403]: / 07
+                - generic [ref=e404]: "2026"
+              - heading "Oz Kitchen" [level=3] [ref=e405]
+              - generic [ref=e406]: Operations Platform
+              - paragraph [ref=e407]: A real-time operating system for a food business, unifying customer ordering, kitchen execution, administration, delivery logistics, and partner workflows.
+              - paragraph [ref=e408]: Lead Systems & Platform Engineer
+              - generic [ref=e409]:
+                - generic [ref=e410]: React
+                - generic [ref=e411]: TypeScript
+                - generic [ref=e412]: Supabase
+                - generic [ref=e413]: PostgreSQL
+              - button "Read the case" [ref=e414]
+          - article [ref=e418]:
+            - 'button "Open case study: ProspectAI" [ref=e419]':
+              - generic [ref=e421]:
+                - generic [ref=e422]:
+                  - generic [ref=e423]: PROSPECTAI / RESEARCH WORKSPACE
+                  - generic [ref=e424]: AI-ASSISTED WORKFLOW
+                - paragraph [ref=e426]: Sources become context. Context becomes outreach.
+                - generic "ProspectAI flow" [ref=e427]:
+                  - generic [ref=e428]:
+                    - generic [ref=e429]: "01"
+                    - text: Research
+                  - generic [ref=e431]:
+                    - generic [ref=e432]: "02"
+                    - text: Synthesize
+                  - generic [ref=e434]:
+                    - generic [ref=e435]: "03"
+                    - text: Compose
+                - generic [ref=e436]:
+                  - generic [ref=e437]:
+                    - generic [ref=e438]: Sources
+                    - strong [ref=e439]: Web + GitHub
+                  - generic [ref=e440]:
+                    - generic [ref=e441]: Context
+                    - strong [ref=e442]: Structured
+                  - generic [ref=e443]:
+                    - generic [ref=e444]: Outreach
+                    - strong [ref=e445]: Personalized
+            - generic [ref=e446]:
+              - generic [ref=e447]:
+                - generic [ref=e448]:
+                  - text: "04"
+                  - generic [ref=e449]: / 07
+                - generic [ref=e450]: "2026"
+              - heading "ProspectAI" [level=3] [ref=e451]
+              - generic [ref=e452]: Applied AI Workspace
+              - paragraph [ref=e453]: A private outreach workspace that turns fragmented prospect sources into editable context, personalized messages, and managed follow-up conversations.
+              - paragraph [ref=e454]: Full-stack product engineering
+              - generic [ref=e455]:
+                - generic [ref=e456]: Next.js
+                - generic [ref=e457]: TypeScript
+                - generic [ref=e458]: PostgreSQL
+                - generic [ref=e459]: Better Auth
+              - button "Read the case" [ref=e460]
+          - article [ref=e464]:
+            - 'button "Open case study: StreamSynx" [ref=e465]':
+              - generic [ref=e467]:
+                - generic [ref=e468]:
+                  - generic [ref=e469]: STREAMSYNX / EVERY SCREEN
+                  - generic [ref=e470]: MULTI-SURFACE PRODUCT
+                - paragraph [ref=e472]: One media identity across web, mobile, and TV.
+                - generic "StreamSynx flow" [ref=e473]:
+                  - generic [ref=e474]:
+                    - generic [ref=e475]: "01"
+                    - text: Discover
+                  - generic [ref=e477]:
+                    - generic [ref=e478]: "02"
+                    - text: Connect
+                  - generic [ref=e480]:
+                    - generic [ref=e481]: "03"
+                    - text: Watch
+                - generic [ref=e482]:
+                  - generic [ref=e483]:
+                    - generic [ref=e484]: Web
+                    - strong [ref=e485]: Next.js
+                  - generic [ref=e486]:
+                    - generic [ref=e487]: Mobile
+                    - strong [ref=e488]: Flutter
+                  - generic [ref=e489]:
+                    - generic [ref=e490]: Living room
+                    - strong [ref=e491]: Android TV
+            - generic [ref=e492]:
+              - generic [ref=e493]:
+                - generic [ref=e494]:
+                  - text: "05"
+                  - generic [ref=e495]: / 07
+                - generic [ref=e496]: 2025–2026
+              - heading "StreamSynx" [level=3] [ref=e497]
+              - generic [ref=e498]: Multi-Surface Media
+              - paragraph [ref=e499]: A social viewing and media-discovery ecosystem spanning a Next.js website, Flutter client, and native Android TV experience.
+              - paragraph [ref=e500]: Product architecture · Web + mobile + TV
+              - generic [ref=e501]:
+                - generic [ref=e502]: Next.js
+                - generic [ref=e503]: Flutter
+                - generic [ref=e504]: Android TV
+                - generic [ref=e505]: Firebase
+              - button "Read the case" [ref=e506]
+          - article [ref=e510]:
+            - 'button "Open case study: Prepx" [ref=e511]':
+              - generic [ref=e513]:
+                - generic [ref=e514]:
+                  - generic [ref=e515]: PREPX / EXAM READINESS
+                  - generic [ref=e516]: EDTECH PLATFORM
+                - paragraph [ref=e518]: Learning infrastructure designed for focused preparation.
+                - generic "Prepx flow" [ref=e519]:
+                  - generic [ref=e520]:
+                    - generic [ref=e521]: "01"
+                    - text: Learn
+                  - generic [ref=e523]:
+                    - generic [ref=e524]: "02"
+                    - text: Practice
+                  - generic [ref=e526]:
+                    - generic [ref=e527]: "03"
+                    - text: Review
+                - generic [ref=e528]:
+                  - generic [ref=e529]:
+                    - generic [ref=e530]: Mobile
+                    - strong [ref=e531]: React Native
+                  - generic [ref=e532]:
+                    - generic [ref=e533]: Services
+                    - strong [ref=e534]: FastAPI
+                  - generic [ref=e535]:
+                    - generic [ref=e536]: Workflows
+                    - strong [ref=e537]: RabbitMQ
+            - generic [ref=e538]:
+              - generic [ref=e539]:
+                - generic [ref=e540]:
+                  - text: "06"
+                  - generic [ref=e541]: / 07
+                - generic [ref=e542]: "2025"
+              - heading "Prepx" [level=3] [ref=e543]
+              - generic [ref=e544]: Education Infrastructure
+              - paragraph [ref=e545]: A mobile-first learning platform built for Ethiopian high-school students preparing for national exit examinations.
+              - paragraph [ref=e546]: Full-stack engineering · Temaribet
+              - generic [ref=e547]:
+                - generic [ref=e548]: FastAPI
+                - generic [ref=e549]: Python
+                - generic [ref=e550]: Redis
+                - generic [ref=e551]: RabbitMQ
+              - button "Read the case" [ref=e552]
+          - article [ref=e556]:
+            - 'button "Open case study: Andro Solutions" [ref=e557]':
+              - generic [ref=e559]:
+                - generic [ref=e560]:
+                  - generic [ref=e561]: ANDRO / TECHNICAL CONSULTANCY
+                  - generic [ref=e562]: BRAND + ENGINEERING
+                - paragraph [ref=e564]: Technical credibility, translated into a clear digital presence.
+                - generic "Andro Solutions flow" [ref=e565]:
+                  - generic [ref=e566]:
+                    - generic [ref=e567]: "01"
+                    - text: Position
+                  - generic [ref=e569]:
+                    - generic [ref=e570]: "02"
+                    - text: Design
+                  - generic [ref=e572]:
+                    - generic [ref=e573]: "03"
+                    - text: Convert
+                - generic [ref=e574]:
+                  - generic [ref=e575]:
+                    - generic [ref=e576]: Experience
+                    - strong [ref=e577]: Responsive
+                  - generic [ref=e578]:
+                    - generic [ref=e579]: Motion
+                    - strong [ref=e580]: Purposeful
+                  - generic [ref=e581]:
+                    - generic [ref=e582]: Discovery
+                    - strong [ref=e583]: SEO-ready
+            - generic [ref=e584]:
+              - generic [ref=e585]:
+                - generic [ref=e586]:
+                  - text: "07"
+                  - generic [ref=e587]: / 07
+                - generic [ref=e588]: "2025"
+              - heading "Andro Solutions" [level=3] [ref=e589]
+              - generic [ref=e590]: Corporate Platform
+              - paragraph [ref=e591]: A conversion-focused digital platform for a technology consultancy, balancing technical credibility with strong visual direction.
+              - paragraph [ref=e592]: Technical lead · Product + delivery
+              - generic [ref=e593]:
+                - generic [ref=e594]: Next.js
+                - generic [ref=e595]: React
+                - generic [ref=e596]: Tailwind CSS
+                - generic [ref=e597]: Framer Motion
+              - button "Read the case" [ref=e598]
+          - generic [ref=e602]:
+            - generic [ref=e603]: End of rail
+            - paragraph [ref=e604]:
+              - text: More in the
+              - link "archive" [ref=e605]:
+                - /url: "#work-archive"
+              - text: .
+        - generic [ref=e606]:
+          - generic [ref=e607]:
+            - generic [ref=e608]: (04) — Archive
+            - paragraph [ref=e609]: Earlier builds, side projects, and systems that still run.
+          - generic [ref=e610]:
+            - button "08 OpalLuxe Luxury E-Commerce 2025" [ref=e611]:
+              - generic [ref=e612]: "08"
+              - generic [ref=e613]: OpalLuxe
+              - generic [ref=e614]: Luxury E-Commerce
+              - generic [ref=e615]: "2025"
+            - button "09 Spawn Point Desktop Simulation 2024" [ref=e620]:
+              - generic [ref=e621]: "09"
+              - generic [ref=e622]: Spawn Point
+              - generic [ref=e623]: Desktop Simulation
+              - generic [ref=e624]: "2024"
+            - button "10 Homely Service Marketplace 2024" [ref=e629]:
+              - generic [ref=e630]: "10"
+              - generic [ref=e631]: Homely
+              - generic [ref=e632]: Service Marketplace
+              - generic [ref=e633]: "2024"
+            - button "11 FPL Bot AI / Automation 2025" [ref=e638]:
+              - generic [ref=e639]: "11"
+              - generic [ref=e640]: FPL Bot
+              - generic [ref=e641]: AI / Automation
+              - generic [ref=e642]: "2025"
+            - button "12 Wolfden Cigar Luxury Commerce 2025" [ref=e647]:
+              - generic [ref=e648]: "12"
+              - generic [ref=e649]: Wolfden Cigar
+              - generic [ref=e650]: Luxury Commerce
+              - generic [ref=e651]: "2025"
+            - button "13 Pharma-Link Enterprise System 2024" [ref=e656]:
+              - generic [ref=e657]: "13"
+              - generic [ref=e658]: Pharma-Link
+              - generic [ref=e659]: Enterprise System
+              - generic [ref=e660]: "2024"
+      - generic [ref=e666]:
+        - generic [ref=e667]:
+          - generic [ref=e668]: (05) — Path
+          - heading "Where I’ve built." [level=2] [ref=e669]:
+            - generic [ref=e670]: Where I’ve
+            - emphasis [ref=e674]: built.
+        - generic [ref=e677]:
+          - article [ref=e678]:
+            - generic [ref=e679]:
+              - generic [ref=e680]: "01"
+              - generic [ref=e681]:
+                - link "Andro Solutions" [ref=e682]:
+                  - /url: https://andro-solutions.vercel.app
+                - paragraph [ref=e686]: Senior Software Developer
+              - generic [ref=e687]:
+                - time [ref=e688]: 03/2025 - Present
+                - generic [ref=e689]: Addis Ababa, Ethiopia
+            - paragraph [ref=e693]: Leading scalable client web platforms across frontend, backend, deployment, and engineering mentorship.
+            - list [ref=e694]:
+              - listitem [ref=e695]: Led a cross-functional team to develop scalable web platforms using Next.js, Node.js, and MongoDB.
+              - listitem [ref=e696]: Optimized backend performance and implemented CI/CD pipelines, reducing deployment times by 40%.
+              - listitem [ref=e697]: Mentored junior developers on software architecture, version control, and maintainable delivery practices.
+            - generic [ref=e698]:
+              - generic [ref=e699]: Next.js
+              - generic [ref=e700]: Node.js
+              - generic [ref=e701]: MongoDB
+              - generic [ref=e702]: CI/CD
+              - generic [ref=e703]: Architecture
+          - article [ref=e704]:
+            - generic [ref=e705]:
+              - generic [ref=e706]: "02"
+              - generic [ref=e707]:
+                - link "Oz Kitchen" [ref=e708]:
+                  - /url: https://oz-kitchen-blue.vercel.app/
+                - paragraph [ref=e712]: Lead Systems & Platform Engineer
+              - generic [ref=e713]:
+                - time [ref=e714]: 04/2026
+                - generic [ref=e715]: Addis Ababa
+            - paragraph [ref=e719]: Architected and maintained an end-to-end operational platform for food production, customer ordering, kitchen workflows, and delivery logistics.
+            - list [ref=e720]:
+              - listitem [ref=e721]: Built a unified real-time system connecting ordering, kitchen operations, administration, and delivery logistics.
+              - listitem [ref=e722]: Developed responsive frontend applications, backend services, APIs, authentication, and database architecture.
+              - listitem [ref=e723]: Engineered Telegram bot automation for coordination, notifications, and internal process management.
+              - listitem [ref=e724]: Owned system architecture, deployment workflows, debugging, optimization, and feature delivery across the lifecycle.
+            - generic [ref=e725]:
+              - generic [ref=e726]: React
+              - generic [ref=e727]: PostgreSQL
+              - generic [ref=e728]: Supabase
+              - generic [ref=e729]: APIs
+              - generic [ref=e730]: Automation
+          - article [ref=e731]:
+            - generic [ref=e732]:
+              - generic [ref=e733]: "03"
+              - generic [ref=e734]:
+                - link "A2SV" [ref=e735]:
+                  - /url: https://a2sv.org
+                - paragraph [ref=e739]: Head of Education
+              - generic [ref=e740]:
+                - time [ref=e741]: 01/2026 - 05/2026
+                - generic [ref=e742]: Addis Ababa
+            - paragraph [ref=e746]: Led education programming for software engineering students with a focus on DSA, interview readiness, and problem-solving consistency.
+            - list [ref=e747]:
+              - listitem [ref=e748]: Designed and delivered Data Structures and Algorithms training programs for software engineering students.
+              - listitem [ref=e749]: Conducted structured lectures, problem-solving sessions, and technical reviews.
+              - listitem [ref=e750]: Mentored students through competitive programming and real-world problem decomposition.
+              - listitem [ref=e751]: Contributed to curriculum planning, learning standards, and academic direction across cohorts.
+            - generic [ref=e752]:
+              - generic [ref=e753]: DSA
+              - generic [ref=e754]: Mentorship
+              - generic [ref=e755]: Curriculum
+              - generic [ref=e756]: Competitive Programming
+          - article [ref=e757]:
+            - generic [ref=e758]:
+              - generic [ref=e759]: "04"
+              - generic [ref=e760]:
+                - link "Temaribet" [ref=e761]:
+                  - /url: https://www.linkedin.com/company/temaribet/
+                - paragraph [ref=e765]: Full Stack Developer
+              - generic [ref=e766]:
+                - time [ref=e767]: 12/2025
+                - generic [ref=e768]: Addis Ababa, Ethiopia
+            - paragraph [ref=e772]: Built production systems for an education technology platform serving Ethiopian high school students preparing for national exit examinations.
+            - list [ref=e773]:
+              - listitem [ref=e774]: Developed moderator dashboards and backend infrastructure for a large-scale education platform.
+              - listitem [ref=e775]: Built scalable FastAPI services with Redis caching and RabbitMQ asynchronous task processing.
+              - listitem [ref=e776]: Designed APIs and background workers for content moderation, analytics, and reliability.
+              - listitem [ref=e777]: Contributed React Native mobile features and Next.js web applications in the TypeScript ecosystem.
+            - generic [ref=e778]:
+              - generic [ref=e779]: FastAPI
+              - generic [ref=e780]: Python
+              - generic [ref=e781]: Redis
+              - generic [ref=e782]: RabbitMQ
+              - generic [ref=e783]: Next.js
+              - generic [ref=e784]: React Native
+          - article [ref=e785]:
+            - generic [ref=e786]:
+              - generic [ref=e787]: "05"
+              - generic [ref=e788]:
+                - heading "The Idea Vault" [level=3] [ref=e789]
+                - paragraph [ref=e790]: Junior Software Developer
+              - generic [ref=e791]:
+                - time [ref=e792]: 2022 - 01/2024
+                - generic [ref=e793]: Kenya-Ethiopia
+            - paragraph [ref=e797]: Supported web, brand, and campaign work across company websites and cross-border digital communication.
+            - list [ref=e798]:
+              - listitem [ref=e799]: Designed and maintained company websites and visual assets, improving user engagement by 25%.
+              - listitem [ref=e800]: Managed brand consistency across digital touchpoints.
+              - listitem [ref=e801]: Led cross-border social media campaigns across Kenya and Ethiopia.
+            - generic [ref=e802]:
+              - generic [ref=e803]: React
+              - generic [ref=e804]: Web Design
+              - generic [ref=e805]: Branding
+              - generic [ref=e806]: Social Media
+        - generic [ref=e807]:
+          - generic [ref=e808]: Organisations
+          - article [ref=e809]:
+            - generic [ref=e810]:
+              - link "A2SV (Africa to Silicon Valley)" [ref=e811]:
+                - /url: https://a2sv.org
+              - paragraph [ref=e815]: Engaged in high-level algorithmic training and collaborative software projects with top African engineers. Gained mentorship from global tech professionals and contributed to real-world solutions.
+            - generic [ref=e816]:
+              - generic [ref=e817]: Member
+              - time [ref=e818]: 05/2025 - Present
+      - generic [ref=e819]:
+        - generic [ref=e820]:
+          - generic [ref=e821]:
+            - generic [ref=e822]: (06) — Stack
+            - heading "What I build with." [level=2] [ref=e823]:
+              - generic [ref=e824]: What I
+              - emphasis [ref=e828]: build with.
+          - generic [ref=e829]:
+            - generic [ref=e830]:
+              - tablist "Technology groups" [ref=e831]:
+                - tab "01 Languages 08" [selected] [ref=e832]:
+                  - generic [ref=e833]: "01"
+                  - generic [ref=e834]: Languages
+                  - generic [ref=e835]: "08"
+                - tab "02 Frontend 08" [ref=e836]:
+                  - generic [ref=e837]: "02"
+                  - generic [ref=e838]: Frontend
+                  - generic [ref=e839]: "08"
+                - tab "03 Backend 08" [ref=e840]:
+                  - generic [ref=e841]: "03"
+                  - generic [ref=e842]: Backend
+                  - generic [ref=e843]: "08"
+                - tab "04 Data 08" [ref=e844]:
+                  - generic [ref=e845]: "04"
+                  - generic [ref=e846]: Data
+                  - generic [ref=e847]: "08"
+                - tab "05 Cloud & DevOps 07" [ref=e848]:
+                  - generic [ref=e849]: "05"
+                  - generic [ref=e850]: Cloud & DevOps
+                  - generic [ref=e851]: "07"
+                - tab "06 Applied AI 05" [ref=e852]:
+                  - generic [ref=e853]: "06"
+                  - generic [ref=e854]: Applied AI
+                  - generic [ref=e855]: "05"
+                - tab "07 Quality & Craft 07" [ref=e856]:
+                  - generic [ref=e857]: "07"
+                  - generic [ref=e858]: Quality & Craft
+                  - generic [ref=e859]: "07"
+                - tab "08 Integrations 06" [ref=e860]:
+                  - generic [ref=e861]: "08"
+                  - generic [ref=e862]: Integrations
+                  - generic [ref=e863]: "06"
+              - paragraph [ref=e865]: Core languages I write day to day, plus the ones behind older desktop and systems work.
+            - tabpanel "01 Languages 08" [ref=e866]:
+              - generic [ref=e868]:
+                - generic [ref=e876]:
+                  - strong [ref=e881]: Languages
+                  - generic [ref=e882]: 08 tools
+                - generic [ref=e884]:
+                  - generic:
+                    - generic: TypeScript
+                    - generic: Go
+                    - generic: Java
+                  - generic:
+                    - generic: JavaScript
+                    - generic: Dart
+                    - generic: C++
+                  - generic:
+                    - generic: Python
+                    - generic: C#
+              - generic [ref=e901]:
+                - generic [ref=e902]: signal locked
+                - generic [ref=e904]: 01 / 08
+        - generic [ref=e906]:
+          - generic [ref=e907]:
+            - generic [ref=e908]: TypeScript
+            - generic [ref=e910]: Go
+            - generic [ref=e912]: Python
+            - generic [ref=e914]: Dart
+            - generic [ref=e916]: React
+            - generic [ref=e918]: Next.js
+            - generic [ref=e920]: Flutter
+            - generic [ref=e922]: React Native
+            - generic [ref=e924]: Node.js
+            - generic [ref=e926]: FastAPI
+            - generic [ref=e928]: Redis
+            - generic [ref=e930]: RabbitMQ
+            - generic [ref=e932]: PostgreSQL
+            - generic [ref=e934]: MongoDB
+            - generic [ref=e936]: Supabase
+            - generic [ref=e938]: Drizzle
+            - generic [ref=e940]: Docker
+            - generic [ref=e942]: AWS
+            - generic [ref=e944]: Vercel
+            - generic [ref=e946]: GitHub Actions
+            - generic [ref=e948]: Stripe
+            - generic [ref=e950]: MCP
+            - generic [ref=e952]: Playwright
+            - generic [ref=e954]: Figma
+          - generic [ref=e956]:
+            - generic [ref=e957]: TypeScript
+            - generic [ref=e959]: Go
+            - generic [ref=e961]: Python
+            - generic [ref=e963]: Dart
+            - generic [ref=e965]: React
+            - generic [ref=e967]: Next.js
+            - generic [ref=e969]: Flutter
+            - generic [ref=e971]: React Native
+            - generic [ref=e973]: Node.js
+            - generic [ref=e975]: FastAPI
+            - generic [ref=e977]: Redis
+            - generic [ref=e979]: RabbitMQ
+            - generic [ref=e981]: PostgreSQL
+            - generic [ref=e983]: MongoDB
+            - generic [ref=e985]: Supabase
+            - generic [ref=e987]: Drizzle
+            - generic [ref=e989]: Docker
+            - generic [ref=e991]: AWS
+            - generic [ref=e993]: Vercel
+            - generic [ref=e995]: GitHub Actions
+            - generic [ref=e997]: Stripe
+            - generic [ref=e999]: MCP
+            - generic [ref=e1001]: Playwright
+            - generic [ref=e1003]: Figma
+          - generic [ref=e1005]:
+            - generic [ref=e1006]: TypeScript
+            - generic [ref=e1008]: Go
+            - generic [ref=e1010]: Python
+            - generic [ref=e1012]: Dart
+            - generic [ref=e1014]: React
+            - generic [ref=e1016]: Next.js
+            - generic [ref=e1018]: Flutter
+            - generic [ref=e1020]: React Native
+            - generic [ref=e1022]: Node.js
+            - generic [ref=e1024]: FastAPI
+            - generic [ref=e1026]: Redis
+            - generic [ref=e1028]: RabbitMQ
+            - generic [ref=e1030]: PostgreSQL
+            - generic [ref=e1032]: MongoDB
+            - generic [ref=e1034]: Supabase
+            - generic [ref=e1036]: Drizzle
+            - generic [ref=e1038]: Docker
+            - generic [ref=e1040]: AWS
+            - generic [ref=e1042]: Vercel
+            - generic [ref=e1044]: GitHub Actions
+            - generic [ref=e1046]: Stripe
+            - generic [ref=e1048]: MCP
+            - generic [ref=e1050]: Playwright
+            - generic [ref=e1052]: Figma
+          - generic [ref=e1054]:
+            - generic [ref=e1055]: TypeScript
+            - generic [ref=e1057]: Go
+            - generic [ref=e1059]: Python
+            - generic [ref=e1061]: Dart
+            - generic [ref=e1063]: React
+            - generic [ref=e1065]: Next.js
+            - generic [ref=e1067]: Flutter
+            - generic [ref=e1069]: React Native
+            - generic [ref=e1071]: Node.js
+            - generic [ref=e1073]: FastAPI
+            - generic [ref=e1075]: Redis
+            - generic [ref=e1077]: RabbitMQ
+            - generic [ref=e1079]: PostgreSQL
+            - generic [ref=e1081]: MongoDB
+            - generic [ref=e1083]: Supabase
+            - generic [ref=e1085]: Drizzle
+            - generic [ref=e1087]: Docker
+            - generic [ref=e1089]: AWS
+            - generic [ref=e1091]: Vercel
+            - generic [ref=e1093]: GitHub Actions
+            - generic [ref=e1095]: Stripe
+            - generic [ref=e1097]: MCP
+            - generic [ref=e1099]: Playwright
+            - generic [ref=e1101]: Figma
+      - generic [ref=e1104]:
+        - generic [ref=e1105]:
+          - generic [ref=e1106]: (07) — Proof
+          - heading "Under pressure." [level=2] [ref=e1107]:
+            - generic [ref=e1108]: Under
+            - emphasis [ref=e1112]: pressure.
+        - paragraph [ref=e1113]:
+          - generic [ref=e1114]: Beyond
+          - generic [ref=e1115]: product
+          - generic [ref=e1116]: work,
+          - generic [ref=e1117]: I
+          - generic [ref=e1118]: keep
+          - generic [ref=e1119]: the
+          - generic [ref=e1120]: fundamentals
+          - generic [ref=e1121]: sharp
+          - generic [ref=e1122]: through
+          - generic [ref=e1123]: contests
+          - generic [ref=e1124]: and
+          - generic [ref=e1125]: high-volume
+          - generic [ref=e1126]: algorithm
+          - generic [ref=e1127]: practice
+          - generic [ref=e1128]: —
+          - generic [ref=e1129]: decomposition,
+          - generic [ref=e1130]: implementation
+          - generic [ref=e1131]: speed,
+          - generic [ref=e1132]: and
+          - generic [ref=e1133]: holding
+          - generic [ref=e1134]: a
+          - generic [ref=e1135]: solution
+          - generic [ref=e1136]: in
+          - generic [ref=e1137]: your
+          - generic [ref=e1138]: head
+          - generic [ref=e1139]: under
+          - generic [ref=e1140]: a
+          - text: clock.
+        - generic [ref=e1141]:
+          - link "0 Peak rating Codeforces 234 problems solved @KidusMesfin" [ref=e1142]:
+            - /url: https://codeforces.com/profile/KidusMesfin
+            - strong [ref=e1149]: "0"
+            - generic [ref=e1150]: Peak rating
+            - generic [ref=e1151]:
+              - generic [ref=e1152]: Codeforces
+              - generic [ref=e1153]: 234 problems solved
+              - generic [ref=e1154]: "@KidusMesfin"
+          - link "0+ Problems solved LeetCode Data structures, DP, interviews @Kidus_Mesfin" [ref=e1155]:
+            - /url: https://leetcode.com/u/Kidus_Mesfin/
+            - strong [ref=e1162]:
+              - generic [ref=e1163]: 0+
+            - generic [ref=e1164]: Problems solved
+            - generic [ref=e1165]:
+              - generic [ref=e1166]: LeetCode
+              - generic [ref=e1167]: Data structures, DP, interviews
+              - generic [ref=e1168]: "@Kidus_Mesfin"
+          - generic [ref=e1169]:
+            - generic [ref=e1170]:
+              - generic [ref=e1171]: Codeforces rating bands
+              - generic [ref=e1172]: Expert · peak 1690
+            - generic [ref=e1173]:
+              - emphasis [ref=e1176]: Newbie
+              - emphasis [ref=e1179]: Pupil
+              - emphasis [ref=e1182]: Specialist
+              - emphasis [ref=e1185]: Expert
+              - emphasis [ref=e1188]: Candidate Master
+              - generic [ref=e1189]: "1690"
+            - generic [ref=e1191]:
+              - generic [ref=e1192]: Data structures
+              - generic [ref=e1193]: Algorithms
+              - generic [ref=e1194]: Contests
+              - generic [ref=e1195]: Optimization
+              - generic [ref=e1196]: Decomposition
+      - generic [ref=e1197]:
+        - generic [ref=e1199]:
+          - generic [ref=e1200]:
+            - generic [ref=e1201]: Available for work
+            - generic [ref=e1203]: Available for work
+            - generic [ref=e1205]: Available for work
+            - generic [ref=e1207]: Available for work
+          - generic [ref=e1209]:
+            - generic [ref=e1210]: Available for work
+            - generic [ref=e1212]: Available for work
+            - generic [ref=e1214]: Available for work
+            - generic [ref=e1216]: Available for work
+          - generic [ref=e1218]:
+            - generic [ref=e1219]: Available for work
+            - generic [ref=e1221]: Available for work
+            - generic [ref=e1223]: Available for work
+            - generic [ref=e1225]: Available for work
+          - generic [ref=e1227]:
+            - generic [ref=e1228]: Available for work
+            - generic [ref=e1230]: Available for work
+            - generic [ref=e1232]: Available for work
+            - generic [ref=e1234]: Available for work
+        - generic [ref=e1236]:
+          - generic [ref=e1237]: (08) — Contact
+          - heading "Let’s build something remarkable." [level=2] [ref=e1238]:
+            - generic [ref=e1239]: Let’s build
+            - generic [ref=e1241]: something
+            - emphasis [ref=e1245]: remarkable.
+          - generic [ref=e1246]:
+            - generic [ref=e1247]:
+              - paragraph [ref=e1248]: I’m open to product builds, technical partnerships, and interfaces that need both engineering discipline and visual taste.
+              - generic [ref=e1249]:
+                - button "Send a message" [ref=e1251]
+                - button "kidusmesfinteferi@gmail.com" [ref=e1255]
+            - generic [ref=e1256]:
+              - generic [ref=e1257]: Elsewhere
+              - link "GitHub Kidus-M" [ref=e1258]:
+                - /url: https://github.com/Kidus-M
+                - generic [ref=e1259]: GitHub
+                - generic [ref=e1260]: Kidus-M
+              - link "LinkedIn kidus-m" [ref=e1264]:
+                - /url: https://www.linkedin.com/in/kidus-m
+                - generic [ref=e1265]: LinkedIn
+                - generic [ref=e1266]: kidus-m
+              - link "Codeforces KidusMesfin" [ref=e1270]:
+                - /url: https://codeforces.com/profile/KidusMesfin
+                - generic [ref=e1271]: Codeforces
+                - generic [ref=e1272]: KidusMesfin
+              - link "LeetCode Kidus_Mesfin" [ref=e1276]:
+                - /url: https://leetcode.com/u/Kidus_Mesfin/
+                - generic [ref=e1277]: LeetCode
+                - generic [ref=e1278]: Kidus_Mesfin
+              - link "Telegram kidus_mesfin" [ref=e1282]:
+                - /url: https://t.me/kidus_mesfin
+                - generic [ref=e1283]: Telegram
+                - generic [ref=e1284]: kidus_mesfin
+              - link "Instagram kidus._.m" [ref=e1288]:
+                - /url: https://www.instagram.com/kidus._.m
+                - generic [ref=e1289]: Instagram
+                - generic [ref=e1290]: kidus._.m
+              - link "Résumé PDF" [ref=e1294]:
+                - /url: /resume.pdf
+                - generic [ref=e1295]: Résumé
+                - generic [ref=e1296]: PDF
+    - contentinfo [ref=e1300]:
+      - generic [ref=e1301]:
+        - generic [ref=e1302]:
+          - generic [ref=e1303]:
+            - generic [ref=e1304]:
+              - text: Kidus
+              - emphasis [ref=e1305]: Mesfin
+            - paragraph [ref=e1306]: Systems-minded engineer working end to end across web, mobile, backend, and applied AI.
+          - navigation "Footer" [ref=e1307]:
+            - generic [ref=e1308]: Index
+            - link "Index" [ref=e1309]:
+              - /url: "#index"
+            - link "Work" [ref=e1310]:
+              - /url: "#work"
+            - link "Path" [ref=e1311]:
+              - /url: "#path"
+            - link "Stack" [ref=e1312]:
+              - /url: "#stack"
+            - link "Proof" [ref=e1313]:
+              - /url: "#proof"
+            - link "Contact" [ref=e1314]:
+              - /url: "#contact"
+          - generic [ref=e1315]:
+            - generic [ref=e1316]: Elsewhere
+            - link "GitHub" [ref=e1317]:
+              - /url: https://github.com/Kidus-M
+            - link "LinkedIn" [ref=e1318]:
+              - /url: https://www.linkedin.com/in/kidus-m
+            - link "Codeforces" [ref=e1319]:
+              - /url: https://codeforces.com/profile/KidusMesfin
+            - link "LeetCode" [ref=e1320]:
+              - /url: https://leetcode.com/u/Kidus_Mesfin/
+            - link "Telegram" [ref=e1321]:
+              - /url: https://t.me/kidus_mesfin
+            - link "Instagram" [ref=e1322]:
+              - /url: https://www.instagram.com/kidus._.m
+        - generic [ref=e1323]:
+          - generic [ref=e1324]: © 2026 Kidus Mesfin
+          - generic [ref=e1325]: Addis Ababa, Ethiopia · 18:02:45
+          - button "Back to top" [ref=e1326]
+  - alert [ref=e1329]

@@ -1,51 +1,36 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Braces, Cloud, Code2, Database, Layers3, MonitorCog, Server } from "lucide-react";
+import {
+  Braces,
+  BrainCircuit,
+  Cloud,
+  Code2,
+  Database,
+  Layers3,
+  Plug,
+  Server,
+  ShieldCheck,
+} from "lucide-react";
 import Marquee from "@/components/motion/Marquee";
 import { RevealLine } from "@/components/motion/Reveal";
-import { techCategories, techMarquee } from "@/data/tech";
+import { techGroups, techMarquee } from "@/data/tech";
 
-const categoryMeta = {
-  Languages: {
-    icon: Code2,
-    summary: "Core programming languages I use for product work, APIs, automation, and systems.",
-  },
-  Frameworks: {
-    icon: Layers3,
-    summary: "Frontend and backend frameworks I reach for when shipping fast, polished apps.",
-  },
-  Databases: {
-    icon: Database,
-    summary: "Storage tools for relational data, realtime products, and managed backend workflows.",
-  },
-  "DevOps / Cloud": {
-    icon: Cloud,
-    summary: "Deployment, source control, container, and cloud tooling for production delivery.",
-  },
+const ICONS = {
+  code: Code2,
+  layers: Layers3,
+  server: Server,
+  database: Database,
+  cloud: Cloud,
+  brain: BrainCircuit,
+  shield: ShieldCheck,
+  plug: Plug,
 };
 
-const extraGroups = [
-  {
-    label: "Interfaces",
-    items: ["Figma", "Responsive UI", "Motion Systems", "Accessibility"],
-    icon: MonitorCog,
-    summary: "Design-aware implementation details that make interfaces feel deliberate.",
-  },
-  {
-    label: "APIs",
-    items: ["REST APIs", "Auth Flows", "Integrations", "Automation"],
-    icon: Server,
-    summary: "Service connections and backend flows behind useful product features.",
-  },
-];
-
-const stackGroups = [
-  ...techCategories.map((category) => ({
-    ...category,
-    ...(categoryMeta[category.label] ?? { icon: Braces, summary: "" }),
-  })),
-  ...extraGroups,
-];
+/* Orbit radii as a fraction of --orbit-outer. Groups larger than six spread
+   over three rings so the chips never crowd each other. */
+const TWO_RING = [1, 0.58];
+const THREE_RING = [1, 0.74, 0.48];
+const SPINS = [58, 44, 34];
 
 const slug = (label) => label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const pad = (value) => String(value).padStart(2, "0");
@@ -55,10 +40,16 @@ export default function Stack() {
   const stageRef = useRef(null);
   const railRef = useRef(null);
 
-  const active = stackGroups[activeIndex];
-  const ActiveIcon = active.icon;
-  const outerItems = active.items.filter((_, index) => index % 2 === 0);
-  const innerItems = active.items.filter((_, index) => index % 2 === 1);
+  const active = techGroups[activeIndex];
+  const ActiveIcon = ICONS[active.icon] ?? Braces;
+
+  /* Deal the group's items round-robin across the rings. */
+  const { ratios, rings } = useMemo(() => {
+    const chosen = active.items.length > 6 ? THREE_RING : TWO_RING;
+    const buckets = chosen.map(() => []);
+    active.items.forEach((item, index) => buckets[index % chosen.length].push(item));
+    return { ratios: chosen, rings: buckets };
+  }, [active]);
 
   const trackPointer = useCallback((event) => {
     const stage = stageRef.current;
@@ -73,7 +64,7 @@ export default function Stack() {
     if (!step) return;
     event.preventDefault();
     setActiveIndex((current) => {
-      const next = (current + step + stackGroups.length) % stackGroups.length;
+      const next = (current + step + techGroups.length) % techGroups.length;
       railRef.current?.querySelectorAll("button")[next]?.focus();
       return next;
     });
@@ -101,7 +92,7 @@ export default function Stack() {
               ref={railRef}
               onKeyDown={onRailKeyDown}
             >
-              {stackGroups.map((group, index) => {
+              {techGroups.map((group, index) => {
                 const isActive = index === activeIndex;
 
                 return (
@@ -155,9 +146,16 @@ export default function Stack() {
 
             <div className="stack-orbit">
               <div className="stack-orbit-decor" aria-hidden="true">
-                <span className="stack-orbit-circle is-far" />
-                <span className="stack-orbit-circle is-outer" />
-                <span className="stack-orbit-circle is-inner" />
+                <span className="stack-orbit-circle is-far" style={{ "--ring-ratio": 1.36 }} />
+                {ratios.map((ratio, index) => (
+                  <span
+                    key={ratio}
+                    className={
+                      "stack-orbit-circle" + (index === ratios.length - 1 ? " is-core-ring" : "")
+                    }
+                    style={{ "--ring-ratio": ratio }}
+                  />
+                ))}
                 <span className="stack-orbit-sweep" />
               </div>
 
@@ -171,7 +169,7 @@ export default function Stack() {
                     exit={{ opacity: 0, scale: 1.08 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <ActiveIcon size={26} strokeWidth={1.4} />
+                    <ActiveIcon size={24} strokeWidth={1.4} />
                     <strong>{active.label}</strong>
                     <span>{pad(active.items.length)} tools</span>
                   </motion.div>
@@ -188,8 +186,17 @@ export default function Stack() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   >
-                    <OrbitRing items={outerItems} variant="outer" offset={0} />
-                    <OrbitRing items={innerItems} variant="inner" offset={40} />
+                    {rings.map((items, index) => (
+                      <OrbitRing
+                        key={index}
+                        items={items}
+                        ratio={ratios[index]}
+                        spin={SPINS[index] ?? 40}
+                        reverse={index % 2 === 1}
+                        offset={index * 26}
+                        stagger={index}
+                      />
+                    ))}
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -201,7 +208,7 @@ export default function Stack() {
                 signal locked
               </span>
               <span>
-                {pad(activeIndex + 1)} / {pad(stackGroups.length)}
+                {pad(activeIndex + 1)} / {pad(techGroups.length)}
               </span>
             </div>
           </div>
@@ -220,11 +227,18 @@ export default function Stack() {
   );
 }
 
-function OrbitRing({ items, variant, offset }) {
+function OrbitRing({ items, ratio, spin, reverse, offset, stagger }) {
   if (!items.length) return null;
 
   return (
-    <div className={`stack-orbit-ring is-${variant}`}>
+    <div
+      className="stack-orbit-ring"
+      data-spin={reverse ? "reverse" : "forward"}
+      style={{
+        "--orbit-r": `calc(var(--orbit-outer) * ${ratio})`,
+        "--spin": `${spin}s`,
+      }}
+    >
       {items.map((item, index) => (
         <span
           className="stack-orbit-slot"
@@ -237,7 +251,7 @@ function OrbitRing({ items, variant, offset }) {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
-                delay: 0.06 + index * 0.07,
+                delay: 0.05 + stagger * 0.05 + index * 0.06,
                 type: "spring",
                 stiffness: 420,
                 damping: 24,

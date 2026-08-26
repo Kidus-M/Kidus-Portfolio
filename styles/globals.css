@@ -2266,8 +2266,7 @@ a.path-company:hover {
 }
 
 .stack-orbit {
-  --orbit-outer: clamp(128px, 16.5vw, 214px);
-  --orbit-inner: calc(var(--orbit-outer) * 0.6);
+  --orbit-outer: clamp(130px, 16.5vw, 216px);
   position: absolute;
   inset: 0 0 3.25rem;
 }
@@ -2288,27 +2287,24 @@ a.path-company:hover {
   transform: translate(-50%, -50%);
 }
 
+.stack-orbit-circle {
+  width: calc(var(--orbit-outer) * var(--ring-ratio, 1) * 2);
+  height: calc(var(--orbit-outer) * var(--ring-ratio, 1) * 2);
+  border: 1px dashed rgba(236, 231, 221, 0.085);
+}
+
 .stack-orbit-circle.is-far {
-  width: calc(var(--orbit-outer) * 2.72);
-  height: calc(var(--orbit-outer) * 2.72);
   border: 1px solid rgba(236, 231, 221, 0.04);
 }
 
-.stack-orbit-circle.is-outer {
-  width: calc(var(--orbit-outer) * 2);
-  height: calc(var(--orbit-outer) * 2);
-  border: 1px dashed rgba(236, 231, 221, 0.09);
-}
-
-.stack-orbit-circle.is-inner {
-  width: calc(var(--orbit-inner) * 2);
-  height: calc(var(--orbit-inner) * 2);
+.stack-orbit-circle.is-core-ring {
   border: 1px solid rgba(200, 241, 53, 0.14);
 }
 
 .stack-orbit-sweep {
   width: calc(var(--orbit-outer) * 2.72);
   height: calc(var(--orbit-outer) * 2.72);
+  border: 0;
   background: conic-gradient(
     from 0deg,
     rgba(200, 241, 53, 0) 0deg,
@@ -2327,8 +2323,8 @@ a.path-company:hover {
   left: 50%;
   top: 50%;
   z-index: 3;
-  width: calc(var(--orbit-inner) * 1.16);
-  height: calc(var(--orbit-inner) * 1.16);
+  width: calc(var(--orbit-outer) * 0.58);
+  height: calc(var(--orbit-outer) * 0.58);
   transform: translate(-50%, -50%);
 }
 
@@ -2374,16 +2370,10 @@ a.path-company:hover {
   top: 50%;
   width: 0;
   height: 0;
-  animation: stack-orbit-spin 52s linear infinite;
+  animation: stack-orbit-spin var(--spin, 52s) linear infinite;
 }
 
-.stack-orbit-ring.is-outer {
-  --orbit-r: var(--orbit-outer);
-}
-
-.stack-orbit-ring.is-inner {
-  --orbit-r: var(--orbit-inner);
-  animation-duration: 38s;
+.stack-orbit-ring[data-spin="reverse"] {
   animation-direction: reverse;
 }
 
@@ -2396,6 +2386,7 @@ a.path-company:hover {
   transform: rotate(var(--angle)) translate(var(--orbit-r)) rotate(calc(-1 * var(--angle)));
 }
 
+/* Counter-rotates at the ring's own rate so every chip stays upright. */
 .stack-orbit-counter {
   position: absolute;
   left: 0;
@@ -2404,11 +2395,10 @@ a.path-company:hover {
   height: 0;
   display: grid;
   place-items: center;
-  animation: stack-orbit-spin 52s linear infinite reverse;
+  animation: stack-orbit-spin var(--spin, 52s) linear infinite reverse;
 }
 
-.is-inner .stack-orbit-counter {
-  animation-duration: 38s;
+.stack-orbit-ring[data-spin="reverse"] .stack-orbit-counter {
   animation-direction: normal;
 }
 
