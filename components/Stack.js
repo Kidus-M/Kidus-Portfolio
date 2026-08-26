@@ -27,10 +27,12 @@ const ICONS = {
 };
 
 /* Orbit radii as a fraction of --orbit-outer. Groups larger than six spread
-   over three rings so the chips never crowd each other. */
-const TWO_RING = [1, 0.58];
-const THREE_RING = [1, 0.74, 0.48];
-const SPINS = [58, 44, 34];
+   over three rings so the chips never crowd each other.
+   The whole constellation turns as one rigid body — rings spinning at
+   independent rates drift into alignment, and two wide pills sharing an angle
+   overlap even when their radii are far apart. */
+const TWO_RING = [1, 0.66];
+const THREE_RING = [1, 0.8, 0.64];
 
 const slug = (label) => label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const pad = (value) => String(value).padStart(2, "0");
@@ -43,12 +45,20 @@ export default function Stack() {
   const active = techGroups[activeIndex];
   const ActiveIcon = ICONS[active.icon] ?? Braces;
 
-  /* Deal the group's items round-robin across the rings. */
-  const { ratios, rings } = useMemo(() => {
+  /* Longest labels first, so wide pills take the outer radius where there is
+     arc to spare; neighbours in angle always sit on different radii. */
+  const { ratios, nodes } = useMemo(() => {
     const chosen = active.items.length > 6 ? THREE_RING : TWO_RING;
-    const buckets = chosen.map(() => []);
-    active.items.forEach((item, index) => buckets[index % chosen.length].push(item));
-    return { ratios: chosen, rings: buckets };
+    const step = 360 / active.items.length;
+    const sorted = [...active.items].sort((a, b) => b.length - a.length);
+    return {
+      ratios: chosen,
+      nodes: sorted.map((item, index) => ({
+        item,
+        ratio: chosen[index % chosen.length],
+        angle: index * step,
+      })),
+    };
   }, [active]);
 
   const trackPointer = useCallback((event) => {
@@ -146,7 +156,7 @@ export default function Stack() {
 
             <div className="stack-orbit">
               <div className="stack-orbit-decor" aria-hidden="true">
-                <span className="stack-orbit-circle is-far" style={{ "--ring-ratio": 1.36 }} />
+                <span className="stack-orbit-circle is-far" style={{ "--ring-ratio": 1.3 }} />
                 {ratios.map((ratio, index) => (
                   <span
                     key={ratio}
@@ -186,17 +196,35 @@ export default function Stack() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   >
-                    {rings.map((items, index) => (
-                      <OrbitRing
-                        key={index}
-                        items={items}
-                        ratio={ratios[index]}
-                        spin={SPINS[index] ?? 40}
-                        reverse={index % 2 === 1}
-                        offset={index * 26}
-                        stagger={index}
-                      />
-                    ))}
+                    <div className="stack-orbit-ring">
+                      {nodes.map((node, index) => (
+                        <span
+                          className="stack-orbit-slot"
+                          key={node.item}
+                          style={{
+                            "--angle": `${node.angle}deg`,
+                            "--orbit-r": `calc(var(--orbit-outer) * ${node.ratio})`,
+                          }}
+                        >
+                          <span className="stack-orbit-counter">
+                            <motion.span
+                              className="stack-orbit-chip"
+                              initial={{ opacity: 0, scale: 0.5 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                delay: 0.05 + index * 0.05,
+                                type: "spring",
+                                stiffness: 420,
+                                damping: 24,
+                              }}
+                            >
+                              <i aria-hidden="true" />
+                              {node.item}
+                            </motion.span>
+                          </span>
+                        </span>
+                      ))}
+                    </div>
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -224,45 +252,5 @@ export default function Stack() {
         ))}
       </Marquee>
     </section>
-  );
-}
-
-function OrbitRing({ items, ratio, spin, reverse, offset, stagger }) {
-  if (!items.length) return null;
-
-  return (
-    <div
-      className="stack-orbit-ring"
-      data-spin={reverse ? "reverse" : "forward"}
-      style={{
-        "--orbit-r": `calc(var(--orbit-outer) * ${ratio})`,
-        "--spin": `${spin}s`,
-      }}
-    >
-      {items.map((item, index) => (
-        <span
-          className="stack-orbit-slot"
-          key={item}
-          style={{ "--angle": `${offset + (index * 360) / items.length}deg` }}
-        >
-          <span className="stack-orbit-counter">
-            <motion.span
-              className="stack-orbit-chip"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                delay: 0.05 + stagger * 0.05 + index * 0.06,
-                type: "spring",
-                stiffness: 420,
-                damping: 24,
-              }}
-            >
-              <i aria-hidden="true" />
-              {item}
-            </motion.span>
-          </span>
-        </span>
-      ))}
-    </div>
   );
 }

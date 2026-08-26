@@ -58,7 +58,7 @@ export const techGroups = [
       "Neon",
       "Drizzle",
       "SQL Server",
-      "Row-Level Security",
+      "RLS",
     ],
   },
   {
@@ -72,7 +72,7 @@ export const techGroups = [
     icon: "brain",
     summary:
       "Model plumbing I have actually shipped: context pipelines, provider fallbacks, and verification you can audit.",
-    items: ["MCP", "OpenRouter", "Model Fallbacks", "Context Pipelines", "AI Verification"],
+    items: ["MCP", "OpenRouter", "Fallbacks", "Context", "Verification"],
   },
   {
     label: "Quality & Craft",
