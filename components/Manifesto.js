@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import ScrubText from "@/components/motion/ScrubText";
@@ -35,7 +36,27 @@ export default function Manifesto() {
           </h2>
         </div>
 
-        <ScrubText className="manifesto-body" text={manifesto} />
+        <div className="manifesto-split">
+          <ScrubText className="manifesto-body" text={manifesto} />
+
+          <aside className="manifesto-card">
+            <div className="manifesto-sigil" aria-hidden="true">
+              <Image src="/kidus-sigil.png" alt="" width={128} height={128} />
+            </div>
+            <dl>
+              {[
+                ["Based", profile.location],
+                ["Focus", "End-to-end product systems"],
+                ["Status", "Open to new work"],
+              ].map(([term, value]) => (
+                <div key={term}>
+                  <dt className="label">{term}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
+        </div>
 
         <div className="capability-list">
           {capabilities.map((capability, index) => {

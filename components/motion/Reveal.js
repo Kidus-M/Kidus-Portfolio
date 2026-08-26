@@ -1,21 +1,32 @@
 import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1];
+const VIEWPORT = { once: true, margin: "-10% 0px" };
 
-/** A line of type that slides up from behind its own mask. */
+/**
+ * A line of type that slides up from behind its own mask.
+ *
+ * The viewport trigger lives on the outer element on purpose: the inner span
+ * starts translated fully outside the mask's `overflow: hidden` box, which
+ * clips it out of every IntersectionObserver rect and would stop it ever
+ * being reported as visible.
+ */
 export function RevealLine({ children, delay = 0, className = "", duration = 1.05 }) {
   return (
-    <span className={"reveal-line " + className}>
+    <motion.span
+      className={"reveal-line " + className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={VIEWPORT}
+    >
       <motion.span
         className="reveal-line-inner"
-        initial={{ y: "115%" }}
-        whileInView={{ y: "0%" }}
-        viewport={{ once: true, margin: "-10% 0px" }}
+        variants={{ hidden: { y: "115%" }, visible: { y: "0%" } }}
         transition={{ duration, ease: EASE, delay }}
       >
         {children}
       </motion.span>
-    </span>
+    </motion.span>
   );
 }
 

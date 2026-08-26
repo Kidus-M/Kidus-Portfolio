@@ -167,7 +167,7 @@ export default function Hero() {
           <i aria-hidden="true" />
           Available for ambitious work
         </span>
-        <span className="label hero-role">{profile.intro}</span>
+        <span className="label hero-role">Web &middot; Mobile &middot; Backend &middot; Applied AI</span>
         <a className="hero-scroll" href="#index-manifesto" onClick={(event) => jump(event, "#index-manifesto")}>
           <span className="label">Scroll</span>
           <i aria-hidden="true" />

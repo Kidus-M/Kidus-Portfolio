@@ -165,6 +165,7 @@ function WorkCard({ project, index, total, onOpen }) {
         <h3 className="work-card-title">{project.title}</h3>
         <span className="work-card-type">{project.type}</span>
         <p className="work-card-body">{project.description}</p>
+        {project.role && <p className="work-card-role">{project.role}</p>}
 
         <div className="chip-row">
           {project.tech.slice(0, 4).map((item) => (
@@ -184,7 +185,7 @@ function WorkCard({ project, index, total, onOpen }) {
 }
 
 function SystemPreview({ project }) {
-  const { visual, mark, title } = project;
+  const { visual, title } = project;
   if (!visual) return null;
 
   return (
@@ -196,12 +197,6 @@ function SystemPreview({ project }) {
           {visual.status}
         </span>
       </div>
-
-      {mark && (
-        <div className="preview-mark" aria-hidden="true">
-          <Image src={mark} alt="" fill sizes="180px" />
-        </div>
-      )}
 
       <p className="preview-headline">{visual.headline}</p>
 
@@ -338,6 +333,12 @@ function CaseOverlay({ project, onClose }) {
         </header>
 
         <div className="case-body">
+          {project.image && (
+            <div className="case-shot">
+              <Image src={project.image} alt={`${project.title} preview`} sizes="(max-width: 960px) 100vw, 860px" />
+            </div>
+          )}
+
           <p className="case-lede">{project.description}</p>
 
           {project.highlights && (
