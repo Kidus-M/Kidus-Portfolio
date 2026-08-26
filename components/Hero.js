@@ -1,185 +1,177 @@
 import { useEffect, useRef } from "react";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import gsap from "gsap";
+import { useLenis } from "lenis/react";
+import Magnetic from "@/components/motion/Magnetic";
+import { useIntroReady } from "@/components/Layout";
+import { profile } from "@/data/site";
+import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/motion";
 
-const capabilities = [
-  { index: "01", label: "Interface", detail: "React / Flutter", className: "node-interface" },
-  { index: "02", label: "Services", detail: "Node / FastAPI", className: "node-services" },
-  { index: "03", label: "Data", detail: "Postgres / Realtime", className: "node-data" },
-  { index: "04", label: "Applied AI", detail: "Context / Models", className: "node-ai" },
-  { index: "05", label: "Delivery", detail: "CI/CD / Cloud", className: "node-delivery" },
-];
-
-const metrics = [
-  { value: "3+", label: "Years building" },
-  { value: "06", label: "Featured systems" },
-  { value: "04", label: "Product surfaces" },
-  { value: "1690", label: "CF peak rating" },
-];
+const WORDMARK = `${profile.first} ${profile.last}`.toUpperCase();
 
 export default function Hero() {
+  const ready = useIntroReady();
   const sectionRef = useRef(null);
-  const sceneRef = useRef(null);
+  const wordmarkRef = useRef(null);
+  const lenis = useLenis();
 
+  /* Entrance — held back until the preloader lifts. */
   useEffect(() => {
-    const section = sectionRef.current;
-    const scene = sceneRef.current;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!ready) return undefined;
 
-    const ctx = gsap.context(() => {
-      const timeline = gsap.timeline({ defaults: { ease: "power4.out" } });
-
-      timeline
-        .from(".hero-meta-item", { y: -18, opacity: 0, duration: 0.8, stagger: 0.08 })
-        .from(".hero-word-inner", { yPercent: 115, duration: 1.15, stagger: 0.12 }, "-=0.48")
-        .from(".hero-role", { y: 24, opacity: 0, duration: 0.85 }, "-=0.7")
-        .from(".hero-actions", { y: 18, opacity: 0, duration: 0.75 }, "-=0.58")
-        .from(".topology-scene", { scale: 0.88, opacity: 0, duration: 1.25 }, "-=1.05")
-        .from(".topology-node", { scale: 0.7, opacity: 0, duration: 0.65, stagger: 0.08 }, "-=0.7")
-        .from(".hero-footer", { y: 18, opacity: 0, duration: 0.7 }, "-=0.42");
-
-      if (!reducedMotion) {
-        gsap.to(".topology-orbit.is-outer", { rotation: 360, duration: 44, repeat: -1, ease: "none" });
-        gsap.to(".topology-orbit.is-inner", { rotation: -360, duration: 30, repeat: -1, ease: "none" });
-        gsap.to(".topology-node", {
-          y: -7,
-          duration: 2.4,
-          repeat: -1,
-          yoyo: true,
-          stagger: 0.23,
-          ease: "sine.inOut",
-        });
-      }
-    }, section);
-
-    let rotateX;
-    let rotateY;
-
-    if (!reducedMotion && section && scene) {
-      rotateX = gsap.quickTo(scene, "rotationX", { duration: 0.75, ease: "power3.out" });
-      rotateY = gsap.quickTo(scene, "rotationY", { duration: 0.75, ease: "power3.out" });
+    if (prefersReducedMotion()) {
+      gsap.set(sectionRef.current?.querySelectorAll(".hero-anim") ?? [], { clearProps: "all" });
+      return undefined;
     }
 
-    const handlePointerMove = (event) => {
-      const bounds = section.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width;
-      const y = (event.clientY - bounds.top) / bounds.height;
+    const context = gsap.context(() => {
+      const timeline = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      section.style.setProperty("--hero-x", x * 100 + "%");
-      section.style.setProperty("--hero-y", y * 100 + "%");
+      timeline
+        .fromTo(".hero-label", { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 })
+        .fromTo(
+          ".hero-line-inner",
+          { yPercent: 118 },
+          { yPercent: 0, duration: 1.35, stagger: 0.11 },
+          "-=0.62"
+        )
+        .fromTo(".hero-aside > *", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1 }, "-=0.95")
+        .fromTo(
+          ".hero-letter",
+          { yPercent: 112, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 1.25, stagger: 0.035 },
+          "-=1.05"
+        )
+        .fromTo(".hero-base > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.85, stagger: 0.09 }, "-=0.85")
+        .fromTo(".hero-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.1 }, "-=1.1");
+    }, sectionRef);
 
-      if (rotateX && rotateY) {
-        rotateY((x - 0.5) * 9);
-        rotateX((0.5 - y) * 8);
-      }
+    return () => context.revert();
+  }, [ready]);
+
+  /* Wordmark: letters lean toward the pointer, whole mark drifts on scroll. */
+  useEffect(() => {
+    const mark = wordmarkRef.current;
+    const section = sectionRef.current;
+    if (!mark || !section || prefersReducedMotion()) return undefined;
+
+    const context = gsap.context(() => {
+      gsap.to(mark, {
+        yPercent: 26,
+        opacity: 0.25,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+      });
+
+      gsap.to(".hero-veil", {
+        yPercent: 14,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+      });
+    }, sectionRef);
+
+    if (!window.matchMedia("(pointer: fine)").matches) return () => context.revert();
+
+    const letters = Array.from(mark.querySelectorAll(".hero-letter-inner"));
+    const setters = letters.map((letter) => ({
+      y: gsap.quickTo(letter, "y", { duration: 0.75, ease: "power3.out" }),
+      scale: gsap.quickTo(letter, "scaleY", { duration: 0.75, ease: "power3.out" }),
+    }));
+
+    const onMove = (event) => {
+      letters.forEach((letter, index) => {
+        const bounds = letter.getBoundingClientRect();
+        const distance = Math.abs(event.clientX - (bounds.left + bounds.width / 2));
+        const pull = Math.max(0, 1 - distance / 320);
+        setters[index].y(-pull * 26);
+        setters[index].scale(1 + pull * 0.14);
+      });
     };
 
-    const resetScene = () => {
-      if (rotateX && rotateY) {
-        rotateX(0);
-        rotateY(0);
-      }
+    const onLeave = () => {
+      setters.forEach((setter) => {
+        setter.y(0);
+        setter.scale(1);
+      });
     };
 
-    section?.addEventListener("pointermove", handlePointerMove);
-    section?.addEventListener("pointerleave", resetScene);
+    section.addEventListener("pointermove", onMove);
+    section.addEventListener("pointerleave", onLeave);
 
     return () => {
-      section?.removeEventListener("pointermove", handlePointerMove);
-      section?.removeEventListener("pointerleave", resetScene);
-      ctx.revert();
+      section.removeEventListener("pointermove", onMove);
+      section.removeEventListener("pointerleave", onLeave);
+      context.revert();
     };
   }, []);
 
+  useEffect(() => {
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 400);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  const jump = (event, href) => {
+    event.preventDefault();
+    lenis?.scrollTo(href, { duration: 1.5 });
+  };
+
   return (
-    <section id="hero" ref={sectionRef} className="hero-section" aria-labelledby="hero-title">
-      <div className="hero-ambient" aria-hidden="true" />
-      <div className="hero-grid-lines" aria-hidden="true" />
+    <section id="index" ref={sectionRef} className="hero" aria-labelledby="hero-title">
+      <div className="hero-veil" aria-hidden="true" />
 
-      <div className="hero-shell">
-        <header className="hero-meta">
-          <div className="hero-meta-item hero-identity">
-            <span className="meta-index">KM / 01</span>
-            <strong>Kidus Mesfin</strong>
-            <span>Software Engineer</span>
-          </div>
-          <div className="hero-meta-item hero-location">
-            <span className="meta-label">Based in</span>
-            <strong>Addis Ababa</strong>
-            <span>UTC +03:00</span>
-          </div>
-          <div className="hero-meta-item hero-availability">
-            <i aria-hidden="true" />
-            <span>Available for ambitious work</span>
-          </div>
-        </header>
-
-        <div className="hero-stage">
-          <div className="hero-copy">
-            <p className="hero-eyebrow hero-meta-item">
-              Product systems <span>/</span> end to end
-            </p>
-            <h1 id="hero-title" className="hero-statement" aria-label="I build whole systems.">
-              <span className="hero-word is-sans"><span className="hero-word-inner">I build</span></span>
-              <span className="hero-word is-display"><span className="hero-word-inner">whole systems.</span></span>
-            </h1>
-            <p className="hero-role">
-              I turn complex ideas into products people can actually use - shaping the interface,
-              architecture, intelligence, and delivery as one connected system.
-            </p>
-            <div className="hero-actions">
-              <a className="hero-cta is-primary" href="#projects">
-                Explore selected systems <ArrowDownRight size={17} aria-hidden="true" />
-              </a>
-              <a className="hero-cta is-secondary" href="#contact">
-                Start a conversation <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-
-          <div className="hero-visual" aria-label="Interactive map of Kidus Mesfin's engineering capabilities">
-            <div ref={sceneRef} className="topology-scene">
-              <div className="topology-grid" aria-hidden="true" />
-              <div className="topology-scan" aria-hidden="true" />
-              <div className="topology-orbit is-outer" aria-hidden="true"><span /><span /><span /></div>
-              <div className="topology-orbit is-inner" aria-hidden="true"><span /><span /></div>
-              <svg className="topology-links" viewBox="0 0 600 600" aria-hidden="true">
-                <path d="M300 300 L110 100" />
-                <path d="M300 300 L500 125" />
-                <path d="M300 300 L510 435" />
-                <path d="M300 300 L160 520" />
-                <path d="M300 300 L65 330" />
-              </svg>
-              <div className="topology-core">
-                <span>KM / Engineering</span>
-                <strong>Product<br />Systems</strong>
-                <small>End to end</small>
-              </div>
-              {capabilities.map((capability) => (
-                <div key={capability.label} className={"topology-node " + capability.className}>
-                  <span>{capability.index}</span>
-                  <strong>{capability.label}</strong>
-                  <small>{capability.detail}</small>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="hero-body">
+        <div className="hero-lead">
+          <span className="hero-label label">(01) &mdash; Portfolio</span>
+          <h1 id="hero-title" className="hero-statement">
+            <span className="hero-line">
+              <span className="hero-line-inner">Product systems,</span>
+            </span>
+            <span className="hero-line">
+              <span className="hero-line-inner">
+                end to <em>end.</em>
+              </span>
+            </span>
+          </h1>
         </div>
 
-        <footer className="hero-footer">
-          <div className="hero-metrics">
-            {metrics.map((metric) => (
-              <div className="hero-metric" key={metric.label}>
-                <strong>{metric.value}</strong>
-                <span>{metric.label}</span>
-              </div>
-            ))}
+        <div className="hero-aside">
+          <p className="hero-blurb">{profile.statement}</p>
+          <div className="hero-actions">
+            <Magnetic>
+              <a className="button is-primary" href="#work" onClick={(event) => jump(event, "#work")}>
+                Selected work
+                <ArrowDownRight size={17} aria-hidden="true" />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a className="button is-ghost" href="#contact" onClick={(event) => jump(event, "#contact")}>
+                Start a conversation
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+            </Magnetic>
           </div>
-          <a className="hero-scroll" href="#experience">
-            <span>Scroll to enter</span>
-            <i aria-hidden="true" />
-          </a>
-        </footer>
+        </div>
+      </div>
+
+      <div className="hero-rule" aria-hidden="true" />
+
+      <div className="hero-wordmark" ref={wordmarkRef} aria-hidden="true">
+        {WORDMARK.split("").map((character, index) => (
+          <span className="hero-letter" key={character + index}>
+            <span className="hero-letter-inner">{character === " " ? " " : character}</span>
+          </span>
+        ))}
+      </div>
+
+      <div className="hero-base">
+        <span className="hero-availability">
+          <i aria-hidden="true" />
+          Available for ambitious work
+        </span>
+        <span className="label hero-role">Web &middot; Mobile &middot; Backend &middot; Applied AI</span>
+        <a className="hero-scroll" href="#index-manifesto" onClick={(event) => jump(event, "#index-manifesto")}>
+          <span className="label">Scroll</span>
+          <i aria-hidden="true" />
+        </a>
       </div>
     </section>
   );
