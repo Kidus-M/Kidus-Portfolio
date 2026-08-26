@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Braces,
@@ -8,10 +8,8 @@ import {
   Layers3,
   MonitorCog,
   Server,
-  X,
 } from "lucide-react";
-import { IconContainer, Radar } from "@/components/ui/radar-effect";
-import { techCategories } from "@/data/tech";
+import { techCategories, techMarquee } from "@/data/tech";
 
 const categoryMeta = {
   Languages: {
@@ -47,143 +45,220 @@ const extraGroups = [
   },
 ];
 
+const stackGroups = [
+  ...techCategories.map((category) => ({
+    ...category,
+    ...(categoryMeta[category.label] ?? { icon: Braces, summary: "" }),
+  })),
+  ...extraGroups,
+];
+
+const slug = (label) => label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const pad = (value) => String(value).padStart(2, "0");
+
 export default function TechStack() {
-  const [activeGroup, setActiveGroup] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const stageRef = useRef(null);
+  const railRef = useRef(null);
 
-  const radarGroups = [
-    ...techCategories.map((category) => ({
-      ...category,
-      ...(categoryMeta[category.label] ?? { icon: Braces, summary: "" }),
-    })),
-    ...extraGroups,
-  ];
+  const active = stackGroups[activeIndex];
+  const ActiveIcon = active.icon;
+  const outerItems = active.items.filter((_, index) => index % 2 === 0);
+  const innerItems = active.items.filter((_, index) => index % 2 === 1);
 
-  useEffect(() => {
-    if (!activeGroup) return;
+  const trackPointer = useCallback((event) => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const rect = stage.getBoundingClientRect();
+    stage.style.setProperty("--px", `${((event.clientX - rect.left) / rect.width) * 100}%`);
+    stage.style.setProperty("--py", `${((event.clientY - rect.top) / rect.height) * 100}%`);
+  }, []);
 
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") setActiveGroup(null);
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeGroup]);
+  const onRailKeyDown = useCallback((event) => {
+    const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
+    if (!step) return;
+    event.preventDefault();
+    setActiveIndex((current) => {
+      const next = (current + step + stackGroups.length) % stackGroups.length;
+      railRef.current?.querySelectorAll("button")[next]?.focus();
+      return next;
+    });
+  }, []);
 
   return (
     <section id="stack" className="section-shell stack-section">
-      <div className="tech-radar-panel">
-        <div className="section-heading tech-radar-heading">
+      <div className="stack-console">
+        <div className="section-heading stack-heading">
           <span className="section-number">03</span>
           <span className="section-kicker">Tech Stack</span>
         </div>
 
-        <div className="tech-radar-stage">
-          <div className="tech-radar-intro">
+        <div className="stack-console-body">
+          <div className="stack-rail">
             <span className="section-kicker">Grouped Capabilities</span>
-            <h3>Click a signal to inspect the tools behind it.</h3>
-          </div>
+            <h3 className="stack-rail-title">The signals behind the build.</h3>
 
-          <div className="tech-radar-row is-wide">
-            {radarGroups.slice(0, 3).map((group, index) => (
-              <RadarButton key={group.label} group={group} index={index} onClick={setActiveGroup} />
-            ))}
-          </div>
-          <div className="tech-radar-row is-tight">
-            {radarGroups.slice(3, 5).map((group, index) => (
-              <RadarButton key={group.label} group={group} index={index + 3} onClick={setActiveGroup} />
-            ))}
-          </div>
-          <div className="tech-radar-row is-medium">
-            {radarGroups.slice(5).map((group, index) => (
-              <RadarButton key={group.label} group={group} index={index + 5} onClick={setActiveGroup} />
-            ))}
-          </div>
-
-          <Radar className="tech-radar-sweep" />
-          <div className="tech-radar-horizon" />
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {activeGroup && (
-          <motion.div
-            className="tech-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <button
-              type="button"
-              className="tech-modal-backdrop"
-              onClick={() => setActiveGroup(null)}
-              aria-label="Close tech details"
-            />
-            <motion.div
-              className="tech-modal-panel"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="tech-modal-title"
-              initial={{ opacity: 0, y: 28, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 18, scale: 0.98 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+            <div
+              className="stack-rail-list"
+              role="tablist"
+              aria-label="Technology groups"
+              ref={railRef}
+              onKeyDown={onRailKeyDown}
             >
-              <div className="tech-modal-head">
-                <div>
-                  <span className="section-kicker">Stack Group</span>
-                  <h3 id="tech-modal-title">{activeGroup.label}</h3>
-                </div>
-                <button
-                  type="button"
-                  className="modal-close"
-                  onClick={() => setActiveGroup(null)}
-                  aria-label="Close tech details"
+              {stackGroups.map((group, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <button
+                    key={group.label}
+                    type="button"
+                    role="tab"
+                    id={`stack-tab-${slug(group.label)}`}
+                    aria-selected={isActive}
+                    aria-controls="stack-orbit-panel"
+                    tabIndex={isActive ? 0 : -1}
+                    className={"stack-rail-item" + (isActive ? " is-active" : "")}
+                    onClick={() => setActiveIndex(index)}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onFocus={() => setActiveIndex(index)}
+                  >
+                    <span className="stack-rail-index">{pad(index + 1)}</span>
+                    <span className="stack-rail-label">{group.label}</span>
+                    <span className="stack-rail-count">{pad(group.items.length)}</span>
+                    <span className="stack-rail-glow" aria-hidden="true" />
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="stack-rail-note">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.p
+                  key={active.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <X size={18} />
-                </button>
+                  {active.summary}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div
+            className="stack-stage"
+            ref={stageRef}
+            onPointerMove={trackPointer}
+            role="tabpanel"
+            id="stack-orbit-panel"
+            aria-labelledby={`stack-tab-${slug(active.label)}`}
+          >
+            <div className="stack-stage-grid" aria-hidden="true" />
+            <div className="stack-stage-spot" aria-hidden="true" />
+
+            <div className="stack-orbit">
+              <div className="stack-orbit-decor" aria-hidden="true">
+                <span className="stack-orbit-circle is-far" />
+                <span className="stack-orbit-circle is-outer" />
+                <span className="stack-orbit-circle is-inner" />
+                <span className="stack-orbit-sweep" />
               </div>
-              <p>{activeGroup.summary}</p>
-              <div className="tech-modal-grid">
-                {activeGroup.items.map((item) => (
-                  <span className="tech-modal-chip" key={item}>
-                    {item}
+
+              <div className="stack-orbit-core">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={active.label}
+                    className="stack-orbit-core-inner"
+                    initial={{ opacity: 0, scale: 0.86 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.08 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <ActiveIcon size={26} strokeWidth={1.4} />
+                    <strong>{active.label}</strong>
+                    <span>{pad(active.items.length)} tools</span>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="stack-orbit-swarms">
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={active.label}
+                    className="stack-orbit-swarm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <OrbitRing items={outerItems} variant="outer" offset={0} />
+                    <OrbitRing items={innerItems} variant="inner" offset={40} />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div className="stack-stage-readout" aria-hidden="true">
+              <span className="stack-stage-signal">
+                <i />
+                signal locked
+              </span>
+              <span>
+                {pad(activeIndex + 1)} / {pad(stackGroups.length)}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="stack-ticker" aria-hidden="true">
+          <div className="stack-ticker-track">
+            {[0, 1].map((copy) => (
+              <div className="stack-ticker-group" key={copy}>
+                {techMarquee.map((tech) => (
+                  <span key={copy + tech.name}>
+                    <i />
+                    {tech.name}
                   </span>
                 ))}
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
-function RadarButton({ group, index, onClick }) {
-  const Icon = group.icon;
+function OrbitRing({ items, variant, offset }) {
+  if (!items.length) return null;
 
   return (
-    <motion.button
-      type="button"
-      className="radar-tech-action"
-      style={{ "--ping-delay": `${1 + index * 0.16}s` }}
-      onClick={() => onClick(group)}
-      data-cursor="view"
-      aria-label={`Open ${group.label} technologies`}
-      initial={{ opacity: 0, scale: 0.35, y: 28, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.65 }}
-      transition={{
-        delay: 0.95 + index * 0.16,
-        type: "spring",
-        stiffness: 380,
-        damping: 18,
-      }}
-    >
-      <IconContainer
-        text={group.label}
-        delay={1.05 + index * 0.16}
-        icon={<Icon size={28} strokeWidth={1.6} />}
-      />
-    </motion.button>
+    <div className={`stack-orbit-ring is-${variant}`}>
+      {items.map((item, index) => (
+        <span
+          className="stack-orbit-slot"
+          key={item}
+          style={{ "--angle": `${offset + (index * 360) / items.length}deg` }}
+        >
+          <span className="stack-orbit-counter">
+            <motion.span
+              className="stack-orbit-chip"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: 0.06 + index * 0.07,
+                type: "spring",
+                stiffness: 420,
+                damping: 24,
+              }}
+            >
+              <i aria-hidden="true" />
+              {item}
+            </motion.span>
+          </span>
+        </span>
+      ))}
+    </div>
   );
 }
