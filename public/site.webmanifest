@@ -1,1 +1,13 @@
-{"name":"","short_name":"","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#ffffff","background_color":"#ffffff","display":"standalone"}
+{
+  "name": "Kidus Mesfin — Software Engineer",
+  "short_name": "Kidus Mesfin",
+  "description": "Systems-minded software engineer in Addis Ababa building end-to-end web, mobile, backend, and applied AI products.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#08080a",
+  "background_color": "#08080a",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
