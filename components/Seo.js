@@ -1,12 +1,13 @@
 import Head from "next/head";
-import { seo, buildJsonLd } from "@/lib/seo";
+import { seo, buildJsonLd, SITE_URL } from "@/lib/seo";
 
 /**
  * Homepage <head>: canonical, Open Graph, Twitter card, robots, and a
  * schema.org graph (Person / WebSite / ProfilePage / projects) so search and
  * AI engines can identify who this site is about without parsing the page.
  */
-export default function Seo({ siteUrl }) {
+export default function Seo() {
+  const siteUrl = SITE_URL;
   const ogImage = `${siteUrl}${seo.ogImagePath}`;
   const jsonLd = buildJsonLd(siteUrl);
 

@@ -1,0 +1,22 @@
+# AI search crawlers are welcome so ChatGPT, Perplexity, Claude, and Gemini
+# can cite this site. CCBot (Common Crawl, training-only) is kept out.
+User-agent: *
+Allow: /
+Disallow: /api/
+Allow: /api/og
+
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://www.kidus-mesfin.me/sitemap.xml

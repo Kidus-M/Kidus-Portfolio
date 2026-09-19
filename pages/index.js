@@ -7,12 +7,11 @@ import Experience from "@/components/Experience";
 import Stack from "@/components/Stack";
 import Proof from "@/components/Proof";
 import Contact from "@/components/Contact";
-import { getSiteUrl } from "@/lib/seo";
 
-export default function Home({ siteUrl }) {
+export default function Home() {
   return (
     <Layout>
-      <Seo siteUrl={siteUrl} />
+      <Seo />
 
       <Hero />
       <Manifesto />
@@ -23,8 +22,4 @@ export default function Home({ siteUrl }) {
       <Contact />
     </Layout>
   );
-}
-
-export function getStaticProps() {
-  return { props: { siteUrl: getSiteUrl() } };
 }
