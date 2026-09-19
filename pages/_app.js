@@ -1,5 +1,6 @@
-
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@fontsource/plus-jakarta-sans/300.css";
 import "@fontsource/plus-jakarta-sans/400.css";
 import "@fontsource/plus-jakarta-sans/500.css";
@@ -14,5 +15,8 @@ export default function App({ Component, pageProps }) {
     <Head>
       <meta name="google-site-verification" content="LNwSQuzOjNMQo2bGOXwZXmYFtDpCtH6K29K9QzXlQ9k" />
     </Head>
-    <Component {...pageProps} /></>;
+    <Component {...pageProps} />
+    <Analytics />
+    <SpeedInsights />
+  </>;
 }
