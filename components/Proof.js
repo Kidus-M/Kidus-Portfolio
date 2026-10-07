@@ -18,7 +18,7 @@ const TIERS = [
   { name: "Candidate Master", from: 1900, to: 2100, color: "#b79cff" },
 ];
 
-const PEAK = 1690;
+const PEAK = proof.profiles.find((item) => item.icon === "codeforces").value;
 const MIN = TIERS[0].from;
 const MAX = TIERS[TIERS.length - 1].to;
 const position = ((PEAK - MIN) / (MAX - MIN)) * 100;

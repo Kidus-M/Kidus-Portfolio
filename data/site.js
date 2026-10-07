@@ -56,8 +56,8 @@ export const capabilities = [
 export const metrics = [
   { value: 4, suffix: "+", label: "Years building" },
   { value: 13, suffix: "", label: "Shipped systems" },
-  { value: 850, suffix: "+", label: "Problems solved" },
-  { value: 1690, suffix: "", label: "Codeforces peak" },
+  { value: 1000, suffix: "+", label: "Problems solved" },
+  { value: 1726, suffix: "", label: "Codeforces peak" },
 ];
 
 export const proof = {
@@ -68,9 +68,9 @@ export const proof = {
       platform: "Codeforces",
       handle: "KidusMesfin",
       rank: "Expert",
-      value: 1690,
+      value: 1726,
       valueLabel: "Peak rating",
-      secondary: "234 problems solved",
+      secondary: "234 problems solved · 8 rated contests",
       href: "https://codeforces.com/profile/KidusMesfin",
       icon: "codeforces",
     },
@@ -78,10 +78,10 @@ export const proof = {
       platform: "LeetCode",
       handle: "Kidus_Mesfin",
       rank: "Consistent",
-      value: 850,
+      value: 1000,
       suffix: "+",
       valueLabel: "Problems solved",
-      secondary: "Data structures, DP, interviews",
+      secondary: "156 hard · 573 medium · 272 easy",
       href: "https://leetcode.com/u/Kidus_Mesfin/",
       icon: "leetcode",
     },
