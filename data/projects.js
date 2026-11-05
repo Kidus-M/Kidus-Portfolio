@@ -383,6 +383,18 @@ const entries = [
     featured: false,
   },
   {
+    title: "DevApps",
+    type: "App Testing Marketplace",
+    year: "2025",
+    description:
+      "A two-sided platform where developers upload apps and testers explore them and leave feedback, with dashboards, messaging, follows, and a developer blog.",
+    tech: ["Next.js", "Firebase", "Supabase", "Tailwind CSS"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/Dev-Apps", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
