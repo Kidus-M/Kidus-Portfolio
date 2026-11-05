@@ -167,6 +167,36 @@ const entries = [
     featured: true,
   },
   {
+    title: "LendLoop",
+    type: "Community Lending",
+    year: "2026",
+    role: "Full-stack engineering · Security + automation",
+    description:
+      "A neighborhood tool-lending board where neighbors list tools, ask to borrow each other's, and get notifications and overdue reminders through automated workflows.",
+    highlights: [
+      "Built a workshop-style tool wall where an available tool hangs on its peg and a borrowed one leaves a dashed outline.",
+      "Enforced roles on the server: every Convex function declares its access level, and lint rejects the raw builders that would skip the check.",
+      "Connected Convex and n8n through HMAC-signed webhooks with retries, plus one overdue reminder per loan per day.",
+    ],
+    tech: ["Next.js 16", "TypeScript", "Convex", "Clerk", "n8n", "Tailwind CSS"],
+    visual: {
+      theme: "lendloop",
+      label: "LENDLOOP / NEIGHBORHOOD TOOL WALL",
+      headline: "Borrow what you need. Lend what you don't.",
+      status: "SIGNED AUTOMATION",
+      steps: ["List", "Request", "Return"],
+      modules: [
+        { label: "Access", value: "Server-enforced" },
+        { label: "Webhooks", value: "HMAC-signed" },
+        { label: "Reminders", value: "Daily n8n run" },
+      ],
+    },
+    links: [
+      { label: "Repository", href: "https://github.com/Kidus-M/lendloop", kind: "github" },
+    ],
+    featured: true,
+  },
+  {
     title: "Prepx",
     type: "Education Infrastructure",
     year: "2025",

@@ -17,6 +17,7 @@ const ACCENTS = {
   oz: "#ff7a52",
   prospect: "#7cc6fe",
   stream: "#b79cff",
+  lendloop: "#ff9ec4",
   prepx: "#6ee7b7",
   andro: "#ede8de",
 };
