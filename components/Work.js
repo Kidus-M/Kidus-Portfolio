@@ -106,7 +106,7 @@ export default function Work() {
           </RevealLine>
         </h2>
         <p className="section-lede">
-          Seven builds where I owned the architecture, the interface, and the release.
+          Ten builds where I owned the architecture, the interface, and the release.
           {isWide ? " Scroll to move sideways." : ""}
         </p>
       </div>

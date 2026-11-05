@@ -1,3 +1,5 @@
+import { projects } from "@/data/projects";
+
 export const profile = {
   first: "Kidus",
   last: "Mesfin",
@@ -55,7 +57,7 @@ export const capabilities = [
 
 export const metrics = [
   { value: 4, suffix: "+", label: "Years building" },
-  { value: 13, suffix: "", label: "Shipped systems" },
+  { value: projects.length, suffix: "", label: "Projects built" },
   { value: 1000, suffix: "+", label: "Problems solved" },
   { value: 1726, suffix: "", label: "Codeforces peak" },
 ];
