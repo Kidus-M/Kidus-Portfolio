@@ -6,6 +6,7 @@ import PharmaLink from "@/assets/PHARMALINK.png";
 import OpalLuxe from "@/assets/OPAL LUXE .png";
 import OritTej from "@/assets/OritTej.png";
 import Oz from "@/assets/Oz.png";
+import BlueCloud from "@/assets/BlueCloud.jpg";
 
 const entries = [
   {
@@ -325,6 +326,20 @@ const entries = [
     tech: ["Next.js 16", "Prisma", "Better Auth", "Chapa", "next-intl"],
     links: [
       { label: "GitHub", href: "https://github.com/Kidus-M/studious-palm-tree", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
+    title: "Blue Cloud",
+    type: "Incident Reporting App",
+    year: "2026",
+    description:
+      "A command-staff notification app where approved users file structured incident reports and Firebase Cloud Functions push each new report to staff.",
+    image: BlueCloud,
+    preview: "logo",
+    tech: ["Flutter", "Firebase", "Cloud Functions", "FCM"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/BlueCloud", kind: "github" },
     ],
     featured: false,
   },
