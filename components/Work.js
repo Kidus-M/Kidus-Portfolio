@@ -18,6 +18,7 @@ const ACCENTS = {
   prospect: "#7cc6fe",
   stream: "#b79cff",
   lendloop: "#ff9ec4",
+  recruit: "#ff6b6b",
   prepx: "#6ee7b7",
   andro: "#ede8de",
 };

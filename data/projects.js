@@ -197,6 +197,36 @@ const entries = [
     featured: true,
   },
   {
+    title: "Recruit Intel",
+    type: "Football Analytics Platform",
+    year: "2026",
+    role: "Creator · Data + ML + product",
+    description:
+      "A club-agnostic recruitment platform that profiles a squad, finds the gaps against its tactical system, and searches the market for players who fill them.",
+    highlights: [
+      "Links FPL, Understat, ClubElo, Transfermarkt, and API-Football records to one canonical player identity in DuckDB.",
+      "Ranks candidates with role fit, player embeddings, league translation, and defensive estimates that carry a likely range and a confidence score.",
+      "Ships a CLI plus a FastAPI and Next.js dashboard with lineup, recruit, compare, similar-player, and tactics what-if views.",
+    ],
+    tech: ["Python", "FastAPI", "Next.js", "DuckDB", "D3", "Machine Learning"],
+    visual: {
+      theme: "recruit",
+      label: "RECRUIT INTEL / SQUAD + MARKET",
+      headline: "Find the gap. Then find the player who fills it.",
+      status: "RESEARCH PLATFORM",
+      steps: ["Profile", "Gaps", "Search"],
+      modules: [
+        { label: "Sources", value: "5 data feeds" },
+        { label: "Models", value: "Embeddings" },
+        { label: "Dashboard", value: "Next.js + D3" },
+      ],
+    },
+    links: [
+      { label: "Repository", href: "https://github.com/Kidus-M/Football-Manager", kind: "github" },
+    ],
+    featured: true,
+  },
+  {
     title: "Prepx",
     type: "Education Infrastructure",
     year: "2025",
