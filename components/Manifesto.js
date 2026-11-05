@@ -9,7 +9,7 @@ import { Reveal, RevealLine } from "@/components/motion/Reveal";
 import { capabilities, manifesto, metrics, profile } from "@/data/site";
 
 const EASE = [0.16, 1, 0.3, 1];
-const RIBBON = ["End to end", "Interface", "Services", "Data", "Applied AI", "Delivery"];
+const RIBBON = ["End to end", "Interface", "Mobile", "Services", "Data", "Applied AI", "Automation", "Delivery"];
 
 export default function Manifesto() {
   const [open, setOpen] = useState(0);
@@ -58,6 +58,8 @@ export default function Manifesto() {
           </aside>
         </div>
 
+        <h3 className="capability-intro">What I can build for you</h3>
+
         <div className="capability-list">
           {capabilities.map((capability, index) => {
             const isOpen = open === index;
@@ -99,6 +101,7 @@ export default function Manifesto() {
                             </span>
                           ))}
                         </div>
+                        <p className="capability-work">Used in {capability.work.join(", ")}</p>
                       </div>
                     </motion.div>
                   )}

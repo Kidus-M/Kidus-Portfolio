@@ -32,26 +32,66 @@ export const capabilities = [
   {
     index: "01",
     title: "Product Engineering",
-    detail: "Interfaces that survive production — React, Next.js, Flutter, React Native.",
-    tools: ["React", "Next.js", "Flutter", "TypeScript"],
+    detail:
+      "I take a product from idea to launch across the interface, backend, data, and deployment, so one person can own the whole build.",
+    tools: ["React", "Next.js", "TypeScript", "Node.js"],
+    work: ["MaruCheck", "StreamSynx", "Oz Kitchen", "LendLoop", "DevApps"],
   },
   {
     index: "02",
-    title: "Systems Architecture",
-    detail: "Data models, APIs, real-time surfaces, and the boundaries between them.",
-    tools: ["Node.js", "FastAPI", "PostgreSQL", "Supabase"],
+    title: "Mobile Apps",
+    detail:
+      "I build Flutter and React Native apps for customers and staff, with accounts, payments, and push notifications that work in real use.",
+    tools: ["Flutter", "React Native", "Firebase", "Stripe"],
+    work: ["Orit Tej", "StreamSynx", "Prepx", "Blue Cloud"],
   },
   {
     index: "03",
-    title: "Applied AI",
-    detail: "Context pipelines, model fallbacks, and verification you can actually audit.",
-    tools: ["MCP", "OpenRouter", "Drizzle", "Evaluation"],
+    title: "Systems Architecture",
+    detail:
+      "I design the data models, APIs, and real-time systems that keep customers, staff, and partners working from the same live information.",
+    tools: ["FastAPI", "PostgreSQL", "Supabase", "Convex", "Redis"],
+    work: ["Oz Kitchen", "Prepx", "Orit Tej", "Series Streaming Platform"],
   },
   {
     index: "04",
-    title: "Delivery",
-    detail: "CI/CD, cloud, observability, and engineers who get better on the way through.",
+    title: "Applied AI",
+    detail:
+      "I add AI to products in ways you can check, from research and outreach tools to independent testing of code written by AI agents.",
+    tools: ["MCP", "OpenRouter", "Context Pipelines", "Evaluation"],
+    work: ["MaruCheck", "ProspectAI", "FPL Bot"],
+  },
+  {
+    index: "05",
+    title: "Data & Machine Learning",
+    detail:
+      "I train models and build research tools on messy real data, then test them on data they have not seen so you know what a result is worth.",
+    tools: ["PyTorch", "TensorFlow", "scikit-learn", "pandas", "DuckDB"],
+    work: ["Recruit Intel", "XAU/USD Backtester", "Road Crash Severity Model"],
+  },
+  {
+    index: "06",
+    title: "Automation & Integrations",
+    detail:
+      "I connect payments, sign-in, messaging, and internal tools so routine work like reminders, notifications, and handoffs runs on its own.",
+    tools: ["n8n", "Stripe", "Chapa", "Clerk", "Telegram Bots"],
+    work: ["LendLoop", "Oz Kitchen", "Orit Tej", "FPL Bot"],
+  },
+  {
+    index: "07",
+    title: "Security & Quality",
+    detail:
+      "I enforce access on the server, sign and verify what systems send each other, and add the automated tests that catch problems before release.",
+    tools: ["Playwright", "pytest", "Semgrep", "Row-Level Security"],
+    work: ["MaruCheck", "LendLoop", "Orit Tej", "XAU/USD Backtester"],
+  },
+  {
+    index: "08",
+    title: "Delivery & Team Leadership",
+    detail:
+      "I set up CI/CD and cloud deployments, lead the work through release, and mentor developers along the way. At Andro Solutions this cut deployment time by 40%.",
     tools: ["Docker", "AWS", "Vercel", "GitHub Actions"],
+    work: ["Andro Solutions", "Oz Kitchen", "MaruCheck"],
   },
 ];
 
