@@ -227,6 +227,36 @@ const entries = [
     featured: true,
   },
   {
+    title: "XAU/USD Backtester",
+    type: "Quant Research Engine",
+    year: "2026",
+    role: "Creator · Research engineering",
+    description:
+      "A research backtester for intraday spot gold, built to measure whether a strategy has real expectancy after costs and to make an honest no easy to reach.",
+    highlights: [
+      "Validates strategies on minute data from 2019 to 2026 with anchored walk-forward testing, a random-entry benchmark, and a deflated Sharpe ratio.",
+      "Guards against lookahead with a suite of 260 tests, including truncation invariance and AST scans of the source.",
+      "Stays research-only by design: the build fails if a broker execution endpoint appears, and Telegram paper signals leave every decision to a human.",
+    ],
+    tech: ["Python", "pandas", "Parquet", "pytest", "Telegram"],
+    visual: {
+      theme: "quant",
+      label: "XAU/USD / BACKTESTING ENGINE",
+      headline: "Built to give the honest answer, even when it's no.",
+      status: "RESEARCH ONLY",
+      steps: ["Backtest", "Walk forward", "Deflate"],
+      modules: [
+        { label: "Validation", value: "Walk-forward" },
+        { label: "Benchmark", value: "Random entry" },
+        { label: "Execution", value: "None by design" },
+      ],
+    },
+    links: [
+      { label: "Repository", href: "https://github.com/Kidus-M/Quant", kind: "github" },
+    ],
+    featured: true,
+  },
+  {
     title: "Prepx",
     type: "Education Infrastructure",
     year: "2025",
