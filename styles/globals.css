@@ -1710,7 +1710,8 @@ body.is-light .site-nav.is-condensed {
   background: var(--void-3);
 }
 
-.archive-preview-inner img {
+.archive-preview-inner img,
+.archive-tile {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1721,9 +1722,27 @@ body.is-light .site-nav.is-condensed {
   transition: opacity 0.4s var(--ease), transform 0.6s var(--ease);
 }
 
-.archive-preview-inner img.is-current {
+.archive-preview-inner img.is-current,
+.archive-tile.is-current {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Stands in for projects without a screenshot. */
+.archive-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem;
+}
+
+.archive-tile strong {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--fg);
 }
 
 @media (pointer: coarse) {

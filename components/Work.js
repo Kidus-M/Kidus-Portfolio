@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Github, X } from "lucide-react";
 import { useLenis } from "lenis/react";
@@ -280,15 +281,18 @@ function Archive({ onOpen }) {
 
       <div className={"archive-preview" + (hovered ? " is-visible" : "")} ref={previewRef} aria-hidden="true">
         <div className="archive-preview-inner">
-          {archive.map((project) => (
-            <Image
-              key={project.id}
-              src={project.image}
-              alt=""
-              className={hovered?.id === project.id ? "is-current" : undefined}
-              sizes="280px"
-            />
-          ))}
+          {archive.map((project) => {
+            const current = hovered?.id === project.id ? "is-current" : undefined;
+
+            return project.image ? (
+              <Image key={project.id} src={project.image} alt="" className={current} sizes="280px" />
+            ) : (
+              <span key={project.id} className={clsx("archive-tile", current)}>
+                <span className="label">{project.type}</span>
+                <strong>{project.title}</strong>
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>
