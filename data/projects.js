@@ -72,6 +72,7 @@ const entries = [
       ],
     },
     links: [
+      { label: "Website", href: "https://orit-backend.vercel.app/", kind: "live" },
       { label: "Mobile app", href: "https://github.com/Kidus-M/Orit-Tej-Mobile", kind: "github" },
       { label: "Backend", href: "https://github.com/Kidus-M/Orit-Backend", kind: "github" },
     ],
