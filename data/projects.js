@@ -7,9 +7,8 @@ import OpalLuxe from "@/assets/OPAL LUXE .png";
 import OritTej from "@/assets/OritTej.png";
 import Oz from "@/assets/Oz.png";
 
-export const projects = [
+const entries = [
   {
-    id: "01",
     title: "MaruCheck",
     type: "AI QA & Verification",
     year: "2026",
@@ -44,7 +43,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "02",
     title: "Orit Tej",
     type: "Membership Commerce",
     year: "2026",
@@ -77,7 +75,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "03",
     title: "Oz Kitchen",
     type: "Operations Platform",
     year: "2026",
@@ -109,7 +106,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "04",
     title: "ProspectAI",
     type: "Applied AI Workspace",
     year: "2026",
@@ -140,7 +136,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "05",
     title: "StreamSynx",
     type: "Multi-Surface Media",
     year: "2025–2026",
@@ -172,7 +167,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "06",
     title: "Prepx",
     type: "Education Infrastructure",
     year: "2025",
@@ -203,7 +197,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "07",
     title: "Andro Solutions",
     type: "Corporate Platform",
     year: "2025",
@@ -234,7 +227,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "08",
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
@@ -250,7 +242,6 @@ export const projects = [
     featured: false,
   },
   {
-    id: "09",
     title: "Spawn Point",
     type: "Desktop Simulation",
     year: "2024",
@@ -263,7 +254,6 @@ export const projects = [
     featured: false,
   },
   {
-    id: "10",
     title: "Homely",
     type: "Service Marketplace",
     year: "2024",
@@ -276,7 +266,6 @@ export const projects = [
     featured: false,
   },
   {
-    id: "11",
     title: "FPL Bot",
     type: "AI / Automation",
     year: "2025",
@@ -292,7 +281,6 @@ export const projects = [
     featured: false,
   },
   {
-    id: "12",
     title: "Wolfden Cigar",
     type: "Luxury Commerce",
     year: "2025",
@@ -307,7 +295,6 @@ export const projects = [
     featured: false,
   },
   {
-    id: "13",
     title: "Pharma-Link",
     type: "Enterprise System",
     year: "2024",
@@ -322,3 +309,9 @@ export const projects = [
     featured: false,
   },
 ];
+
+/** Display numbers follow list order, so inserting a project never needs a renumber. */
+export const projects = entries.map((project, index) => ({
+  ...project,
+  id: String(index + 1).padStart(2, "0"),
+}));
