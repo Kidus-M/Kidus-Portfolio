@@ -13,6 +13,7 @@ const EASE = [0.16, 1, 0.3, 1];
 /** Per-project accent, so moving down the list visibly changes the stage. */
 const ACCENTS = {
   maru: "#c8f135",
+  equb: "#ffc83d",
   orit: "#e8b44a",
   oz: "#ff7a52",
   prospect: "#7cc6fe",
@@ -103,7 +104,8 @@ export default function Work() {
             </RevealLine>
           </h2>
           <p className="section-lede">
-            Ten picks from {projects.length} projects, with the code or the live site one click away.
+            {projects.filter((project) => project.featured).length} picks from {projects.length} projects,
+            with the code or the live site one click away.
           </p>
         </div>
 

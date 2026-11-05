@@ -51,6 +51,35 @@ const entries = [
     featured: true,
   },
   {
+    title: "Equb",
+    type: "On-Chain Savings Protocol",
+    year: "2026",
+    areas: ["web"],
+    role: "Creator · Smart contracts + product",
+    description:
+      "A smart contract that runs an Equb, the rotating savings group, with no treasurer. It holds the money, enforces the schedule, and slashes collateral when a member stops paying.",
+    highlights: [
+      "Wrote the full rotation in Solidity: a pool factory, payout order, pull-based withdrawals, and default rules that demote and penalize members who miss a payment.",
+      "Hardened it with 100% test coverage, fuzzing, five invariants, Slither, and a written self-audit that found and fixed four attacks, including one that could lock funds forever.",
+      "Built the Next.js app on wagmi and RainbowKit, where the pool screen is a live ring of seats that fill as people pay and turn red when they miss.",
+    ],
+    tech: ["Solidity", "Foundry", "OpenZeppelin", "Next.js", "wagmi", "viem"],
+    visual: {
+      theme: "equb",
+      label: "EQUB / NO TREASURER",
+      headline: "A savings circle where the contract holds the pot.",
+      status: "100% TEST COVERAGE",
+      steps: ["Join", "Pay", "Collect"],
+      modules: [
+        { label: "Contracts", value: "Solidity" },
+        { label: "Defaults", value: "Collateral slashed" },
+        { label: "Testing", value: "Fuzz + invariants" },
+      ],
+    },
+    links: [],
+    featured: true,
+  },
+  {
     title: "Orit Tej",
     type: "Membership Commerce",
     year: "2026",
