@@ -371,6 +371,18 @@ const entries = [
     featured: false,
   },
   {
+    title: "3D Air Hockey",
+    type: "Graphics Game",
+    year: "2025",
+    description:
+      "A 3D air hockey game with planar puck physics, an AI opponent, wall bounces, goal detection, and particle effects, written directly against OpenGL.",
+    tech: ["Python", "OpenGL", "Pygame"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/Computer-graphics-Class", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
