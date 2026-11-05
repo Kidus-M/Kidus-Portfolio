@@ -9,12 +9,17 @@ import Oz from "@/assets/Oz.png";
 import BlueCloud from "@/assets/BlueCloud.jpg";
 import RoadCrash from "@/assets/RoadCrash.jpg";
 import HMK from "@/assets/HMK.jpg";
+import OritSite from "@/assets/OritSite.jpg";
+import StreamSynxShot from "@/assets/StreamSynx.png";
+import PrepxShot from "@/assets/prepx.jpg";
+import AndroSite from "@/assets/AndroWebsite.png";
 
 const entries = [
   {
     title: "MaruCheck",
     type: "AI QA & Verification",
     year: "2026",
+    areas: ["ai", "web"],
     role: "Creator · Open-source platform engineering",
     description:
       "An open-source, local-first QA and verification platform for AI-generated software that scores risk, enforces human-approved Quality Contracts, and produces the evidence behind every ship-or-block decision.",
@@ -49,6 +54,7 @@ const entries = [
     title: "Orit Tej",
     type: "Membership Commerce",
     year: "2026",
+    areas: ["mobile", "web"],
     role: "Product engineering · Flutter + backend",
     description:
       "A mobile membership and pickup ecosystem that connects member onboarding, recurring payments, inventory, benefits, and secure in-store fulfillment.",
@@ -57,6 +63,8 @@ const entries = [
       "Designed Stripe-backed membership renewals, bottle orders, stock broadcasts, and complimentary benefits.",
       "Hardened one-time pickup QR flows with hashed tokens, service-code verification, rotation, and rate limits.",
     ],
+    image: OritSite,
+    preview: "website",
     tech: ["Flutter", "Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Stripe"],
     mark: OritTej,
     visual: {
@@ -82,6 +90,7 @@ const entries = [
     title: "Oz Kitchen",
     type: "Operations Platform",
     year: "2026",
+    areas: ["web"],
     role: "Lead Systems & Platform Engineer",
     description:
       "A real-time operating system for a food business, unifying customer ordering, kitchen execution, administration, delivery logistics, and partner workflows.",
@@ -113,6 +122,7 @@ const entries = [
     title: "ProspectAI",
     type: "Applied AI Workspace",
     year: "2026",
+    areas: ["ai", "web"],
     role: "Full-stack product engineering",
     description:
       "A private outreach workspace that turns fragmented prospect sources into editable context, personalized messages, and managed follow-up conversations.",
@@ -144,6 +154,7 @@ const entries = [
     title: "StreamSynx",
     type: "Multi-Surface Media",
     year: "2025–2026",
+    areas: ["web", "mobile"],
     role: "Product architecture · Web + mobile + TV",
     description:
       "A social viewing and media-discovery ecosystem spanning a Next.js website, Flutter client, and native Android TV experience.",
@@ -152,6 +163,8 @@ const entries = [
       "Implemented Firebase identity, favorites, watch history, buddies, real-time watch-party rooms, and chat.",
       "Extended the product beyond web with Flutter and a remote-first native Android TV interface.",
     ],
+    image: StreamSynxShot,
+    preview: "website",
     tech: ["Next.js", "Flutter", "Android TV", "Firebase", "TMDB", "Real-time"],
     visual: {
       theme: "stream",
@@ -176,6 +189,7 @@ const entries = [
     title: "LendLoop",
     type: "Community Lending",
     year: "2026",
+    areas: ["web"],
     role: "Full-stack engineering · Security + automation",
     description:
       "A neighborhood tool-lending board where neighbors list tools, ask to borrow each other's, and get notifications and overdue reminders through automated workflows.",
@@ -206,6 +220,7 @@ const entries = [
     title: "Recruit Intel",
     type: "Football Analytics Platform",
     year: "2026",
+    areas: ["ai", "web"],
     role: "Creator · Data + ML + product",
     description:
       "A club-agnostic recruitment platform that profiles a squad, finds the gaps against its tactical system, and searches the market for players who fill them.",
@@ -236,6 +251,7 @@ const entries = [
     title: "XAU/USD Backtester",
     type: "Quant Research Engine",
     year: "2026",
+    areas: ["ai"],
     role: "Creator · Research engineering",
     description:
       "A research backtester for intraday spot gold, built to measure whether a strategy has real expectancy after costs and to make an honest no easy to reach.",
@@ -266,6 +282,7 @@ const entries = [
     title: "Prepx",
     type: "Education Infrastructure",
     year: "2025",
+    areas: ["mobile", "web"],
     role: "Full-stack engineering · Temaribet",
     description:
       "A mobile-first learning platform built for Ethiopian high-school students preparing for national exit examinations.",
@@ -274,6 +291,8 @@ const entries = [
       "Used FastAPI, Redis caching, RabbitMQ workers, and event-driven workflows for performance and reliability.",
       "Contributed React Native mobile features and Next.js web surfaces in a shared TypeScript ecosystem.",
     ],
+    image: PrepxShot,
+    preview: "mobile",
     tech: ["FastAPI", "Python", "Redis", "RabbitMQ", "React Native", "Next.js"],
     visual: {
       theme: "prepx",
@@ -296,6 +315,7 @@ const entries = [
     title: "Andro Solutions",
     type: "Corporate Platform",
     year: "2025",
+    areas: ["web"],
     role: "Technical lead · Product + delivery",
     description:
       "A conversion-focused digital platform for a technology consultancy, balancing technical credibility with strong visual direction.",
@@ -304,6 +324,8 @@ const entries = [
       "Used deliberate motion and interaction design to create polish without compromising clarity or performance.",
       "Connected the public-facing work to broader client delivery, CI/CD, architecture, and team mentorship.",
     ],
+    image: AndroSite,
+    preview: "website",
     tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "SEO", "CI/CD"],
     visual: {
       theme: "andro",
@@ -326,6 +348,7 @@ const entries = [
     title: "Series Streaming Platform",
     type: "Subscription Streaming",
     year: "2026",
+    areas: ["web"],
     description:
       "A bilingual Amharic and English streaming site for a series set in 1990s Ethiopia, with subscriptions, Chapa payments, and signed, time-limited video access.",
     tech: ["Next.js 16", "Prisma", "Better Auth", "Chapa", "next-intl"],
@@ -338,6 +361,7 @@ const entries = [
     title: "Blue Cloud",
     type: "Incident Reporting App",
     year: "2026",
+    areas: ["mobile"],
     description:
       "A command-staff notification app where approved users file structured incident reports and Firebase Cloud Functions push each new report to staff.",
     image: BlueCloud,
@@ -352,6 +376,7 @@ const entries = [
     title: "Road Crash Severity Model",
     type: "Applied Machine Learning",
     year: "2026",
+    areas: ["ai"],
     description:
       "A neural network that predicts accident severity from 60,004 Addis Ababa crash records, using SMOTE for class imbalance and leaving out features only known after a crash.",
     image: RoadCrash,
@@ -366,6 +391,7 @@ const entries = [
     title: "LL(1) Parser Visualizer",
     type: "Compiler Tooling",
     year: "2025",
+    areas: ["desktop"],
     description:
       "A desktop compiler-design tool that removes left recursion, computes FIRST and FOLLOW sets, builds the parsing table, and draws the parse tree.",
     tech: ["Python", "Tkinter", "Compiler Design"],
@@ -378,6 +404,7 @@ const entries = [
     title: "3D Air Hockey",
     type: "Graphics Game",
     year: "2025",
+    areas: ["desktop"],
     description:
       "A 3D air hockey game with planar puck physics, an AI opponent, wall bounces, goal detection, and particle effects, written directly against OpenGL.",
     tech: ["Python", "OpenGL", "Pygame"],
@@ -390,6 +417,7 @@ const entries = [
     title: "DevApps",
     type: "App Testing Marketplace",
     year: "2025",
+    areas: ["web"],
     description:
       "A two-sided platform where developers upload apps and testers explore them and leave feedback, with dashboards, messaging, follows, and a developer blog.",
     tech: ["Next.js", "Firebase", "Supabase", "Tailwind CSS"],
@@ -402,6 +430,7 @@ const entries = [
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
+    areas: ["web"],
     description:
       "A luxury retail storefront with product management, API-driven order flows, and a polished customer journey.",
     image: OpalLuxe,
@@ -417,6 +446,7 @@ const entries = [
     title: "Spawn Point",
     type: "Desktop Simulation",
     year: "2024",
+    areas: ["desktop"],
     description:
       "A hospital operations simulation modeling patient flow, staffing, and resource allocation under realistic constraints.",
     image: SpawnPoint,
@@ -429,6 +459,7 @@ const entries = [
     title: "Homely",
     type: "Service Marketplace",
     year: "2024",
+    areas: ["web"],
     description:
       "A service marketplace connecting households with local providers through profiles, booking flows, and trust signals.",
     image: Homely,
@@ -441,6 +472,7 @@ const entries = [
     title: "FPL Bot",
     type: "AI / Automation",
     year: "2025",
+    areas: ["ai"],
     description:
       "A Telegram assistant that reviews Fantasy Premier League squads, recommends transfers, and automates routine decisions.",
     image: FPL,
@@ -456,6 +488,7 @@ const entries = [
     title: "Wolfden Cigar",
     type: "Luxury Commerce",
     year: "2025",
+    areas: ["web"],
     description:
       "A refined commerce experience for curated cigar collections, events, membership, and brand-led retail.",
     image: CL,
@@ -471,6 +504,7 @@ const entries = [
     title: "Pharma-Link",
     type: "Enterprise System",
     year: "2024",
+    areas: ["desktop"],
     description:
       "An inventory and billing system for pharmaceutical workflows, covering stock, invoicing, and reporting.",
     image: PharmaLink,
@@ -485,6 +519,7 @@ const entries = [
     title: "HMK Pharmacy",
     type: "Desktop System",
     year: "2024",
+    areas: ["desktop"],
     description:
       "A desktop pharmacy management system covering stock, sales, and prescriptions, built with Java Swing and SQL Server.",
     image: HMK,
@@ -499,6 +534,7 @@ const entries = [
     title: "2048 in C++",
     type: "Desktop Game",
     year: "2024",
+    areas: ["desktop"],
     description:
       "The 2048 puzzle built in C++ with SFML, with undo, saved games, and separate high scores for easy, normal, and hard modes.",
     tech: ["C++", "SFML"],
