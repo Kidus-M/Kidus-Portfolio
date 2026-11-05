@@ -317,6 +317,18 @@ const entries = [
     featured: true,
   },
   {
+    title: "Series Streaming Platform",
+    type: "Subscription Streaming",
+    year: "2026",
+    description:
+      "A bilingual Amharic and English streaming site for a series set in 1990s Ethiopia, with subscriptions, Chapa payments, and signed, time-limited video access.",
+    tech: ["Next.js 16", "Prisma", "Better Auth", "Chapa", "next-intl"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/studious-palm-tree", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
