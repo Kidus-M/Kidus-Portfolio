@@ -8,6 +8,7 @@ import OritTej from "@/assets/OritTej.png";
 import Oz from "@/assets/Oz.png";
 import BlueCloud from "@/assets/BlueCloud.jpg";
 import RoadCrash from "@/assets/RoadCrash.jpg";
+import HMK from "@/assets/HMK.jpg";
 
 const entries = [
   {
@@ -473,6 +474,20 @@ const entries = [
     tech: ["C#", ".NET", "SQL Server"],
     links: [
       { label: "GitHub", href: "https://github.com/Kidus-M/PharmaLInk", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
+    title: "HMK Pharmacy",
+    type: "Desktop System",
+    year: "2024",
+    description:
+      "A desktop pharmacy management system covering stock, sales, and prescriptions, built with Java Swing and SQL Server.",
+    image: HMK,
+    preview: "logo",
+    tech: ["Java", "Swing", "SQL Server"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/HMK-PHARMACY", kind: "github" },
     ],
     featured: false,
   },
