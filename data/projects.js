@@ -460,9 +460,10 @@ const entries = [
       "A refined commerce experience for curated cigar collections, events, membership, and brand-led retail.",
     image: CL,
     preview: "website",
-    tech: ["Next.js", "Firebase", "Node.js"],
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
     links: [
       { label: "Live", href: "https://wolfdenaddis.com", kind: "live" },
+      { label: "GitHub", href: "https://github.com/Kidus-M/Cigar-Lounge", kind: "github" },
     ],
     featured: false,
   },
