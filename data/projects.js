@@ -76,7 +76,9 @@ const entries = [
         { label: "Testing", value: "Fuzz + invariants" },
       ],
     },
-    links: [],
+    links: [
+      { label: "Live app", href: "https://equb-xi.vercel.app/", kind: "live" },
+    ],
     featured: true,
   },
   {
