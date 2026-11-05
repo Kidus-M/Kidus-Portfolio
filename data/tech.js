@@ -11,7 +11,7 @@ export const techGroups = [
     icon: "code",
     summary:
       "Core languages I write day to day, plus the ones behind older desktop and systems work.",
-    items: ["TypeScript", "JavaScript", "Python", "Go", "Dart", "C#", "Java", "C++"],
+    items: ["TypeScript", "JavaScript", "Python", "Go", "Solidity", "Dart", "C#", "Java", "C++"],
   },
   {
     label: "Frontend",
@@ -96,6 +96,13 @@ export const techGroups = [
     ],
   },
   {
+    label: "Smart Contracts",
+    icon: "blocks",
+    summary:
+      "Contracts that hold the rules and the money, tested with fuzzing and invariants before anyone connects a wallet.",
+    items: ["Foundry", "OpenZeppelin", "Slither", "wagmi", "viem", "RainbowKit"],
+  },
+  {
     label: "Quality & Craft",
     icon: "shield",
     summary:
@@ -136,6 +143,7 @@ export const techMarquee = [
   "Python",
   "Dart",
   "PyTorch",
+  "Solidity",
   "React",
   "Next.js",
   "Flutter",

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Braces,
+  Blocks,
   Box,
   BrainCircuit,
   ChartLine,
@@ -28,6 +29,7 @@ const ICONS = {
   plug: Plug,
   chart: ChartLine,
   cube: Box,
+  blocks: Blocks,
 };
 
 /* Orbit radii as a fraction of --orbit-outer. Groups larger than six spread
