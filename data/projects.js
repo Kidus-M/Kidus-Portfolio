@@ -134,6 +134,7 @@ const entries = [
       ],
     },
     links: [
+      { label: "Live app", href: "https://prospect-ai-ashen.vercel.app", kind: "live" },
       { label: "Explore code", href: "https://github.com/Kidus-M/ProspectAI", kind: "github" },
     ],
     featured: true,
