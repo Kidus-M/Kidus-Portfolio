@@ -92,7 +92,7 @@ export const techGroups = [
       "pandas",
       "Embeddings",
       "Backtesting",
-      "Walk-forward Testing",
+      "Walk-forward",
     ],
   },
   {
@@ -114,7 +114,7 @@ export const techGroups = [
       "Clerk",
       "n8n",
       "Telegram Bots",
-      "Push Notifications",
+      "FCM",
       "TMDB",
       "Android TV",
       "Real-time",

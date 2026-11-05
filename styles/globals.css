@@ -1633,6 +1633,7 @@ body.is-light .site-nav.is-condensed {
 .stage-frame {
   position: relative;
   aspect-ratio: 16 / 11;
+  min-height: 22.5rem;
   border: 1px solid color-mix(in srgb, var(--card-accent) 40%, var(--line));
   border-radius: 12px;
   overflow: hidden;
@@ -2190,6 +2191,7 @@ a.path-company:hover {
   --px: 50%;
   --py: 42%;
   position: relative;
+  container-type: inline-size;
   min-height: clamp(420px, 62vh, 680px);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -2251,7 +2253,8 @@ a.path-company:hover {
 }
 
 .stack-orbit {
-  --orbit-outer: clamp(124px, 15vw, 196px);
+  /* Sized from the stage, leaving room for a pill's half-width and the readout. */
+  --orbit-outer: clamp(124px, min(50cqw - 4rem, 27.5vh - 2rem), 240px);
   position: absolute;
   inset: 0 0 2.25rem;
 }
@@ -3011,6 +3014,24 @@ a.path-company:hover {
     display: grid;
     gap: 1rem;
     padding-bottom: 1.5rem;
+  }
+
+  /* Rows show one project at a time, so the frame can grow to fit its panel. */
+  .index-inline .stage-frame {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+
+  .index-inline .stage-layer {
+    position: relative;
+  }
+
+  .index-inline .stage-image {
+    height: auto;
+  }
+
+  .index-inline .stage-tile {
+    min-height: 13rem;
   }
 
   .index-row.is-active .index-title,

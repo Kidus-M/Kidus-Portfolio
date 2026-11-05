@@ -36,7 +36,7 @@ const ICONS = {
    independent rates drift into alignment, and two wide pills sharing an angle
    overlap even when their radii are far apart. */
 const TWO_RING = [1, 0.66];
-const THREE_RING = [1, 0.8, 0.64];
+const THREE_RING = [1, 0.79, 0.58];
 
 const slug = (label) => label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const pad = (value) => String(value).padStart(2, "0");
@@ -57,11 +57,15 @@ export default function Stack() {
     const sorted = [...active.items].sort((a, b) => b.length - a.length);
     return {
       ratios: chosen,
-      nodes: sorted.map((item, index) => ({
-        item,
-        ratio: chosen[index % chosen.length],
-        angle: index * step,
-      })),
+      nodes: sorted.map((item, index) => {
+        /* The last chip sits beside the first, so it must not share the first's ring. */
+        const wrapsOntoFirst = index === sorted.length - 1 && index % chosen.length === 0;
+        return {
+          item,
+          ratio: chosen[wrapsOntoFirst ? 1 : index % chosen.length],
+          angle: index * step,
+        };
+      }),
     };
   }, [active]);
 
