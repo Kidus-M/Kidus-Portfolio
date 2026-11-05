@@ -166,7 +166,8 @@ const entries = [
       ],
     },
     links: [
-      { label: "Repository", href: "https://github.com/Kidus-M/StreamSynx", kind: "github" },
+      { label: "Web repository", href: "https://github.com/Kidus-M/StreamSynx", kind: "github" },
+      { label: "Mobile repository", href: "https://github.com/Kidus-M/streamsynx-app", kind: "github" },
       { label: "Live product", href: "https://streamsynx.vercel.app/", kind: "live" },
     ],
     featured: true,
