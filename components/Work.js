@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -6,11 +6,11 @@ import { ArrowUpRight, Github, X } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { RevealLine } from "@/components/motion/Reveal";
 import { projects } from "@/data/projects";
-import { gsap, prefersReducedMotion, ScrollTrigger, useGsapScope, useMediaQuery } from "@/lib/motion";
+import { ScrollTrigger } from "@/lib/motion";
 
 const EASE = [0.16, 1, 0.3, 1];
 
-/** Per-project accent, so the rail reads as a spectrum rather than one colour. */
+/** Per-project accent, so moving down the list visibly changes the stage. */
 const ACCENTS = {
   maru: "#c8f135",
   orit: "#e8b44a",
@@ -24,60 +24,56 @@ const ACCENTS = {
   andro: "#ede8de",
 };
 
-const featured = projects.filter((project) => project.featured);
-const archive = projects.filter((project) => !project.featured);
+/** What a visitor is looking for, not how the projects were built. */
+const FILTERS = [
+  { key: "selected", label: "Selected", match: (project) => project.featured },
+  { key: "web", label: "Web", match: (project) => project.areas.includes("web") },
+  { key: "mobile", label: "Mobile", match: (project) => project.areas.includes("mobile") },
+  { key: "ai", label: "AI & data", match: (project) => project.areas.includes("ai") },
+  { key: "desktop", label: "Desktop & games", match: (project) => project.areas.includes("desktop") },
+  { key: "all", label: "All", match: () => true },
+];
+
+const accentOf = (project) => ACCENTS[project.visual?.theme] ?? "#c8f135";
+const repoOf = (project) => project.links?.find((link) => link.kind === "github");
+const liveOf = (project) => project.links?.find((link) => link.kind === "live");
+
+/** Live links carry longer labels in the case study; rows only have room for one word. */
+const shortLabel = (link) => (/live|web/i.test(link.label) ? "Live" : link.label);
 
 export default function Work() {
+  const [filter, setFilter] = useState("selected");
+  const [activeId, setActiveId] = useState(projects[0].id);
   const [openProject, setOpenProject] = useState(null);
-  const railRef = useRef(null);
-  const trackRef = useRef(null);
-  const isWide = useMediaQuery("(min-width: 1000px)");
+  const sectionRef = useRef(null);
   const lenis = useLenis();
 
-  /* Pinned horizontal rail: vertical scroll drives the track sideways. */
-  useGsapScope(
-    () => {
-      const track = trackRef.current;
-      if (!track || !isWide) return;
-
-      const distance = () => Math.max(track.scrollWidth - window.innerWidth, 0);
-
-      const rail = gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: railRef.current,
-          start: "top top",
-          end: () => `+=${distance()}`,
-          pin: true,
-          scrub: 0.85,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      /* Each preview drifts inside its frame as the rail carries it past. */
-      gsap.utils.toArray(".work-card-visual").forEach((frame) => {
-        gsap.fromTo(
-          frame.querySelector(".work-card-inner"),
-          { xPercent: -3.5 },
-          {
-            xPercent: 3.5,
-            ease: "none",
-            scrollTrigger: {
-              trigger: frame,
-              containerAnimation: rail,
-              start: "left right",
-              end: "right left",
-              scrub: true,
-            },
-          }
-        );
-      });
-    },
-    railRef,
-    [isWide]
+  const visible = useMemo(
+    () => projects.filter(FILTERS.find((item) => item.key === filter).match),
+    [filter]
   );
+  const active = visible.find((project) => project.id === activeId);
+
+  const chooseFilter = (key) => {
+    setFilter(key);
+    setActiveId(projects.find(FILTERS.find((item) => item.key === key).match).id);
+  };
+
+  /* Sections below use ScrollTrigger, so their offsets move when this one changes height. */
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+    let timer;
+    const observer = new ResizeObserver(() => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => ScrollTrigger.refresh(), 160);
+    });
+    observer.observe(section);
+    return () => {
+      window.clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!lenis) return undefined;
@@ -96,43 +92,65 @@ export default function Work() {
   }, [openProject]);
 
   return (
-    <section id="work" className="work">
-      <div className="shell work-head">
-        <span className="label">(03) &mdash; Selected work</span>
-        <h2 className="section-title">
-          <RevealLine>Systems I</RevealLine>
-          <RevealLine delay={0.08}>
-            <em>shipped.</em>
-          </RevealLine>
-        </h2>
-        <p className="section-lede">
-          Ten builds where I owned the architecture, the interface, and the release.
-          {isWide ? " Scroll to move sideways." : ""}
-        </p>
-      </div>
+    <section id="work" className="work" ref={sectionRef}>
+      <div className="shell">
+        <div className="work-head">
+          <span className="label">(03) &mdash; Work</span>
+          <h2 className="section-title">
+            <RevealLine>Systems I</RevealLine>
+            <RevealLine delay={0.08}>
+              <em>shipped.</em>
+            </RevealLine>
+          </h2>
+          <p className="section-lede">
+            Ten picks from {projects.length} projects, with the code or the live site one click away.
+          </p>
+        </div>
 
-      <div className="work-rail" ref={railRef}>
-        <div className="work-track" ref={trackRef}>
-          {featured.map((project, index) => (
-            <WorkCard
-              key={project.id}
-              project={project}
-              index={index}
-              total={featured.length}
-              onOpen={() => setOpenProject(project)}
-            />
+        <div className="work-filters" role="group" aria-label="Filter projects by kind of work">
+          {FILTERS.map((item) => (
+            <button
+              type="button"
+              key={item.key}
+              className="work-filter"
+              aria-pressed={filter === item.key}
+              onClick={() => chooseFilter(item.key)}
+            >
+              {item.label}
+              <span>{projects.filter(item.match).length}</span>
+            </button>
           ))}
+        </div>
+        <p className="sr-only" aria-live="polite">
+          Showing {visible.length} projects
+        </p>
 
-          <div className="work-end">
-            <span className="label">End of rail</span>
-            <p>
-              More in the <a href="#work-archive">archive</a>.
-            </p>
+        <div className="index">
+          <div>
+            <ul className="index-list" key={filter}>
+              {visible.map((project) => (
+                <IndexRow
+                  key={project.id}
+                  project={project}
+                  isActive={project.id === active?.id}
+                  onActivate={() => setActiveId(project.id)}
+                  onToggle={() => setActiveId(project.id === active?.id ? null : project.id)}
+                  onOpen={() => setOpenProject(project)}
+                />
+              ))}
+            </ul>
+
+            {filter !== "all" && (
+              <button type="button" className="link-button index-more" onClick={() => chooseFilter("all")}>
+                See all {projects.length} projects
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </button>
+            )}
           </div>
+
+          <Stage active={active ?? visible[0]} onOpen={setOpenProject} />
         </div>
       </div>
-
-      <Archive onOpen={setOpenProject} />
 
       <AnimatePresence>
         {openProject && <CaseOverlay project={openProject} onClose={() => setOpenProject(null)} />}
@@ -141,56 +159,135 @@ export default function Work() {
   );
 }
 
-function WorkCard({ project, index, total, onOpen }) {
-  const accent = ACCENTS[project.visual?.theme] ?? "#c8f135";
+function IndexRow({ project, isActive, onActivate, onToggle, onOpen }) {
+  const repo = repoOf(project);
+  const live = liveOf(project);
+
+  /* Wide layouts preview on hover and open on click; touch layouts expand the row in place. */
+  const onClick = () => {
+    if (window.matchMedia("(min-width: 1000px)").matches) onOpen();
+    else onToggle();
+  };
 
   return (
-    <article className="work-card" style={{ "--card-accent": accent }}>
+    <li
+      className={clsx("index-row", isActive && "is-active")}
+      style={{ "--card-accent": accentOf(project) }}
+      onPointerEnter={(event) => {
+        if (event.pointerType === "mouse") onActivate();
+      }}
+    >
       <button
         type="button"
-        className="work-card-visual"
-        onClick={onOpen}
+        className="index-row-main"
+        onClick={onClick}
+        onFocus={(event) => {
+          if (event.target.matches(":focus-visible")) onActivate();
+        }}
         data-cursor-label="Open case"
-        aria-label={`Open case study: ${project.title}`}
       >
-        <span className="work-card-inner">
-          <SystemPreview project={project} />
+        <span className="index-title">{project.title}</span>
+        <span className="index-meta">
+          <span>{project.type}</span>
+          <span>{project.year}</span>
         </span>
       </button>
 
-      <div className="work-card-meta">
-        <div className="work-card-top">
-          <span className="work-card-index">
-            {project.id} <i>/ {String(total).padStart(2, "0")}</i>
-          </span>
-          <span className="label">{project.year}</span>
+      {(live || repo) && (
+        <div className="index-links">
+          {live && (
+            <a href={live.href} target="_blank" rel="noreferrer" aria-label={`${project.title}: ${live.label}`}>
+              <ArrowUpRight size={14} aria-hidden="true" />
+              {shortLabel(live)}
+            </a>
+          )}
+          {repo && (
+            <a href={repo.href} target="_blank" rel="noreferrer" aria-label={`${project.title} source code`}>
+              <Github size={14} aria-hidden="true" />
+              Code
+            </a>
+          )}
         </div>
+      )}
 
-        <h3 className="work-card-title">{project.title}</h3>
-        <span className="work-card-type">{project.type}</span>
-        <p className="work-card-body">{project.description}</p>
-        {project.role && <p className="work-card-role">{project.role}</p>}
-
-        <div className="chip-row">
-          {project.tech.slice(0, 4).map((item) => (
-            <span className="chip" key={item}>
-              {item}
-            </span>
-          ))}
+      {isActive && (
+        <div className="index-inline">
+          <div className="stage-frame">
+            <div className="stage-layer is-current">
+              <StageVisual project={project} sizes="100vw" />
+            </div>
+          </div>
+          <StageCaption project={project} onOpen={onOpen} />
         </div>
+      )}
+    </li>
+  );
+}
 
-        <button type="button" className="link-button" onClick={onOpen}>
-          Read the case
-          <ArrowUpRight size={16} aria-hidden="true" />
-        </button>
+/** Stays in view beside the list on wide layouts. Hidden below 1000px, where rows expand instead. */
+function Stage({ active, onOpen }) {
+  return (
+    <aside className="stage" style={{ "--card-accent": accentOf(active) }} aria-label={`${active.title} preview`}>
+      <div className="stage-frame">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            className={clsx("stage-layer", project.id === active.id && "is-current")}
+            aria-hidden={project.id !== active.id}
+          >
+            <StageVisual project={project} sizes="(max-width: 1000px) 1px, 48vw" />
+          </div>
+        ))}
       </div>
-    </article>
+      <StageCaption project={active} onOpen={() => onOpen(active)} />
+    </aside>
+  );
+}
+
+function StageVisual({ project, sizes }) {
+  if (project.image) {
+    const contained = project.preview === "logo" || project.preview === "mobile";
+    return (
+      <Image
+        src={project.image}
+        alt=""
+        sizes={sizes}
+        className={clsx("stage-image", contained && "is-contained")}
+      />
+    );
+  }
+
+  if (project.visual) return <SystemPreview project={project} />;
+
+  return (
+    <div className="stage-tile">
+      <span className="label">{project.type}</span>
+      <strong>{project.title}</strong>
+    </div>
+  );
+}
+
+function StageCaption({ project, onOpen }) {
+  return (
+    <div className="stage-caption">
+      <p>{project.description}</p>
+      <div className="chip-row">
+        {project.tech.slice(0, 4).map((item) => (
+          <span className="chip" key={item}>
+            {item}
+          </span>
+        ))}
+      </div>
+      <button type="button" className="link-button" onClick={onOpen}>
+        Read the case
+        <ArrowUpRight size={16} aria-hidden="true" />
+      </button>
+    </div>
   );
 }
 
 function SystemPreview({ project }) {
   const { visual, title } = project;
-  if (!visual) return null;
 
   return (
     <div className="preview">
@@ -228,87 +325,13 @@ function SystemPreview({ project }) {
   );
 }
 
-/** Text index whose hovered row throws a preview image at the cursor. */
-function Archive({ onOpen }) {
-  const listRef = useRef(null);
-  const previewRef = useRef(null);
-  const [hovered, setHovered] = useState(null);
-
-  useEffect(() => {
-    const preview = previewRef.current;
-    const list = listRef.current;
-    if (!preview || !list) return undefined;
-    if (prefersReducedMotion() || !window.matchMedia("(pointer: fine)").matches) return undefined;
-
-    const moveX = gsap.quickTo(preview, "x", { duration: 0.55, ease: "power3.out" });
-    const moveY = gsap.quickTo(preview, "y", { duration: 0.55, ease: "power3.out" });
-
-    const onMove = (event) => {
-      moveX(event.clientX);
-      moveY(event.clientY);
-    };
-
-    list.addEventListener("pointermove", onMove);
-    return () => list.removeEventListener("pointermove", onMove);
-  }, []);
-
-  return (
-    <div className="shell archive" id="work-archive">
-      <div className="archive-head">
-        <span className="label">(04) &mdash; Archive</span>
-        <p>Earlier builds, side projects, and systems that still run.</p>
-      </div>
-
-      <div className="archive-list" ref={listRef} onMouseLeave={() => setHovered(null)}>
-        {archive.map((project) => (
-          <button
-            type="button"
-            className="archive-row"
-            key={project.id}
-            onMouseEnter={() => setHovered(project)}
-            onFocus={() => setHovered(project)}
-            onBlur={() => setHovered(null)}
-            onClick={() => onOpen(project)}
-            data-cursor-label="Open"
-          >
-            <span className="archive-index">{project.id}</span>
-            <span className="archive-title">{project.title}</span>
-            <span className="archive-type">{project.type}</span>
-            <span className="archive-year">{project.year}</span>
-            <span className="archive-arrow" aria-hidden="true">
-              <ArrowUpRight size={18} />
-            </span>
-          </button>
-        ))}
-      </div>
-
-      <div className={"archive-preview" + (hovered ? " is-visible" : "")} ref={previewRef} aria-hidden="true">
-        <div className="archive-preview-inner">
-          {archive.map((project) => {
-            const current = hovered?.id === project.id ? "is-current" : undefined;
-
-            return project.image ? (
-              <Image key={project.id} src={project.image} alt="" className={current} sizes="280px" />
-            ) : (
-              <span key={project.id} className={clsx("archive-tile", current)}>
-                <span className="label">{project.type}</span>
-                <strong>{project.title}</strong>
-              </span>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function CaseOverlay({ project, onClose }) {
-  const accent = ACCENTS[project.visual?.theme] ?? "#c8f135";
+  const contained = project.preview === "logo" || project.preview === "mobile";
 
   return (
     <motion.div
       className="case"
-      style={{ "--card-accent": accent }}
+      style={{ "--card-accent": accentOf(project) }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -329,7 +352,7 @@ function CaseOverlay({ project, onClose }) {
         <header className="case-head">
           <div>
             <span className="label">
-              {project.id} &mdash; {project.type} &middot; {project.year}
+              {project.type} &middot; {project.year}
             </span>
             <h3 id="case-title">{project.title}</h3>
             {project.role && <p className="case-role">{project.role}</p>}
@@ -341,7 +364,7 @@ function CaseOverlay({ project, onClose }) {
 
         <div className="case-body">
           {project.image && (
-            <div className="case-shot">
+            <div className={clsx("case-shot", contained && "is-contained")}>
               <Image src={project.image} alt={`${project.title} preview`} sizes="(max-width: 960px) 100vw, 860px" />
             </div>
           )}
