@@ -105,7 +105,7 @@ export default function Work() {
           </h2>
           <p className="section-lede">
             {projects.filter((project) => project.featured).length} picks from {projects.length} projects,
-            with the code or the live site one click away.
+            most with the code or the live site one click away.
           </p>
         </div>
 
