@@ -35,7 +35,7 @@ export const capabilities = [
     detail:
       "I take a product from idea to launch across the interface, backend, data, and deployment, so one person can own the whole build.",
     tools: ["React", "Next.js", "TypeScript", "Node.js"],
-    work: ["MaruCheck", "StreamSynx", "Oz Kitchen", "LendLoop", "DevApps"],
+    work: ["MaruCheck", "Equb", "StreamSynx", "Oz Kitchen", "LendLoop", "DevApps"],
   },
   {
     index: "02",
@@ -71,6 +71,14 @@ export const capabilities = [
   },
   {
     index: "06",
+    title: "Smart Contracts & Web3",
+    detail:
+      "I write and harden Solidity contracts with full test coverage, fuzzing, invariants, and a written record of the risks, then build the app people use them through.",
+    tools: ["Solidity", "Foundry", "OpenZeppelin", "wagmi", "viem"],
+    work: ["Equb"],
+  },
+  {
+    index: "07",
     title: "Automation & Integrations",
     detail:
       "I connect payments, sign-in, messaging, and internal tools so routine work like reminders, notifications, and handoffs runs on its own.",
@@ -78,15 +86,15 @@ export const capabilities = [
     work: ["LendLoop", "Oz Kitchen", "Orit Tej", "FPL Bot"],
   },
   {
-    index: "07",
+    index: "08",
     title: "Security & Quality",
     detail:
       "I enforce access on the server, sign and verify what systems send each other, and add the automated tests that catch problems before release.",
     tools: ["Playwright", "pytest", "Semgrep", "Row-Level Security"],
-    work: ["MaruCheck", "LendLoop", "Orit Tej", "XAU/USD Backtester"],
+    work: ["MaruCheck", "Equb", "LendLoop", "Orit Tej", "XAU/USD Backtester"],
   },
   {
-    index: "08",
+    index: "09",
     title: "Delivery & Team Leadership",
     detail:
       "I set up CI/CD and cloud deployments, lead the work through release, and mentor developers along the way. At Andro Solutions this cut deployment time by 40%.",

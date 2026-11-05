@@ -9,7 +9,7 @@ import { Reveal, RevealLine } from "@/components/motion/Reveal";
 import { capabilities, manifesto, metrics, profile } from "@/data/site";
 
 const EASE = [0.16, 1, 0.3, 1];
-const RIBBON = ["End to end", "Interface", "Mobile", "Services", "Data", "Applied AI", "Automation", "Delivery"];
+const RIBBON = ["End to end", "Interface", "Mobile", "Services", "Data", "Applied AI", "Smart Contracts", "Automation", "Delivery"];
 
 export default function Manifesto() {
   const [open, setOpen] = useState(0);
