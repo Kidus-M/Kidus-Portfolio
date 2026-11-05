@@ -7,6 +7,7 @@ import OpalLuxe from "@/assets/OPAL LUXE .png";
 import OritTej from "@/assets/OritTej.png";
 import Oz from "@/assets/Oz.png";
 import BlueCloud from "@/assets/BlueCloud.jpg";
+import RoadCrash from "@/assets/RoadCrash.jpg";
 
 const entries = [
   {
@@ -340,6 +341,20 @@ const entries = [
     tech: ["Flutter", "Firebase", "Cloud Functions", "FCM"],
     links: [
       { label: "GitHub", href: "https://github.com/Kidus-M/BlueCloud", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
+    title: "Road Crash Severity Model",
+    type: "Applied Machine Learning",
+    year: "2026",
+    description:
+      "A neural network that predicts accident severity from 60,004 Addis Ababa crash records, using SMOTE for class imbalance and leaving out features only known after a crash.",
+    image: RoadCrash,
+    preview: "website",
+    tech: ["Python", "TensorFlow", "Keras", "scikit-learn", "SMOTE"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/AI-car-crash-training-model", kind: "github" },
     ],
     featured: false,
   },
