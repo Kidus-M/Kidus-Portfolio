@@ -491,6 +491,18 @@ const entries = [
     ],
     featured: false,
   },
+  {
+    title: "2048 in C++",
+    type: "Desktop Game",
+    year: "2024",
+    description:
+      "The 2048 puzzle built in C++ with SFML, with undo, saved games, and separate high scores for easy, normal, and hard modes.",
+    tech: ["C++", "SFML"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/2048-C-", kind: "github" },
+    ],
+    featured: false,
+  },
 ];
 
 /** Display numbers follow list order, so inserting a project never needs a renumber. */
