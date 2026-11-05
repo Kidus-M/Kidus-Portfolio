@@ -359,6 +359,18 @@ const entries = [
     featured: false,
   },
   {
+    title: "LL(1) Parser Visualizer",
+    type: "Compiler Tooling",
+    year: "2025",
+    description:
+      "A desktop compiler-design tool that removes left recursion, computes FIRST and FOLLOW sets, builds the parsing table, and draws the parse tree.",
+    tech: ["Python", "Tkinter", "Compiler Design"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Kidus-M/LL-1-parsing", kind: "github" },
+    ],
+    featured: false,
+  },
+  {
     title: "OpalLuxe",
     type: "Luxury E-Commerce",
     year: "2025",
