@@ -110,7 +110,7 @@ export default function Contact() {
         </Marquee>
 
         <div className="shell contact-inner">
-          <span className="label">(08) &mdash; Contact</span>
+          <span className="label">(07) &mdash; Contact</span>
 
           <h2 className="contact-title">
             <RevealLine>Let&rsquo;s build</RevealLine>

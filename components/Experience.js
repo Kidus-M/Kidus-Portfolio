@@ -86,7 +86,7 @@ export default function Experience() {
     <section id="path" className="path" ref={sectionRef}>
       <div className="shell">
         <div className="section-head">
-          <span className="label">(05) &mdash; Path</span>
+          <span className="label">(04) &mdash; Path</span>
           <h2 className="section-title">
             <RevealLine>Where I&rsquo;ve</RevealLine>
             <RevealLine delay={0.08}>

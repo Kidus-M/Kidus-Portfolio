@@ -31,7 +31,7 @@ export default function Proof() {
     <section id="proof" className="proof">
       <div className="shell">
         <div className="section-head">
-          <span className="label">(07) &mdash; Proof</span>
+          <span className="label">(06) &mdash; Proof</span>
           <h2 className="section-title">
             <RevealLine>Under</RevealLine>
             <RevealLine delay={0.08}>

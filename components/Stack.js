@@ -2,7 +2,9 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Braces,
+  Box,
   BrainCircuit,
+  ChartLine,
   Cloud,
   Code2,
   Database,
@@ -24,6 +26,8 @@ const ICONS = {
   brain: BrainCircuit,
   shield: ShieldCheck,
   plug: Plug,
+  chart: ChartLine,
+  cube: Box,
 };
 
 /* Orbit radii as a fraction of --orbit-outer. Groups larger than six spread
@@ -84,7 +88,7 @@ export default function Stack() {
     <section id="stack" className="stack">
       <div className="shell">
         <div className="section-head">
-          <span className="label">(06) &mdash; Stack</span>
+          <span className="label">(05) &mdash; Stack</span>
           <h2 className="section-title">
             <RevealLine>What I</RevealLine>
             <RevealLine delay={0.08}>
