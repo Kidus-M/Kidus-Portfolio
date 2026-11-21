@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { navLinks, profile, socials } from "@/data/site";
-import { useClock } from "@/lib/motion";
+import { useClock, useMediaQuery } from "@/lib/motion";
 
 const EASE = [0.76, 0, 0.24, 1];
 
@@ -41,6 +41,13 @@ export default function Nav() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  /* The menu only exists where the inline links are hidden; close it if the
+     window widens past that point. */
+  const compact = useMediaQuery("(max-width: 1100px)");
+  useEffect(() => {
+    if (!compact) setOpen(false);
+  }, [compact]);
 
   const go = (event, href) => {
     event.preventDefault();

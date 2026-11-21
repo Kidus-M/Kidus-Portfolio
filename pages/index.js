@@ -6,6 +6,7 @@ import Work from "@/components/Work";
 import Experience from "@/components/Experience";
 import Stack from "@/components/Stack";
 import Proof from "@/components/Proof";
+import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <Experience />
       <Stack />
       <Proof />
+      <Faq />
       <Contact />
     </Layout>
   );

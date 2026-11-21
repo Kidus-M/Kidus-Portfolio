@@ -61,6 +61,9 @@ export default async function handler(req, res) {
           <div style={{ fontSize: 118, lineHeight: 1, fontWeight: 600, letterSpacing: -4 }}>
             {`${profile.first} ${profile.last}`}
           </div>
+          <div style={{ display: "flex", fontSize: 24, letterSpacing: 4, textTransform: "uppercase", color: "#c8f135" }}>
+            {`Full name · ${profile.first} ${profile.last} ${profile.lineage}`}
+          </div>
           <div style={{ fontFamily: "Instrument Serif", fontSize: 46, lineHeight: 1.15, color: "#cfcbc3", maxWidth: 980 }}>
             {profile.statement}
           </div>

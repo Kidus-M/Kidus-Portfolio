@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { seo, buildJsonLd, SITE_URL } from "@/lib/seo";
+import { profile } from "@/data/site";
 
 /**
  * Homepage <head>: canonical, Open Graph, Twitter card, robots, and a
@@ -15,15 +16,16 @@ export default function Seo() {
     <Head>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="author" content={seo.name} />
+      <meta name="author" content={`${seo.name} (${seo.fullName})`} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#08080a" />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
       <link rel="canonical" href={`${siteUrl}/`} />
 
       <meta property="og:type" content="profile" />
-      <meta property="profile:first_name" content="Kidus" />
-      <meta property="profile:last_name" content="Mesfin" />
+      <meta property="profile:first_name" content={profile.first} />
+      <meta property="profile:last_name" content={profile.last} />
+      <meta property="profile:username" content="Kidus-M" />
       <meta property="og:site_name" content={seo.name} />
       <meta property="og:locale" content={seo.locale} />
       <meta property="og:url" content={`${siteUrl}/`} />
@@ -32,9 +34,10 @@ export default function Seo() {
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={`${seo.name} — ${seo.title}`} />
+      <meta property="og:image:alt" content={`Portfolio card for ${seo.name} (${seo.fullName}), ${profile.role}`} />
 
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image:alt" content={`Portfolio card for ${seo.name} (${seo.fullName})`} />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={ogImage} />

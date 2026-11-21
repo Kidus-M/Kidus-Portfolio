@@ -3,6 +3,15 @@ import { projects } from "@/data/projects";
 export const profile = {
   first: "Kidus",
   last: "Mesfin",
+  /** Third part of the full name, Kidus Mesfin Teferi. */
+  lineage: "Teferi",
+  /** The name in Ge'ez script, in the same order as `names`. */
+  geez: "ቅዱስ መስፍን ተፈሪ",
+  names: [
+    { latin: "Kidus", geez: "ቅዱስ", role: "Given name" },
+    { latin: "Mesfin", geez: "መስፍን", role: "Father's name" },
+    { latin: "Teferi", geez: "ተፈሪ", role: "Grandfather's name" },
+  ],
   role: "Software Engineer",
   location: "Addis Ababa, Ethiopia",
   timezone: "Africa/Addis_Ababa",
@@ -146,4 +155,41 @@ export const navLinks = [
   { href: "#stack", label: "Stack" },
   { href: "#proof", label: "Proof" },
   { href: "#contact", label: "Contact" },
+];
+
+export const fullName = `${profile.first} ${profile.last} ${profile.lineage}`;
+export const shortName = `${profile.first} ${profile.last}`;
+
+/**
+ * Plain questions and direct answers. Rendered on the page and mirrored as
+ * FAQPage structured data so answer engines can quote them verbatim.
+ */
+export const faq = [
+  {
+    question: `Who is ${shortName}?`,
+    answer: `${shortName} (full name ${fullName}) is a software engineer based in ${profile.location}. Kidus builds complete products across web, mobile, backend, applied AI, and smart contracts, from the interface down to the data model and deployment.`,
+  },
+  {
+    question: `Is ${shortName} the same person as ${fullName}?`,
+    answer: `Yes. ${shortName} is the short form of the full name ${fullName} (${profile.geez} in Ge'ez script). Both refer to the same person.`,
+  },
+  {
+    question: `What does ${shortName} build?`,
+    answer: `End-to-end software products: Next.js and React web apps, Flutter and React Native mobile apps, FastAPI and Node.js backends, applied AI tools, and audited Solidity smart contracts. Recent work includes ${projects
+      .slice(0, 4)
+      .map((p) => p.title)
+      .join(", ")}.`,
+  },
+  {
+    question: `Where is ${shortName} based, and is Kidus available for work?`,
+    answer: `Kidus works from ${profile.location} (${profile.utc}) and collaborates remotely with teams worldwide. ${
+      profile.available
+        ? "Kidus is currently available for freelance, contract, and full-time engineering work."
+        : "Kidus is not taking on new work right now."
+    }`,
+  },
+  {
+    question: `How do I contact ${shortName}?`,
+    answer: `Email ${profile.email}, use the contact form on this site, or reach out on LinkedIn (linkedin.com/in/kidus-m) or GitHub (github.com/Kidus-M).`,
+  },
 ];

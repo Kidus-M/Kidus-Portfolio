@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span>&copy; {year} {profile.first} {profile.last}</span>
+          <span>&copy; {year} {profile.first} {profile.last} {profile.lineage}</span>
           <span>
             {profile.location} &middot; {time}
           </span>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Serif+Ethiopic:wght@400;500&display=swap");
 @import "tailwindcss";
 
 /* ==========================================================================
@@ -22,8 +22,9 @@
   --f-display: "Instrument Serif", Georgia, "Times New Roman", serif;
   --f-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --f-geez: "Noto Serif Ethiopic", "Nyala", "Abyssinica SIL", serif;
 
-  --t-hero: clamp(2.9rem, 7.4vw, 7.6rem);
+  --t-name: clamp(4.4rem, 15.5vw, 16.5rem);
   --t-title: clamp(2.6rem, 7vw, 6.6rem);
   --t-mark: clamp(3rem, 15.2vw, 16rem);
   --t-lede: clamp(1.02rem, 1.45vw, 1.35rem);
@@ -742,7 +743,7 @@ body.is-light .site-nav.is-condensed {
 }
 
 .nav-menu-button {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 0.55rem;
   border: 1px solid currentColor;
@@ -895,7 +896,7 @@ body.is-light .site-nav.is-condensed {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: clamp(6rem, 14vh, 9rem) 0 clamp(1.25rem, 3vh, 2rem);
+  padding: clamp(6rem, 14vh, 8.5rem) 0 clamp(1.25rem, 3vh, 2rem);
   overflow: hidden;
 }
 
@@ -922,56 +923,164 @@ body.is-light .site-nav.is-condensed {
   mask-image: radial-gradient(120% 80% at 50% 20%, #000 10%, transparent 78%);
 }
 
-.hero-body {
+.hero-stage,
+.hero-base {
   position: relative;
   z-index: 2;
-  flex: 1;
   width: min(var(--max), 100%);
   margin: 0 auto;
   padding-inline: var(--pad-x);
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  align-items: end;
-  gap: clamp(1.5rem, 5vw, 4rem);
 }
 
-.hero-lead {
+.hero-glyph {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(48vw, 860px);
+}
+
+.hero-glyph canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero-stage {
+  flex: 1;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 3vw, 2rem);
+  justify-content: center;
+  padding-block: clamp(1.5rem, 5vh, 3rem) clamp(1rem, 3vh, 2rem);
 }
 
-.hero-statement {
+.hero-name {
+  pointer-events: auto;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
   font-family: var(--f-display);
-  font-size: var(--t-hero);
-  line-height: 0.88;
-  letter-spacing: -0.02em;
+  font-size: var(--t-name);
+  line-height: 0.8;
+  letter-spacing: -0.035em;
+  text-wrap: initial;
 }
 
-.hero-line {
+.hero-name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  column-gap: 0.14em;
+  row-gap: 0.1em;
+  will-change: transform;
+}
+
+.hero-name-row.is-second {
+  padding-left: clamp(0rem, 9vw, 9.5rem);
+}
+
+.hero-word {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.hero-word::before {
+  content: attr(data-geez);
+  display: block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  margin: 0 0 clamp(0.45rem, 1.2vh, 0.8rem) 0.06em;
+  font-family: var(--f-geez);
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--lime);
+  white-space: nowrap;
+}
+
+.hero-word-mask {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
+  padding: 0.06em 0.08em 0.12em;
+  margin: -0.06em -0.08em -0.12em;
 }
 
-.hero-line-inner {
+.hero-word-inner {
   display: block;
+  white-space: nowrap;
 }
 
-.hero-statement em {
-  font-style: italic;
+.hero-char {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-char[data-glyph] {
+  color: transparent;
+  -webkit-text-stroke: 0 transparent;
+}
+
+.hero-char[data-glyph]::after {
+  content: attr(data-glyph);
+  position: absolute;
+  left: 50%;
+  bottom: 0.1em;
+  transform: translateX(-50%);
+  font-family: var(--f-geez);
+  font-size: 0.6em;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: 0;
   color: var(--lime);
 }
 
-.hero-aside {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.25rem, 3vw, 2rem);
-  padding-bottom: 0.5rem;
+/* Grandfather's name — the part of the full name that usually goes unsaid,
+   set smaller, italic, and in outline. */
+.hero-word.is-minor {
+  font-size: 0.4em;
+  margin-bottom: 0.14em;
+}
+
+.hero-word.is-minor .hero-word-inner {
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(236, 231, 221, 0.72);
+}
+
+.hero.is-in .hero-word::before {
+  opacity: 1;
+  transform: none;
+}
+
+.hero.is-in .hero-word:nth-child(2)::before {
+  transition-delay: 0.12s;
+}
+
+.hero-word.is-minor::before {
+  margin-bottom: 0.35rem;
+  font-size: clamp(0.85rem, 1vw, 1.05rem);
+}
+
+.hero-tagline {
+  display: block;
+  margin-top: clamp(1.4rem, 3.4vh, 2.4rem);
+  padding-left: 0.1rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-label);
+  font-style: normal;
+  letter-spacing: 0.19em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--fg);
 }
 
 .hero-blurb {
-  max-width: 38ch;
+  max-width: 44ch;
   color: var(--muted);
   font-size: var(--t-lede);
   line-height: 1.5;
@@ -987,49 +1096,23 @@ body.is-light .site-nav.is-condensed {
   position: relative;
   z-index: 2;
   height: 1px;
-  margin: clamp(1.75rem, 5vh, 3.5rem) var(--pad-x) 0;
+  margin: 0 var(--pad-x);
   background: linear-gradient(90deg, var(--line-strong), var(--line), transparent);
   transform-origin: left;
 }
 
-.hero-wordmark {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: clamp(0.5rem, 2vh, 1.25rem) var(--pad-x) 0;
-  font-family: var(--f-display);
-  font-size: var(--t-mark);
-  line-height: 0.76;
-  letter-spacing: -0.03em;
-  color: var(--bone);
-  user-select: none;
-}
-
-.hero-letter {
-  display: block;
-  overflow: hidden;
-  padding-top: 0.34em;
-  margin-top: -0.34em;
-}
-
-.hero-letter-inner {
-  display: block;
-  transform-origin: bottom center;
-  will-change: transform;
-}
-
 .hero-base {
-  position: relative;
-  z-index: 2;
-  width: min(var(--max), 100%);
-  margin: 0 auto;
-  padding: clamp(1rem, 3vh, 1.75rem) var(--pad-x) 0;
+  padding-top: clamp(1.25rem, 3.4vh, 2rem);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .hero-availability {
@@ -1055,46 +1138,6 @@ body.is-light .site-nav.is-condensed {
 @keyframes ping {
   0% { box-shadow: 0 0 0 0 rgba(200, 241, 53, 0.45); }
   70%, 100% { box-shadow: 0 0 0 9px rgba(200, 241, 53, 0); }
-}
-
-.hero-role {
-  flex: 1;
-  text-align: center;
-  max-width: 42ch;
-}
-
-.hero-scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--muted);
-  transition: color 0.3s ease;
-}
-
-.hero-scroll:hover {
-  color: var(--lime);
-}
-
-.hero-scroll i {
-  position: relative;
-  display: block;
-  width: 1px;
-  height: 34px;
-  background: var(--line-strong);
-  overflow: hidden;
-}
-
-.hero-scroll i::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--lime);
-  animation: scroll-trace 1.9s var(--ease) infinite;
-}
-
-@keyframes scroll-trace {
-  0% { transform: translateY(-100%); }
-  60%, 100% { transform: translateY(100%); }
 }
 
 /* ==========================================================================
@@ -2955,6 +2998,100 @@ a.path-company:hover {
 }
 
 /* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq {
+  padding-block: var(--pad-y);
+  border-top: 1px solid var(--line);
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.faq-head {
+  position: sticky;
+  top: clamp(6rem, 14vh, 8rem);
+  margin-bottom: 0;
+}
+
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item summary {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: clamp(1.25rem, 2.6vw, 1.9rem) 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question {
+  font-family: var(--f-display);
+  font-size: clamp(1.35rem, 2.3vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.faq-item summary:hover .faq-question,
+.faq-item summary:focus-visible .faq-question {
+  color: var(--lime);
+}
+
+.faq-icon {
+  align-self: center;
+  color: var(--muted);
+  transition: transform 0.4s var(--ease), color 0.3s ease;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+  color: var(--lime);
+}
+
+.faq-answer {
+  max-width: 60ch;
+  padding: 0 0 clamp(1.4rem, 2.8vw, 2rem) 3.6rem;
+  color: var(--muted);
+  font-size: var(--t-body);
+  line-height: 1.7;
+}
+
+@media (max-width: 820px) {
+  .faq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-head {
+    position: static;
+  }
+
+  .faq-item summary {
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+  }
+
+  .faq-answer {
+    padding-left: 3rem;
+  }
+}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 
@@ -2963,15 +3100,18 @@ a.path-company:hover {
     display: none;
   }
 
-  .hero-body {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
+  .nav-menu-button {
+    display: inline-flex;
   }
 
-  .hero-role {
-    display: none;
+  .hero-glyph {
+    width: 100%;
   }
+
+  .hero-glyph canvas {
+    opacity: 0.38;
+  }
+
 
   .manifesto-split {
     grid-template-columns: 1fr;
@@ -3056,11 +3196,7 @@ a.path-company:hover {
   .hero-base {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.9rem;
-  }
-
-  .hero-scroll {
-    display: none;
+    gap: 1.4rem;
   }
 
   .metric-row {
@@ -3244,7 +3380,6 @@ a.path-company:hover {
   .nav-clock i,
   .preview-status i,
   .hero-availability i,
-  .hero-scroll i::after,
   .manifesto-sigil,
   .marquee-track {
     animation: none !important;

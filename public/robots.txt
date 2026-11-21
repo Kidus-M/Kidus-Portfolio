@@ -14,6 +14,11 @@ User-agent: Claude-SearchBot
 User-agent: anthropic-ai
 User-agent: Google-Extended
 User-agent: Bingbot
+User-agent: Perplexity-User
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
 Allow: /
 
 User-agent: CCBot
